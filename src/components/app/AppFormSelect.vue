@@ -1,0 +1,185 @@
+<script setup lang="ts">
+import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
+import { AppFormInputContainer } from '.';
+import { ref, toRef, computed, type PropType } from 'vue';
+import { vOnClickOutside } from '@vueuse/components';
+
+export interface SelectItemObj {
+  value: any;
+  label?: string;
+}
+const props = defineProps({
+  ...themedColorProps,
+  ...inputProps,
+  ...inputContainerProps,
+  ...validationProps,
+  items: { type: Array as PropType<SelectItemObj[] | string[]>, required: true },
+  multiselect: { type: Boolean as PropType<boolean>, default: false, requireD: false },
+}); 
+
+const emits = defineEmits([
+  ...inputEmits,
+])
+
+/** Themed color composables */
+const { color } = useThemedColor(props.color);
+
+/** Input value compsosable */
+const { updateInputValue } = useInputValue(emits)
+
+
+/** Form validation composable */
+const {
+  errorMessage,
+  isRequired, 
+  checkError 
+} = useFormValidation(toRef(props, 'color'), toRef(props, 'validations'), props.name)
+
+
+/** Select Input Display  */
+
+// Variable to display on select (will display label if present)
+const displayValue = computed(()=>{
+  /** Gets the label by value from modelValue */
+  function getValueLabel(value: any) {
+    const itemIndex = props.items
+      .findIndex((_item:SelectItem)=> value === getItemValue(_item));
+    
+    if (itemIndex < 0) return value;
+
+    const item = props.items[itemIndex];
+    return getItemLabel(item);
+  }
+
+  if (props.multiselect && Array.isArray(props.modelValue)) {
+    // display labels per value if multiselect
+    return props.modelValue.map(value=>getValueLabel(value));
+  }  else {
+    return getValueLabel(props.modelValue);
+  }
+});
+
+
+/** Select Items */
+
+// reactive state for select item container
+const isOpen = ref(false);
+
+// Select item label handler 
+function getItemLabel(item: SelectItem) {
+  const typeObject = typeof item === 'object' && item !== null;
+  return typeObject ? (item?.label || item.value) : item;
+}
+// get the text to be displayed 
+function getItemValue(item: SelectItem) {
+  const typeObject = typeof item === 'object' && item !== null;
+  return typeObject ? item.value : item;
+}
+function getItemKey(item: SelectItem, index: number) {
+  return `item-${getItemLabel(item)}-${index}`
+}
+// Select item state Handler 
+function toggleItems(state?: boolean) {
+  isOpen.value = typeof state === 'boolean' 
+    ? state
+    : !isOpen.value; 
+}
+function isActive(item: SelectItem) {
+  const typeObject = typeof item === 'object' && item !== null;
+  const itemValue = typeObject ? item.value : item;
+  
+  return props.multiselect && Array.isArray(props.modelValue)
+    ? props.modelValue.includes(itemValue)
+    : itemValue === props.modelValue;
+}
+// Select item click/keypress handler 
+function onItemSelect(item: SelectItem) {
+  const type = typeof item === 'string';
+  let value = type ? item : item.value;
+
+  if (props.multiselect) {
+    const modelValue = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
+    const existIndex = modelValue
+      .findIndex((item)=> JSON.stringify(item) === JSON.stringify(value))
+    
+    if (existIndex >= 0) {
+      modelValue.splice(existIndex, 1);
+      value = [ ...modelValue ];
+    } else {
+      value = [...modelValue, value];
+    }
+  }
+  checkError(value);
+  updateInputValue(value);
+  toggleItems(false);
+}
+
+type SelectItem = SelectItemObj | string;
+</script>
+
+<template>
+  <AppFormInputContainer
+    :name="props.name"
+    :required="isRequired"
+    :label="props.label"
+    :label-class="props.labelClass"
+    :error="props.error || errorMessage"
+    :error-class="props.errorClass"
+    v-bind="{ color }" 
+    class="relative cursor-pointer"
+    v-on-click-outside="()=>toggleItems(false)"
+  >
+    <!-- Select Display -->
+    <input
+      readonly
+      :Value="displayValue"
+      class="w-full outline-none focus"
+      tabindex="0"
+      @click="toggleItems()" 
+      @keydown.space="toggleItems()" 
+    />
+
+    <!-- Select Items -->
+    <Transition
+      enter-active-class="duration-150 ease-out"
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      leave-active-class="duration-150 ease-in"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+    >
+      <ul
+        v-if="isOpen"
+        class="
+          z-10
+          w-full max-h-[150px]
+          overflow-auto scrollbar
+          absolute top-[110%] left-0 
+          bg-white
+          shadow rounded-lg outline outline-1 outline-secondary-200
+        "
+      >
+        <!-- Select Item -->
+        <li
+          v-for="(item, index) in props.items"
+          :key="getItemKey(item, index)"
+          :class="[
+            'p-1',
+            'outline-none',
+            'transition',
+            'hover:text-white focus:text-white',
+            `hover:bg-${color} focus:bg-${color}`,
+            { 
+              [`bg-${color}/75 text-white`]: isActive(item) 
+            }
+          ]"
+          tabindex="0"
+          @click="onItemSelect(item)"
+          @keypress.space="onItemSelect(item)"
+        >
+          {{ getItemLabel(item) }}
+        </li>
+      </ul>
+    </Transition>
+  </AppFormInputContainer>
+</template>
