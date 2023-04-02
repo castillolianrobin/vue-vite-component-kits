@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import { AppForm, AppFormInput, AppButton, AppFormCheckbox, AppFormRadio, AppFormSelect, AppFormTextArea } from './components/app/';
+import { AppForm, AppFormInput, AppButton, AppFormCheckbox, AppFormRadio, AppFormSelect, AppFormTextArea } from '@/components/app';
 import { ref } from 'vue';
 
 
@@ -25,11 +25,11 @@ function testValidation() {
       Submit
     </AppButton>
     
-    <AppButton variant="outlined" size="sm">
+    <AppButton variant="outline" size="sm">
       Outlined
     </AppButton>
     
-    <AppButton variant="outlined" color="error-500">
+    <AppButton variant="outline" color="error-500">
       Outlined
     </AppButton>
 

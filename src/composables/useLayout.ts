@@ -1,4 +1,4 @@
-import { Component, inject, markRaw, provide, Ref, ref } from "vue";
+import { type Component, inject, markRaw, provide, type Ref, ref } from "vue";
 
 type LayoutNames = "UserLayout" | "DefaultLayout";
 
