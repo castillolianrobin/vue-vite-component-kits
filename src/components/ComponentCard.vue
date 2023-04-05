@@ -5,11 +5,12 @@ const props = defineProps({
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col">
     <h5 class="mt-6 mb-3 font-semibold">{{ props.title }}</h5>
     <div 
       class="
         py-6 p-3 
+        flex-grow
         bg-white
         border rounded
       "
