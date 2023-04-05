@@ -13,7 +13,7 @@ const props = defineProps({
   ...inputProps,
   ...inputContainerProps,
   ...validationProps,
-  items: { type: Array as PropType<SelectItemObj[] | string[]>, required: true },
+  items: { type: Array as PropType<SelectItemObj[] | string[] | number[]>, required: true },
   multiselect: { type: Boolean as PropType<boolean>, default: false, requireD: false },
 }); 
 
@@ -65,16 +65,20 @@ const displayValue = computed(()=>{
 // reactive state for select item container
 const isOpen = ref(false);
 
+// Checks if item is type of string 
+function isItemString(item: SelectItem): item is string | number {
+  return typeof item === 'string' || typeof item === 'number';
+}
+
 // Select item label handler 
 function getItemLabel(item: SelectItem) {
-  const typeObject = typeof item === 'object' && item !== null;
-  return typeObject ? (item?.label || item.value) : item;
+  return isItemString(item) ? item : (item?.label || item.value);
 }
 // get the text to be displayed 
 function getItemValue(item: SelectItem) {
-  const typeObject = typeof item === 'object' && item !== null;
-  return typeObject ? item.value : item;
+  return isItemString(item) ? item : item.value;
 }
+// return the item's key value
 function getItemKey(item: SelectItem, index: number) {
   return `item-${getItemLabel(item)}-${index}`
 }
@@ -85,8 +89,7 @@ function toggleItems(state?: boolean) {
     : !isOpen.value; 
 }
 function isActive(item: SelectItem) {
-  const typeObject = typeof item === 'object' && item !== null;
-  const itemValue = typeObject ? item.value : item;
+  const itemValue = isItemString(item) ? item : item.value;
   
   return props.multiselect && Array.isArray(props.modelValue)
     ? props.modelValue.includes(itemValue)
@@ -94,8 +97,7 @@ function isActive(item: SelectItem) {
 }
 // Select item click/keypress handler 
 function onItemSelect(item: SelectItem) {
-  const type = typeof item === 'string';
-  let value = type ? item : item.value;
+  let value = isItemString(item) ? item : item.value;
 
   if (props.multiselect) {
     const modelValue = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
@@ -114,7 +116,7 @@ function onItemSelect(item: SelectItem) {
   toggleItems(false);
 }
 
-type SelectItem = SelectItemObj | string;
+type SelectItem = SelectItemObj | string | number;
 </script>
 
 <template>
@@ -154,7 +156,7 @@ type SelectItem = SelectItemObj | string;
           z-10
           w-full max-h-[150px]
           overflow-auto scrollbar
-          absolute top-[110%] left-0 
+          absolute top-[110%] right-0 
           bg-white
           shadow rounded-lg outline outline-1 outline-secondary-200
         "
