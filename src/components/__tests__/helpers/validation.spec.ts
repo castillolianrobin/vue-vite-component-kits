@@ -3,8 +3,8 @@ import { required } from "@/composables/validation/validations";
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 
-export const validationTest = (component: any, name: string, options = {}) => {
-  describe(`VALIDATION TEST: ${name}`, () => {
+export const validationTest = (component: any, options = {}) => {
+  describe(`Form Validation`, () => {
 
     // Required validation
     it("renders required label correctly", () => {
