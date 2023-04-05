@@ -60,10 +60,17 @@ watch(toRef(props, 'modelValue'), checkError );
   >
     <slot name="prepend"></slot>
     <input
-      class="flex-grow w-full outline-none bg-transparent disabled:text-secondary-400"
+      class="
+        flex-grow 
+        w-full 
+        outline-none 
+        bg-transparent 
+        disabled:text-secondary-400
+      "
+      :aria-label="name"
       :value="props.modelValue"
       @input="updateInputValue"
-      v-bind="{ ...props }"
+      v-bind="{ ...props, ...$attrs }"
     />
     <slot name="append"></slot>
   </AppFormInputContainer>
