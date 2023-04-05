@@ -2,17 +2,21 @@
 - AppForm [DONE]
 - AppFormInput [DONE]
 - AppFormCheckbox [DONE]
-- AppFormRadio  [DONE]
+- AppFormRadio [DONE]
 - AppFormSelect [DONE]
 - AppFormMultiSelect [DONE]
 - AppFormTextArea [DONE]
 - AppFormFile 
 - AppFormDatePicker
-- AppModal
-- AppPagination
-- AppTable
-- AppSteps
+- AppModal [DONE]
+- AppPagination  [DONE] [TESTED]
+- AppTable [DONE] [TESTED]
 - AppTabs
-- AppTooltip
 - AppDropdown
-- AppAlert
+- AppTooltip
+- AppSteps
+- AppToast
+
+
+EXTRAS: 
+HOC/Renderless Component for fetching api then returning it to scoped slots
