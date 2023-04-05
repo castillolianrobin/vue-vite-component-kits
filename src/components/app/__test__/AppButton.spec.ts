@@ -6,7 +6,7 @@ import { defaultSlotTest } from '../../__tests__/helpers/slot.spec';
 const name = 'AppButton';
 
 describe(name, () => {
-  defaultSlotTest(AppButton, name);
+  defaultSlotTest(AppButton);
 
   /** test if hover is working */
   const wrapper = mount(AppButton);

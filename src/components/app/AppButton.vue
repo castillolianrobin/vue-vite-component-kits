@@ -5,7 +5,7 @@ import { AppLoading } from './';
 
 const props = defineProps({
   type: { type: String as PropType<ButtonHTMLAttributes['type']>, default: 'button', required: false, },
-  disabled: { type: Boolean as PropType<boolean>, default: false, required: false },
+  disabled: { type: Boolean as PropType<ButtonHTMLAttributes['disabled']>, default: false, required: false },
   loading: { type: Boolean as PropType<boolean>, default: false, required: false },
   size: { type: String as PropType<'lg' | 'md' | 'sm'>, default: 'md', required: false,  },
   variant: { type: String as PropType<'solid' | 'outline' | 'text'>, default: 'solid', required: false },
@@ -41,7 +41,7 @@ const borderClass = computed(()=>{
 })
 const textClass = computed(()=>{
   switch (props.variant) {
-    case 'text': return `text-${unref(color)}`;    
+    case 'text': return `text-${unref(color)} disabled:text-opacity-50 hover:brightness-150`;    
     case 'outline': return `text-${unref(color)} hover:text-white active:text-${unref(color)} disabled:text-${unref(color)}`;   
     case 'solid': default: return `text-white`;
   }
@@ -51,7 +51,6 @@ const textClass = computed(()=>{
 
 <template>
   <button 
-    v-bind="{ ...props }"
     :class="[ 
       ...[ sizeClass, bgClass, textClass, borderClass ],
       `focus:outline-${color}/25 outline-2`,
@@ -71,7 +70,7 @@ const textClass = computed(()=>{
       disabled:brightness-75 
       disabled:opacity-80
     "
-    :disabled="props.disabled"
+    v-bind="{ ...props }"
   >
     <AppLoading 
       v-if="props.loading"
