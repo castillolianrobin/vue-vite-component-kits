@@ -1,4 +1,5 @@
 export { default as AppButton } from './AppButton.vue';
+export { default as AppCard } from './AppCard.vue';
 export { default as AppForm } from './AppForm.vue';
 export { default as AppFormCheckbox } from './AppFormCheckbox.vue';
 export { default as AppFormError } from './AppFormError.vue';
