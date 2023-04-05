@@ -39,4 +39,4 @@ type Color = ThemeColors | Ref<ThemeColors|undefined>;
 export type themeNames = 'primary'|'secondary'|'info'|'alert'|'error'|'success';
 
 /** Type format definition for availble theme colors */
-export type ThemeColors = `${themeNames}-${number}` | 'black' | `[${string}]`;
+export type ThemeColors = `${themeNames}-${number}`|'black'|'white'|`[${string}]`;
