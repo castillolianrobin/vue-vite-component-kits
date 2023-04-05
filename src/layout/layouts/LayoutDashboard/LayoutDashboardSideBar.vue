@@ -3,6 +3,7 @@ import type { RouteRecordName } from 'vue-router';
 
 const navigations: Navigation[] = [
   { routeName: 'Home', label: 'Home' },
+  { routeName: 'Cards', label: 'Cards' },
   { routeName: 'Buttons', label: 'Buttons' },
   { routeName: 'Modals', label: 'Modals' },
   { routeName: 'Pagination', label: 'Paginations' },
@@ -50,7 +51,7 @@ interface Navigation {
             border-l-4 border-primary-500/0
             transition-colors
           "
-          active-class="border-primary-500/100"
+          active-class="border-primary-500/100 font-semibold"
         >
           {{  nav.label  }}
         </router-link>

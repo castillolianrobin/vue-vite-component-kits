@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { AppButton, AppModal, AppPagination, AppTable } from '@/components/app';
+import AppCard from '@/components/app/AppCard.vue';
 import { ref } from 'vue';
 
 const active = ref(false);
@@ -58,5 +59,18 @@ const currentPage = ref(1);
       items-clickable
       v-bind="{ headers, items }"
      ></AppTable>
+    
+     <AppCard class="m-2 w-1/2">
+      <template #title>Header</template>
+      <template #subtitle>This is a subtitle</template>
+
+      A Content meant for your satisfaction
+      
+      <template #actions>
+        <AppButton class="ml-auto">
+          Aggree
+        </AppButton>
+      </template>
+     </AppCard>
   </div>
 </template>

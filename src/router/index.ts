@@ -11,6 +11,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/cards',
+      name: 'Cards',
+      component: () => import('../views/CardView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/buttons',
       name: 'Buttons',
       component: () => import('../views/ButtonView.vue'),
