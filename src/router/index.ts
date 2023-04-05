@@ -8,31 +8,43 @@ const router = createRouter({
       path: '/',
       name: 'Home',
       component: HomeView,
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
     },
     {
       path: '/buttons',
       name: 'Buttons',
       component: () => import('../views/ButtonView.vue'),
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
     },
     {
       path: '/modal',
       name: 'Modals',
       component: () => import('../views/ModalView.vue'),
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/pagination',
+      name: 'Pagination',
+      component: () => import('../views/PaginationView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/table',
+      name: 'Table',
+      component: () => import('../views/TableView.vue'),
+      meta: { layout: 'Dashboard' },
     },
     {
       path: '/input',
       name: 'FormInput',
       component: () => import('../views/FormInputView.vue'),
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
     },
     {
       path: '/input/checkbox-radio',
       name: 'FormCheckboxRadio',
       component: () => import('../views/FormCheckboxRadioView.vue'),
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
     },
     {
       path: '/sanbox',
@@ -41,7 +53,7 @@ const router = createRouter({
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/SandboxView.vue'),
-      meta: { layout: 'LayoutDashboard' },
+      meta: { layout: 'Dashboard' },
     }
   ]
 })
