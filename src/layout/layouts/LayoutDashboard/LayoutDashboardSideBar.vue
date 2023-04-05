@@ -5,6 +5,8 @@ const navigations: Navigation[] = [
   { routeName: 'Home', label: 'Home' },
   { routeName: 'Buttons', label: 'Buttons' },
   { routeName: 'Modals', label: 'Modals' },
+  { routeName: 'Pagination', label: 'Paginations' },
+  { routeName: 'Table', label: 'Tables' },
   { routeName: 'FormInput', label: 'Form Input & Text Area' },
   { routeName: 'FormCheckboxRadio', label: 'Checkbox & Radio' },
   { routeName: 'Sandbox', label: 'SandBox' },
@@ -25,7 +27,9 @@ interface Navigation {
       bg-secondary-200
     "
   >
-    <h3 class="mt-3 text-lg text-center uppercase font-semibold">
+    <h3 
+      class="mt-3 text-lg text-center uppercase font-semibold"
+    >
       Components
     </h3>
 
