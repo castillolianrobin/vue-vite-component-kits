@@ -11,7 +11,11 @@ module.exports = {
   safelist: [
     {
       pattern: /(bg|text|border|outline)-(primary|secondary|success|error|warning)-(200|500)/,
-      variants: ['active', 'hover', 'focus', 'group-focus-within', 'group-hover', 'disabled'],
+      variants: ['active', 'hover', 'focus', 'group-focus-within', 'group-hover', 'disabled', 'even'],
+    },
+    {
+      pattern: /(bg|text|border|outline)-(white|black)/,
+      variants: ['active', 'hover', 'focus', 'group-focus-within', 'group-hover', 'disabled', 'even'],
     },
   ],
   theme: {
