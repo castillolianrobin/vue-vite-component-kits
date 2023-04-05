@@ -48,7 +48,6 @@ function toggleModal(state: boolean | null = null) {
       leave-active-class="duration-150 ease-in [&_.modal-dialog]:duration-200"
       leave-from-class="opacity-100 scale-100"
       leave-to-class="opacity-0 [&_.modal-dialog]:-translate-y-5"
-
     >
       <div 
         v-if="isActive"
