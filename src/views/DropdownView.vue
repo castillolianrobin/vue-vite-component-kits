@@ -35,23 +35,24 @@ const dropPositions: DropProp[] = [
       <!-- Dropdown Drop Positions -->
       <ComponentCard title="Dropdown Positions">
         <div class="grid grid-cols-2 md:grid-cols-4 justify-center gap-6">
-          <AppDropdown
+          <div 
             v-for="position in dropPositions"
             :key="position"
-            :drop="position"
-            :items="dropdown1Items"
-            class="flex justify-center"
-          >
-            <template #trigger="{ props }">
-              <AppButton 
-                class="capitalize" 
-                v-bind="{ ...props }"
-              >
-                Drop {{ position }}
-              </AppButton>
-            </template>
-          </AppDropdown>
-
+            class="flex justify-center">
+            <AppDropdown
+              :drop="position"
+              :items="dropdown1Items"
+            >
+              <template #trigger="{ props }">
+                <AppButton 
+                  class="capitalize" 
+                  v-bind="{ ...props }"
+                >
+                  Drop {{ position }}
+                </AppButton>
+              </template>
+            </AppDropdown>
+          </div>
         </div>
       </ComponentCard>
 
