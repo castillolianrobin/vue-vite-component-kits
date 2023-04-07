@@ -1,10 +1,10 @@
-import { mount } from "@vue/test-utils";
+import { mount, VueWrapper } from "@vue/test-utils";
 import { expect, it } from "vitest";
 
 
 /** DEFAULT SLOT TEST */
-export const defaultSlotTest = (component:any, options = {}) => {  
-  it('renders default slot', () => {
+export const defaultSlotTest = (component:any, options:MountParams[1] = {}, executables?:Executables) => {  
+  it('renders default slot', async () => {
     const defaultSlot_class = 'default-class';
     const defaultSlot_text = 'Test 1';
     const wrapper = mount(component, {
@@ -12,7 +12,16 @@ export const defaultSlotTest = (component:any, options = {}) => {
         default: `<div class="${defaultSlot_class}">${defaultSlot_text}</div>`
       },
       ...options,
-    })
+    });
+
+    if (executables?.afterMount) {
+      try { await executables.afterMount(wrapper) } 
+      catch(e) { console.error(e) }
+    }
+    console.log('after emit')
+    executables?.afterMount && console.log();
+
+    
     const defaultSlot_result = wrapper.findAll(`.${defaultSlot_class}`);
     expect(defaultSlot_result.length).toBe(1) 
     expect(defaultSlot_result[0].text()).toBe(defaultSlot_text);
@@ -20,7 +29,7 @@ export const defaultSlotTest = (component:any, options = {}) => {
 }
 
 /** NAMED SLOT TEST */
-export const namedSlotTest = (component: any, slotName: string, options = {}) => {  
+export const namedSlotTest = (component:any, slotName: string, options:MountParams[1] = {}, executables?: Executables) => {  
   it(`renders '${slotName}' slot`, () => {
     const namedSlot_class = 'slot-class';
     const namedSlot_text = 'Test 1';
@@ -30,8 +39,20 @@ export const namedSlotTest = (component: any, slotName: string, options = {}) =>
       },
       ...options,
     })
+    executables?.afterMount && executables?.afterMount(wrapper);
     const defaultSlot_result = wrapper.findAll(`.${namedSlot_class}`);
     expect(defaultSlot_result.length).toBe(1) 
     expect(defaultSlot_result[0].text()).toBe(namedSlot_text);
   })
 }
+
+
+/** TYPE DEFINITIONS */
+
+type MountParams  = Parameters<typeof mount>; 
+
+
+interface Executables {
+  afterMount: (wrapper: VueWrapper<any>)=> void;
+  // beforeMount: ()=> void;
+};

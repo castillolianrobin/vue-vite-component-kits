@@ -37,7 +37,7 @@ const defaultTextArea = ref('');
     <PageHeader>Form Inputs & Text Area</PageHeader>
     
     <ComponentCard title="Text Inputs">
-        <div class="grid grid-cols-3 gap-x-7 gap-4">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-4">
           <AppFormInput
             v-model="defaultInput"
             v-for="(input, index) in inputs"
@@ -47,9 +47,9 @@ const defaultTextArea = ref('');
         </div>
     </ComponentCard>
 
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-2">
       <ComponentCard title="Password Inputs">
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid md:grid-cols-2 gap-2">
             <AppFormInput
               v-model="PasswordInput"
               v-for="(input, index) in [inputs[0],inputs[4]]"
@@ -61,7 +61,7 @@ const defaultTextArea = ref('');
       </ComponentCard>
   
       <ComponentCard title="Number Inputs">
-          <div class="grid grid-cols-2 gap-2">
+          <div class="grid md:grid-cols-2 gap-2">
             <AppFormInput
               v-model="NumberInput"
               v-for="(input, index) in [inputs[0],inputs[4]]"
@@ -74,7 +74,7 @@ const defaultTextArea = ref('');
     </div>
 
     <ComponentCard title="Text Areas">
-          <div class="grid grid-cols-3 gap-4">
+          <div class="grid md:grid-cols-3 gap-4">
             <AppFormTextArea
               v-model="defaultTextArea"
               v-for="(input, index) in [inputs[0],inputs[4]]"

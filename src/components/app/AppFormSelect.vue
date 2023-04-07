@@ -160,6 +160,7 @@ type SelectItem = SelectItemObj | string | number;
           bg-white
           shadow rounded-lg outline outline-1 outline-secondary-200
         "
+        role="listbox"
       >
         <!-- Select Item -->
         <li
@@ -175,7 +176,9 @@ type SelectItem = SelectItemObj | string | number;
               [`bg-${color}/75 text-white`]: isActive(item) 
             }
           ]"
+          :aria-selected="isActive(item)"
           tabindex="0"
+          role="option"
           @click="onItemSelect(item)"
           @keypress.space="onItemSelect(item)"
         >

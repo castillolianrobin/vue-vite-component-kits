@@ -33,7 +33,7 @@ const radioButton = ref(false);
     
     <!-- Default Checkbox -->
     <ComponentCard title="Checkboxes">
-        <div class="grid grid-cols-4 gap-2">
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-center">
           <AppFormCheckbox 
             v-for="(input, index) in inputs"
             :key="`default-${index}`"
@@ -46,7 +46,7 @@ const radioButton = ref(false);
 
     <!-- Custom Checkbox -->
     <ComponentCard title="Custom Checkboxes">
-      <div class="grid grid-cols-2">
+      <div class="grid md:grid-cols-2 gap-4">
         <AppFormCheckbox
           v-model="checkBox"
           label="Custom Checkbox 1"
@@ -83,7 +83,7 @@ const radioButton = ref(false);
 
     <!-- Default Radio Button -->
     <ComponentCard title="Radio Buttons">
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
           <AppFormRadio
             v-for="(input, index) in inputs.slice(0,-1)"
             :key="`default-${index}`"

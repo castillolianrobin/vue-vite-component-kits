@@ -5,6 +5,7 @@ const navigations: Navigation[] = [
   { routeName: 'Home', label: 'Home' },
   { routeName: 'Cards', label: 'Cards' },
   { routeName: 'Buttons', label: 'Buttons' },
+  { routeName: 'Dropdowns', label: 'Dropdowns' },
   { routeName: 'Modals', label: 'Modals' },
   { routeName: 'Pagination', label: 'Paginations' },
   { routeName: 'Table', label: 'Tables' },

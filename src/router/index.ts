@@ -23,6 +23,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/dropdown',
+      name: 'Dropdowns',
+      component: () => import('../views/DropdownView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/modal',
       name: 'Modals',
       component: () => import('../views/ModalView.vue'),

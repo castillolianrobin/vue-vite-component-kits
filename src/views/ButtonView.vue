@@ -34,7 +34,7 @@ const buttons:Button[] = [
     <div class="">
       <!-- Default Buttons -->
       <ComponentCard title="Default Buttons">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center justify-center gap-4">
           <AppButton
             v-for="button in buttons"
             :key="`solid-${button.title}`"
@@ -48,7 +48,7 @@ const buttons:Button[] = [
       
       <!-- Outlined Buttons -->
       <ComponentCard title="Outlined Buttons">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center justify-center gap-4">
           <AppButton
             v-for="button in buttons"
             :key="`outline-${button.title}`"
@@ -63,7 +63,7 @@ const buttons:Button[] = [
   
       <!-- Text Buttons -->
       <ComponentCard title="Text Buttons">
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center justify-center gap-4">
           <AppButton
             v-for="button in buttons"
             :key="`outline-${button.title}`"

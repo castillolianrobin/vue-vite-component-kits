@@ -9,7 +9,7 @@ import { AppButton, AppCard } from '@/components/app';
 <template>
   <div class="p-3 px-6 w-full h-full">
     <PageHeader>Cards</PageHeader>
-    <div class="grid grid-cols-2 items-stretch gap-2">
+    <div class="grid lg:grid-cols-2 items-stretch gap-2">
       <!-- Default Card -->
       <ComponentCard title="Default Card">
         <div class="bg-secondary-200 p-5 h-full">

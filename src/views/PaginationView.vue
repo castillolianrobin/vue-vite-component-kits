@@ -24,7 +24,7 @@ const fourthPagination = ref(5);
     <PageHeader>Pagination</PageHeader>
     
     <ComponentCard title="Pagination v-model">
-      <div class="grid grid-cols-2 items-center">
+      <div class="grid lg:grid-cols-2 items-center justify-center">
         <div>
           <AppPagination
             v-model="firstPagination"
@@ -32,7 +32,7 @@ const fourthPagination = ref(5);
           ></AppPagination>
         </div>
 
-        <p>
+        <p class="text-center">
           Current Page: 
           <b class="ml-2 text-primary-500">
             {{ firstPagination }}
@@ -40,9 +40,9 @@ const fourthPagination = ref(5);
         </p>
       </div>
     </ComponentCard>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+    <div class="grid lg:grid-cols-2 gap-2">
       <ComponentCard title="Pagination Length">
-        <div class="grid grid-cols-2 items-end">
+        <div class="grid lg:grid-cols-2 items-end justify-center">
           <div>
             <AppPagination
               v-model="secondPagination"
@@ -62,7 +62,7 @@ const fourthPagination = ref(5);
       </ComponentCard>
 
       <ComponentCard title="Pagination Visible Page">
-        <div class="grid grid-cols-2 items-end">
+        <div class="grid lg:grid-cols-2 items-end justify-center">
           <div>
             <AppPagination
               v-model="thirdPagination"
@@ -84,10 +84,10 @@ const fourthPagination = ref(5);
 
     
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+    <div class="grid lg:grid-cols-2 gap-2">
       <!-- persistEdgePAges props -->
       <ComponentCard title="Pagination with persisting edge pages">
-        <div class="grid grid-cols-2 items-center">
+        <div class="grid items-center justify-center">
           <div>
             <AppPagination
               v-model="fourthPagination"
@@ -100,7 +100,7 @@ const fourthPagination = ref(5);
       </ComponentCard>
 
       <ComponentCard title="Disabled Pagination">
-        <div class="grid grid-cols-2 items-center">
+        <div class="grid items-center justify-center">
           <div>
             <AppPagination
               length="10"

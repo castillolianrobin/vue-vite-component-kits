@@ -13,7 +13,7 @@ const persistModal = ref(true);
     <PageHeader>Modals</PageHeader>
     
     <!-- Modal via Props -->
-    <ComponentCard title="Modal trigger via 'active' prop">
+    <ComponentCard title="Modal Trigger via Prop">
       <AppModal v-model:active="modalActive" close-icon>
         <h1 
           class="mb-3 text-lg text-center drop-shadow-lg font-semibold text-primary-500"
@@ -23,21 +23,21 @@ const persistModal = ref(true);
         <p class="my-2 text-center">Showing Modal using v-model:active</p>
         <p>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...</p>
       </AppModal>
-      <div class="grid grid-cols-2 items-center">
-        <div>
+      <div class="grid md:grid-cols-2 items-center justify-center">
+        <div class="flex justify-center">
           <AppButton @click="modalActive = !modalActive">
             Show Modal via v-model
           </AppButton>
         </div>
 
-        <p>
+        <p class="text-center">
           Reactive State: <b class="uppercase">{{ modalActive  }}</b>
         </p>
       </div>
     </ComponentCard>
 
     <!-- Modal via template -->
-    <ComponentCard title="Modal trigger via 'trigger' slot">
+    <ComponentCard title="Modal Trigger via Slot">
       <AppModal close-icon>
         <h1 
           class="mb-3 text-lg text-center drop-shadow-lg font-semibold text-primary-500"
@@ -49,7 +49,7 @@ const persistModal = ref(true);
         
         <!-- Trigger -->
         <template #trigger="{ toggleModal }">
-          <div>
+          <div class="flex justify-center">
             <AppButton @click="toggleModal(true)">
               Show Modal via slot
             </AppButton>
@@ -58,7 +58,7 @@ const persistModal = ref(true);
       </AppModal>
     </ComponentCard>
 
-    <div class="grid grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-2">
       
       <!-- Persisting Modal -->
       <ComponentCard title="Persisting Modal">
@@ -78,7 +78,7 @@ const persistModal = ref(true);
           </div>
           <!-- Trigger -->
           <template #trigger="{ toggleModal }">
-            <div>
+            <div class="flex justify-center">
               <AppButton @click="toggleModal(true)">
                 Show Persisting Modal
               </AppButton>
@@ -111,7 +111,7 @@ const persistModal = ref(true);
           </template>
           <!-- Trigger -->
           <template #trigger="{ toggleModal }">
-            <div>
+            <div class="flex justify-center">
               <AppButton @click="toggleModal(true)">
                 Custom Modal
               </AppButton>
