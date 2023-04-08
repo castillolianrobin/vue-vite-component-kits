@@ -59,27 +59,6 @@ const radioItems = [
         </div>
     </ComponentCard>
 
-    <!-- Chekcbox Group -->
-    <ComponentCard title="Checkbox Group">
-        <div class="grid md: grid-cols-2 gap-4 items-center">
-          <div class="flex">
-            <AppFormCheckboxGroup
-              v-model="checkboxGroup"
-              :items="checkItems"
-              label="To do"
-              class="mx-auto"
-            ></AppFormCheckboxGroup>
-          </div>
-
-          <div class="text-center">
-            <span>Done: </span>
-            <span class="text-primary-500 font-semibold">
-              {{ checkboxGroup.join(', ') }}
-            </span>
-          </div>
-        </div>
-    </ComponentCard>
-
     <!-- Custom Checkbox -->
     <ComponentCard title="Custom Checkboxes">
       <div class="grid md:grid-cols-2 gap-4">
@@ -118,6 +97,28 @@ const radioItems = [
           </AppFormCheckbox>
         </div>
       </div>
+    </ComponentCard>
+
+    
+    <!-- Chekcbox Group -->
+    <ComponentCard title="Checkbox Group">
+        <div class="grid md: grid-cols-2 gap-4 items-center">
+          <div class="flex">
+            <AppFormCheckboxGroup
+              v-model="checkboxGroup"
+              :items="checkItems"
+              label="To do"
+              class="mx-auto"
+            ></AppFormCheckboxGroup>
+          </div>
+
+          <div class="text-center">
+            <span>Done: </span>
+            <span class="text-primary-500 font-semibold">
+              {{ checkboxGroup.join(', ') }}
+            </span>
+          </div>
+        </div>
     </ComponentCard>
 
     <!-- Default Radio Button -->

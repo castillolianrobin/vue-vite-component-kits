@@ -40,9 +40,9 @@ export const namedSlotTest = (component:any, slotName: string, options?:MountOpt
       ...options,
     })
     executables?.afterMount && executables?.afterMount(wrapper);
-    const defaultSlot_result = wrapper.findAll(`.${namedSlot_class}`);
-    expect(defaultSlot_result.length).toBe(1) 
-    expect(defaultSlot_result[0].text()).toBe(namedSlot_text);
+    const slot_result = wrapper.findAll(`.${namedSlot_class}`);
+    expect(slot_result.length).toBe(1) 
+    expect(slot_result[0].text()).toBe(namedSlot_text);
   })
 }
 

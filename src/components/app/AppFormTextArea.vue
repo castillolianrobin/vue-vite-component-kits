@@ -76,6 +76,7 @@ watch(toRef(props, 'modelValue'), resizeTextArea, { immediate: true });
     :error-class="props.errorClass"
     v-bind="{ color }"
   >
+    <slot name="prepend"></slot>
     <textarea
       :value="props.modelValue"
       :style="{ minHeight }"
@@ -91,5 +92,6 @@ watch(toRef(props, 'modelValue'), resizeTextArea, { immediate: true });
       tabindex="-1"
       class="absolute max-h-0 w-full pointer-events-none opacity-0 margin-0"
     />
+    <slot name="append"></slot>
   </AppFormInputContainer>
 </template>

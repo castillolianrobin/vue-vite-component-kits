@@ -24,7 +24,7 @@ const { errors, startFormValidation } = createFormValidation(emits)
     enctype="multipart/form-data"
     @submit.prevent="startFormValidation"
   >
-    {{ errors  }}
+    <!-- {{ errors  }} -->
     <slot></slot>
   </form>
 </template>

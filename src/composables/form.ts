@@ -55,6 +55,8 @@ export const inputContainerProps = {
   error: { type: String as PropType<string>, default: '', required: false },
   /** Error Message */
   errorClass: { type: String as PropType<string>, default: '', required: false },
+  /** Class for input container */
+  containerClass: { type: String as PropType<string>, default: '', required: false },
 };
 
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
 import { AppFormInputContainer } from '.';
-import { ref, toRef, computed, type PropType } from 'vue';
+import { ref, toRef, computed, type PropType, useAttrs } from 'vue';
 import { vOnClickOutside } from '@vueuse/components';
 
-export interface SelectItemObj {
+export interface SelectItemProp {
   value: any;
   label?: string;
 }
@@ -13,7 +13,7 @@ const props = defineProps({
   ...inputProps,
   ...inputContainerProps,
   ...validationProps,
-  items: { type: Array as PropType<SelectItemObj[] | string[] | number[]>, required: true },
+  items: { type: Array as PropType<SelectItemProp[] | string[] | number[]>, required: true },
   multiselect: { type: Boolean as PropType<boolean>, default: false, requireD: false },
 }); 
 
@@ -21,19 +21,21 @@ const emits = defineEmits([
   ...inputEmits,
 ])
 
+/** Attribute composable */
+const attrs = useAttrs();
+
 /** Themed color composables */
 const { color } = useThemedColor(props.color);
 
 /** Input value compsosable */
 const { updateInputValue } = useInputValue(emits)
 
-
 /** Form validation composable */
 const {
   errorMessage,
   isRequired, 
   checkError 
-} = useFormValidation(toRef(props, 'color'), toRef(props, 'validations'), props.name)
+} = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name)
 
 
 /** Select Input Display  */
@@ -84,6 +86,8 @@ function getItemKey(item: SelectItem, index: number) {
 }
 // Select item state Handler 
 function toggleItems(state?: boolean) {
+  if (props.disabled || attrs.readonly) return;
+
   isOpen.value = typeof state === 'boolean' 
     ? state
     : !isOpen.value; 
@@ -113,10 +117,10 @@ function onItemSelect(item: SelectItem) {
   }
   checkError(value);
   updateInputValue(value);
-  toggleItems(false);
+  !props.multiselect && toggleItems(false);
 }
 
-type SelectItem = SelectItemObj | string | number;
+type SelectItem = SelectItemProp | string | number;
 </script>
 
 <template>
@@ -127,16 +131,22 @@ type SelectItem = SelectItemObj | string | number;
     :label-class="props.labelClass"
     :error="props.error || errorMessage"
     :error-class="props.errorClass"
+    :disabled="disabled"
     v-bind="{ color }" 
-    class="relative cursor-pointer"
+    container-class="relative"
     v-on-click-outside="()=>toggleItems(false)"
   >
+    <slot name="prepend"></slot>
     <!-- Select Display -->
     <input
       readonly
-      :Value="displayValue"
-      class="w-full outline-none focus"
+      :value="displayValue"
+      :disabled="disabled"
+      :class="{
+        'cursor-pointer': !props.disabled && !$attrs.readonly
+      }"
       tabindex="0"
+      class="w-full outline-none focus disabled:text-secondary-400"
       @click="toggleItems()" 
       @keydown.space="toggleItems()" 
     />
@@ -186,5 +196,6 @@ type SelectItem = SelectItemObj | string | number;
         </li>
       </ul>
     </Transition>
+    <slot name="append"></slot>
   </AppFormInputContainer>
 </template>

@@ -10,7 +10,7 @@ export { default as AppFormInputContainer } from './AppFormInputContainer.vue';
 export { default as AppFormLabel } from './AppFormLabel.vue';
 export { default as AppFormRadio } from './AppFormRadio.vue';
 export { default as AppFormRadioGroup } from './AppFormRadioGroup.vue';
-export { default as AppFormSelect } from './AppFormSelect.vue';
+export { default as AppFormSelect, type SelectItemProp } from './AppFormSelect.vue';
 export { default as AppFormTextArea } from './AppFormTextArea.vue';
 export { default as AppLoading } from './AppLoading.vue';
 export { default as AppModal } from './AppModal.vue';

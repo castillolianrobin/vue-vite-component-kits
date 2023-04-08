@@ -44,6 +44,7 @@ const colorInactive = computed(():ThemeColors => {
           rounded
           border border-${colorInactive} group-focus-within:border-${props.color}
         `,
+        props.containerClass,
       ]"
     >
       <slot></slot>

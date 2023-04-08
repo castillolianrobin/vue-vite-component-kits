@@ -22,4 +22,4 @@ export const inputTest = (component:any, options?:MountOptionsParams) => {
 };
 
 type MountParams  = Parameters<typeof mount>; 
-type MountOptionsParams  = MountParams[1] | Record<string, any>; 
+type MountOptionsParams  = MountParams[1] | Record<string, any>;

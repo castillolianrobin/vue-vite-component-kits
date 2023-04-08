@@ -116,7 +116,7 @@ function onInputHandler(item: ItemProp, i: number) {
     
     <!-- Radio Group -->
     <div 
-      :class="['my-2 flex gap-3', [props.containerClass]]"
+      :class="['my-2 flex gap-5', [props.containerClass]]"
       role="radiogroup"
     >
       <AppFormCheckbox

@@ -3,7 +3,9 @@ import {
   AppButton, 
   AppCard, 
   AppDropdown,
+  AppForm,
   AppFormCheckboxGroup,
+  AppFormInput,
   AppFormRadioGroup,
   AppModal, 
   AppPagination, 
@@ -86,6 +88,11 @@ const checkGroupVal = ref([]);
         </AppButton>
       </template>
      </AppCard>
+
+     <AppForm>
+      <AppFormInput validations="required"></AppFormInput>
+      <AppButton type="submit">Sub</AppButton>
+     </AppForm>
 
 
     <div class="grid grid-cols-2">

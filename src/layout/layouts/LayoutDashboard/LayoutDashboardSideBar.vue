@@ -9,7 +9,9 @@ const navigations: Navigation[] = [
   { routeName: 'Modals', label: 'Modals' },
   { routeName: 'Pagination', label: 'Paginations' },
   { routeName: 'Table', label: 'Tables' },
+  { routeName: 'Form', label: 'Form' },
   { routeName: 'FormInput', label: 'Form Input & Text Area' },
+  { routeName: 'FormSelect', label: 'Form Select' },
   { routeName: 'FormCheckboxRadio', label: 'Checkbox & Radio' },
   { routeName: 'Sandbox', label: 'SandBox' },
 ];
