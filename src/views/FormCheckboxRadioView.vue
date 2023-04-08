@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ComponentCard from '@/components/ComponentCard.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import { AppButton, AppFormCheckbox, AppFormRadio } from '@/components/app';
+import { AppButton, AppFormCheckbox, AppFormCheckboxGroup, AppFormRadio, AppFormRadioGroup } from '@/components/app';
 import type { ThemeColors } from '@/composables';
 import type { Validation } from '@/composables/validation';
 import { ref } from 'vue';
@@ -23,8 +23,19 @@ const inputs:Input[] = [
 ]
 
 const checkBox = ref(false);
+const checkboxGroup = ref([]);
+const checkItems = [
+  { label: 'Eat Dinner', value: 'ate' },
+  { label: 'Brush Teeth', value: 'brushed' },
+  { label: 'Dress up', value: 'dressed' },
+];
 const radioButton = ref(false);
-
+const radioButtonGroup = ref(false);
+const radioItems = [
+  { label: 'Ice Cream', value: 'ice_cream' },
+  { label: 'Cake', value: 'cake' },
+  { label: 'Halo halo', value: 'halo_halo' },
+];
 </script>
 
 <template>
@@ -34,64 +45,117 @@ const radioButton = ref(false);
     <!-- Default Checkbox -->
     <ComponentCard title="Checkboxes">
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 justify-center">
-          <AppFormCheckbox 
+          <div 
             v-for="(input, index) in inputs"
             :key="`default-${index}`"
-            v-model="checkBox"
-            type="number"
-            v-bind="{ ...input }"
-          ></AppFormCheckbox>
+            class="flex justify-center"
+          >
+            <AppFormCheckbox 
+              v-model="checkBox"
+              type="number"
+              v-bind="{ ...input }"
+            ></AppFormCheckbox>
+          </div>
+        </div>
+    </ComponentCard>
+
+    <!-- Chekcbox Group -->
+    <ComponentCard title="Checkbox Group">
+        <div class="grid md: grid-cols-2 gap-4 items-center">
+          <div class="flex">
+            <AppFormCheckboxGroup
+              v-model="checkboxGroup"
+              :items="checkItems"
+              label="To do"
+              class="mx-auto"
+            ></AppFormCheckboxGroup>
+          </div>
+
+          <div class="text-center">
+            <span>Done: </span>
+            <span class="text-primary-500 font-semibold">
+              {{ checkboxGroup.join(', ') }}
+            </span>
+          </div>
         </div>
     </ComponentCard>
 
     <!-- Custom Checkbox -->
     <ComponentCard title="Custom Checkboxes">
       <div class="grid md:grid-cols-2 gap-4">
-        <AppFormCheckbox
-          v-model="checkBox"
-          label="Custom Checkbox 1"
-        >
-          <template #button="{ isActive, onChangeHandler }">
-            <div 
-              tabindex="1"
-              class="relative mx-2 w-8 h-4 border border-secondary-500 rounded-full"
+        <div class="flex justify-center">
+          <AppFormCheckbox
+            v-model="checkBox"
+            label="Custom Checkbox 1"
+          >
+            <template #button="{ isActive, onChangeHandler }">
+              <div 
+                tabindex="1"
+                class="relative mx-2 w-8 h-4 border border-secondary-500 rounded-full"
+                @keypress.space="onChangeHandler"
+              >
+                <div 
+                  class="absolute transition-[right] bg-primary-500 h-full aspect-square rounded-full"
+                  :class="isActive ? 'right-0' : 'right-4'"
+                ></div>
+              </div>
+            </template>
+          </AppFormCheckbox>
+        </div>
+        <div class="flex justify-center">
+          <AppFormCheckbox
+            v-model="checkBox"
+            label="Custom Checkbox 2"
+          >
+            <template #button="{ isActive, onChangeHandler }">
+            <AppButton
+              :color="isActive ? 'primary-500' : 'secondary-500'"
               @keypress.space="onChangeHandler"
             >
-              <div 
-                class="absolute transition-[right] bg-primary-500 h-full aspect-square rounded-full"
-                :class="isActive ? 'right-0' : 'right-4'"
-              ></div>
-            </div>
-          </template>
-        </AppFormCheckbox>
-
-        <AppFormCheckbox
-          v-model="checkBox"
-          label="Custom Checkbox 2"
-        >
-          <template #button="{ isActive, onChangeHandler }">
-          <AppButton
-            :color="isActive ? 'primary-500' : 'secondary-500'"
-            @keypress.space="onChangeHandler"
-          >
-            {{  isActive ? 'Active' : 'Inactive'  }}
-          </AppButton>
-          </template>
-        </AppFormCheckbox>
+              {{  isActive ? 'Active' : 'Inactive'  }}
+            </AppButton>
+            </template>
+          </AppFormCheckbox>
+        </div>
       </div>
     </ComponentCard>
 
     <!-- Default Radio Button -->
     <ComponentCard title="Radio Buttons">
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <AppFormRadio
+          <div
             v-for="(input, index) in inputs.slice(0,-1)"
             :key="`default-${index}`"
-            v-model="radioButton"
-            :active-value="index"
-            type="number"
-            v-bind="{ ...input }"
-          ></AppFormRadio>
+            class="flex justify-center"
+          >
+            <AppFormRadio
+              v-model="radioButton"
+              :active-value="index"
+              v-bind="{ ...input }"
+            ></AppFormRadio>
+          </div>
+        </div>
+    </ComponentCard>
+
+    <!-- Default Radio Button -->
+    <ComponentCard title="Radio Group">
+        <div class="grid md: grid-cols-2 gap-4 items-center">
+          <div class="flex">
+            <AppFormRadioGroup
+              v-model="radioButtonGroup"
+              :items="radioItems"
+              label="Favorite Dessert"
+              class="mx-auto"
+              validations="required"
+            ></AppFormRadioGroup>
+          </div>
+
+          <div class="text-center ">
+            <span>Current Value: </span>
+            <span class="text-primary-500 font-semibold">
+              {{ radioButtonGroup }}
+            </span>
+          </div>
         </div>
     </ComponentCard>
 

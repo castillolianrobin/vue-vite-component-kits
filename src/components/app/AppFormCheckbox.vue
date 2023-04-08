@@ -32,7 +32,7 @@ watch(toRef(props, 'modelValue'), checkError );
 
 // value to check whether the state is active or not
 const activeValue = props.activeValue || props.label || true;
-const inactiveValue = props.inactiveValue || false;
+const inactiveValue = props.inactiveValue === undefined ? props.inactiveValue : false;
 
 const isActive = computed(()=>props.modelValue === activeValue);
 

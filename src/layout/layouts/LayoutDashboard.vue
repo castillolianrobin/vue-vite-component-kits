@@ -12,16 +12,16 @@ import LayoutDashboardSideBar from './LayoutDashboard/LayoutDashboardSideBar.vue
     "
   >
     <!-- Top Navigation -->
-    <div class="bg-primary-100 row-start-1 col-span-2">
+    <header class="bg-primary-100 row-start-1 col-span-2">
       <h1 class="my-1 text-center text-xl font-semibold">
         Component Kits (Vite + Vue 3 + Typescript)
       </h1>
-    </div>
+    </header>
     <!-- Side Bar -->
     <div class="row-start-2 max-w-[230px]">
       <LayoutDashboardSideBar></LayoutDashboardSideBar>
     </div>
-    <div 
+    <main
       class="
         row-start-2 col-start-2 
         overflow-auto 
@@ -30,6 +30,6 @@ import LayoutDashboardSideBar from './LayoutDashboard/LayoutDashboardSideBar.vue
       "
     >
       <slot></slot>
-    </div>
+    </main>
   </div>
 </template>

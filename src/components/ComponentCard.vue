@@ -6,7 +6,9 @@ const props = defineProps({
 
 <template>
   <div class="flex flex-col">
-    <h5 class="mt-6 mb-3 font-semibold">{{ props.title }}</h5>
+    <h4 class="mt-6 mb-3 font-semibold">
+      {{ props.title }}
+    </h4>
     <div 
       class="
         py-6 p-3 

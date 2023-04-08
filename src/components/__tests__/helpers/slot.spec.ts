@@ -3,7 +3,7 @@ import { expect, it } from "vitest";
 
 
 /** DEFAULT SLOT TEST */
-export const defaultSlotTest = (component:any, options:MountParams[1] = {}, executables?:Executables) => {  
+export const defaultSlotTest = (component:any, options?:MountOptionsParams, executables?:Executables) => {  
   it('renders default slot', async () => {
     const defaultSlot_class = 'default-class';
     const defaultSlot_text = 'Test 1';
@@ -29,7 +29,7 @@ export const defaultSlotTest = (component:any, options:MountParams[1] = {}, exec
 }
 
 /** NAMED SLOT TEST */
-export const namedSlotTest = (component:any, slotName: string, options:MountParams[1] = {}, executables?: Executables) => {  
+export const namedSlotTest = (component:any, slotName: string, options?:MountOptionsParams, executables?: Executables) => {  
   it(`renders '${slotName}' slot`, () => {
     const namedSlot_class = 'slot-class';
     const namedSlot_text = 'Test 1';
@@ -50,7 +50,7 @@ export const namedSlotTest = (component:any, slotName: string, options:MountPara
 /** TYPE DEFINITIONS */
 
 type MountParams  = Parameters<typeof mount>; 
-
+type MountOptionsParams  = MountParams[1] | Record<string, any>; 
 
 interface Executables {
   afterMount: (wrapper: VueWrapper<any>)=> void;

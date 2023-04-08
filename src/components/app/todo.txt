@@ -1,34 +1,30 @@
 - AppButton [DONE] [PAGED]
-
-x AppForm [DONE] 
-
-- AppFormInput [DONE] [PAGED]
+5 AppForm [DONE] 
+11 AppFormInput [DONE] [PAGED]
+10 AppFormTextArea [DONE] [PAGED]
 - AppFormCheckbox [DONE] [PAGED]
-x AppFormCheckboxGroup
+- AppFormCheckboxGroup [DONE] [TESTED] [PAGED]
 - AppFormRadio [DONE] [PAGED]
-x AppFormRadioGroup
-
-x AppFormSelect [DONE] 
-
-x AppFormMultiSelect [PARTIALLY DONE]
-
+- AppFormRadioGroup [DONE] [TESTED] [PAGED]
+1 AppFormSelect [DONE] 
+2 AppFormMultiSelect [PARTIALLY DONE]
 - AppFormTextArea [DONE] [PAGED]
-
-x AppFormFile 
-
-x AppFormDatePicker
-
+3 AppFormFile 
+4 AppFormDatePicker
 - AppModal [DONE] [PAGED]
 - AppPagination  [DONE] [TESTED] [PAGED]
 - AppTable [DONE] [TESTED] [PAGED]
-
 - AppCards [PARTIALLY DONE] [TESTED] [PAGED]
-x AppTabs
+6 AppTabs
 - AppDropdown [DONE] [TESTED] [PAGED] 
-x AppTooltip
-x AppSteps
-x AppToast
+7 AppTooltip
+8 AppSteps
+9 AppToast
 
 
 EXTRAS: 
+Accordion
 HOC/Renderless Component for fetching api then returning it to scoped slots
+Progress Bar
+Avatar
+Slider

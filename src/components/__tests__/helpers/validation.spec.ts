@@ -3,13 +3,15 @@ import { required } from "@/composables/validation/validations";
 import { mount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 
-export const validationTest = (component: any, options = {}) => {
+export const validationTest = (component: any, options?:MountOptionsParams) => {
   describe(`Form Validation`, () => {
 
     // Required validation
     it("renders required label correctly", () => {
       const wrapper = mount(component, {
+        ...options,
         props: {
+          ...options?.props,
           validations: 'required',
         },
       });
@@ -27,11 +29,12 @@ export const validationTest = (component: any, options = {}) => {
       const validation = required();
       const validationMessage = validation();
       const wrapper = mount(component, {
+        ...options,
         props: {
+          ...options?.props,
           validations: 'required',
           modelValue: 'test',
         },
-        ...options,
       });
       await wrapper.setProps({ modelValue: '' })
       
@@ -45,3 +48,8 @@ export const validationTest = (component: any, options = {}) => {
 
   // try all validations if possible
 }
+
+/** TYPE DEFINITIONS */
+
+type MountParams  = Parameters<typeof mount>; 
+type MountOptionsParams = MountParams[1] | Record<string, any>; 

@@ -42,6 +42,19 @@ function onChangeHandler(){
   !props.disabled && updateInputValue(activeValue);
 }
 
+/** Trigger attributes and event */
+const radioAttrs = computed(()=>({
+  // OnClick Event
+  onclick: onChangeHandler,
+  // @keypress.space.enter=""
+  // Aria Attrs
+  role: 'radio',
+  'aria-label': props.label,
+  'aria-checked': isActive.value,
+  'aria-disabled': props.disabled,
+  'data-value': activeValue,
+}));
+
 
 </script>
 
@@ -54,38 +67,42 @@ function onChangeHandler(){
       v-bind="{ ...$attrs }"
     >
       <!-- Radio Button -->
-      <div
-        :tabindex="props.disabled ? undefined : 0"
-        :class="[
-          `
-            p-0.5
-            h-[1rem] w-[1rem] 
-            rounded-full
-            border border-${color}
-            group-hover:outline focus:outline outline-2 outline-${color}/50
-            transition-[outline] ease-in-out duration-75
-          `,
-          { 'border-secondary-400': props.disabled },
-        ]"
-        
-        :aria-checked="isActive"
-        role="radio"
-        @keypress.space="onChangeHandler"
-  
-      >
+      <slot v-bind="{ props: radioAttrs }">
         <div
-          v-if="isActive" 
-          :class="`
-            relative
-            rounded-full
-            flex items-center justify-center 
-            h-full w-full 
-            text-white
-            bg-${color}
-          `"
+          :tabindex="props.disabled ? undefined : 0"
+          :class="[
+            `
+              p-0.5
+              h-[1rem] w-[1rem] 
+              rounded-full
+              border border-${color}
+              group-hover:outline focus:outline outline-2 outline-${color}/50
+              transition-[outline] ease-in-out duration-75
+            `,
+            { 'border-secondary-400': props.disabled },
+          ]"
+          :aria-disabled="props.disabled"
+          :aria-label="props.label"
+          :aria-checked="isActive"
+          :data-value="activeValue"
+          role="radio"
+          @keypress.space.enter="onChangeHandler"
+    
         >
+          <div
+            v-if="isActive" 
+            :class="`
+              relative
+              rounded-full
+              flex items-center justify-center 
+              h-full w-full 
+              text-white
+              bg-${color}
+            `"
+          >
+          </div>
         </div>
-      </div>
+      </slot>
       <AppFormLabel
         size="sm"
         :required="isRequired"

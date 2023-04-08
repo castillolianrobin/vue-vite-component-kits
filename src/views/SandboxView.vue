@@ -3,6 +3,8 @@ import {
   AppButton, 
   AppCard, 
   AppDropdown,
+  AppFormCheckboxGroup,
+  AppFormRadioGroup,
   AppModal, 
   AppPagination, 
   AppTable, 
@@ -30,6 +32,9 @@ const items  = ref([
 ]);
 
 const currentPage = ref(1);
+
+const radioGroupVal = ref('');
+const checkGroupVal = ref([]);
 
 </script>
 
@@ -81,6 +86,34 @@ const currentPage = ref(1);
         </AppButton>
       </template>
      </AppCard>
+
+
+    <div class="grid grid-cols-2">
+      <AppFormRadioGroup
+      v-model="radioGroupVal"
+      :items="[
+        { label: 'Item 1', value: 1 },
+        { label: 'Item 2', value: 2 },
+        { label: 'Item 3', value: 3 },
+       ]"
+       label="Radio Group"
+       error="Test"
+      ></AppFormRadioGroup>
+
+
+      <AppFormCheckboxGroup
+      v-model="checkGroupVal"
+      :items="[
+        { label: 'Item 1', value: 1 },
+        { label: 'Item 2', value: 2 },
+        { label: 'Item 3', value: 3 },
+       ]"
+       label="Check Group"
+       error="Test"
+       return-inactive
+      ></AppFormCheckboxGroup>
+      {{ checkGroupVal }}
+    </div>
 
   </div>
 </template>
