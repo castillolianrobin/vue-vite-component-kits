@@ -29,6 +29,12 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
+      path: '/tabs',
+      name: 'Tabs',
+      component: () => import('../views/TabView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
       path: '/modal',
       name: 'Modals',
       component: () => import('../views/ModalView.vue'),

@@ -257,7 +257,7 @@ function drop(event: DragEvent) {
           @click="openFileInput"
           v-on="{ dragleave, dragover, drop }"
         >
-          <h3 class="font-semibold">
+          <h3 class="font-semibold text-center">
             <slot 
               name="dropzone-title"
               v-bind="{ color, props }"
@@ -272,9 +272,10 @@ function drop(event: DragEvent) {
           <label
             class="
               mt-1
-              flex gap-2
+              flex flex-col md:flex-row gap-2
               text-xs text-secondary-400 
               [&>*:last-child.separator]:hidden
+              text-center
             "
             aria-label="file limit"
           >
@@ -286,7 +287,7 @@ function drop(event: DragEvent) {
                 Supported file type: {{ props.accept || '*' }}
               </span>
               
-              <span class="separator">&#x2022;</span>
+              <span class="separator hidden md:inline">&#x2022;</span>
               
               <span v-if="props.maxSize">
                 Max file size: {{ props.maxSize }} {{ FILESIZE_TYPE }}
@@ -306,8 +307,10 @@ function drop(event: DragEvent) {
               :key="`file-${i}`"
               :class="`
                 p-1
+                w-full
+                overflow-hidden
                 border border-${props.color} rounded
-                flex items-center
+                flex items-center flex-col md:flex-row 
               `"
             >
               <!-- File Thumbnail -->
@@ -328,9 +331,20 @@ function drop(event: DragEvent) {
                 </div>
               </div>
               
-              <div class="flex gap-2 flex-grow">
+              <div 
+                class="
+                  w-full 
+                  text-center
+                  flex 
+                  flex-col md:flex-row 
+                  flex-grow flex-shrink 
+                  gap-2 
+                "
+              >
                 <!-- File Name -->
-                <span :class="`truncate text-${color}`">{{ file.name }}</span>
+                <span :class="`truncate text-${color} flex-shrink`">
+                  {{ file.name }}
+                </span>
                 <!-- File size -->
                 <span 
                   :class="[

@@ -35,12 +35,16 @@ describe(name, () => {
   })
 
   /** test if disabled css is working */
-  it('has working disabled css', ()=>{
-    wrapper.setProps({ disabeld: true });
+  it('has working disabled', async ()=>{
+    await wrapper.setProps({ disabled: true });
     const disabledClass = wrapper.classes().filter(
       _class => _class.includes('disabled')
     );
     expect(disabledClass.length).greaterThan(0);
+    expect(disabledClass.length).greaterThan(0);
+    
+    await wrapper.trigger('click');
+    expect(wrapper.emitted('click')).toBeFalsy();
   })
 
   /** test if loading css is working */
