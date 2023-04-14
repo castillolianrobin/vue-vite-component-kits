@@ -41,9 +41,8 @@ const { updateInputValue } = useInputValue(emit);
 const { 
   errorMessage, 
   isRequired, 
-  checkError 
+  validateOnChange, 
 } = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name)
-watch(toRef(props, 'modelValue'), checkError );
 
 </script>
 
@@ -56,7 +55,7 @@ watch(toRef(props, 'modelValue'), checkError );
     :error="props.error || errorMessage"
     :error-class="props.errorClass"
     :disabled="disabled"
-    v-bind="{ color }"
+    :color="props.color"
   >
     <slot name="prepend"></slot>
     <input
@@ -70,6 +69,7 @@ watch(toRef(props, 'modelValue'), checkError );
       :aria-label="name"
       :value="props.modelValue"
       @input="updateInputValue"
+      @focus="validateOnChange = true"
       v-bind="{ ...props, ...$attrs }"
     />
     <slot name="append"></slot>

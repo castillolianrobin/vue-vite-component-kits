@@ -74,6 +74,13 @@ describe(name, ()=> {
   });
 
 
-  inputTest(AppFormCheckboxGroup, { props: { items: [] } });
+  inputTest(AppFormCheckboxGroup, { 
+    options: {props: { items }},
+    disableTest: async (wrapper, emitTest) => {
+      const trigger = wrapper.find('[role="checkbox"');
+      await trigger.trigger('click');
+      await emitTest();
+    } 
+  });
   validationTest(AppFormCheckboxGroup, { props: { items: [] } });
 })

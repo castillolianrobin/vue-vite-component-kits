@@ -59,15 +59,21 @@ const router = createRouter({
       meta: { layout: 'Dashboard' },
     },
     {
-      path: '/form//select',
+      path: '/form/select',
       name: 'FormSelect',
       component: () => import('../views/FormSelectview.vue'),
       meta: { layout: 'Dashboard' },
     },
     {
-      path: '/form//checkbox-radio',
+      path: '/form/checkbox-radio',
       name: 'FormCheckboxRadio',
       component: () => import('../views/FormCheckboxRadioView.vue'),
+      meta: { layout: 'Dashboard' },
+    },
+    {
+      path: '/form/file-upload',
+      name: 'FormFileUpload',
+      component: () => import('../views/FormFileView.vue'),
       meta: { layout: 'Dashboard' },
     },
     {

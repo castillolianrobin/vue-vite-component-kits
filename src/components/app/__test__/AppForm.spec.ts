@@ -10,7 +10,7 @@ describe(name, ()=> {
   defaultSlotTest(component);
   
   it('activate form validation of child component', async ()=> {
-      const wrapper = mount(component, {
+    const wrapper = mount(component, {
       slots: {
         default: [
           h(AppFormInput, { validations: [required('')] }),

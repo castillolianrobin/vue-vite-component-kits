@@ -137,19 +137,24 @@ type SelectItem = SelectItemProp | string | number;
     v-on-click-outside="()=>toggleItems(false)"
   >
     <slot name="prepend"></slot>
+    
     <!-- Select Display -->
-    <input
-      readonly
-      :value="displayValue"
-      :disabled="disabled"
-      :class="{
-        'cursor-pointer': !props.disabled && !$attrs.readonly
-      }"
-      tabindex="0"
-      class="w-full outline-none focus disabled:text-secondary-400"
-      @click="toggleItems()" 
-      @keydown.space="toggleItems()" 
-    />
+    <div>
+      <slot name="display" v-bind="{ displayValue, disabled: props.disabled }">
+        <input
+          readonly
+          :value="displayValue"
+          :disabled="props.disabled"
+          :class="{
+            'cursor-pointer': !props.disabled && !$attrs.readonly
+          }"
+          tabindex="0"
+          class="w-full outline-none focus disabled:text-secondary-400"
+          @click="toggleItems()" 
+          @keydown.space="toggleItems()" 
+        />
+      </slot>
+    </div>
 
     <!-- Select Items -->
     <Transition

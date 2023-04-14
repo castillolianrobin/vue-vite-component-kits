@@ -11,8 +11,19 @@
  * @returns boolean: true | string: error message
  */
 export function required(name= ''): Validation {
-  return (value?: string, fieldName = name) => {
-    return !!value || `${fieldName || "This"} field shouldn't be empty.`;
+  const notEmpty = (value: any) => {
+    const type = typeof value
+    if (Array.isArray(value)) {
+      return !!value.length;
+    } else if (type === 'object' && value) {
+      return !!Object.keys(value).length; 
+    } else {
+      return !!value;
+    }
+  };
+
+  return (value?: any, fieldName = name) => {
+    return notEmpty(value) || `${fieldName || "This"} field shouldn't be empty.`;
   };
 }
 
@@ -227,8 +238,11 @@ export function usPhoneNum(name = ''): Validation {
 
 /** Typescript interface for validation function*/
 export interface Validation {
-  (...params: any): true | string;
+  (...params: any): ValidationResults;
 }
+
+export type ValidationResults = true | string;
+
 
 
 const validations = {
@@ -247,6 +261,8 @@ const validations = {
 };
 
 export type Validations = typeof validations;
+
+type ValidationItem = Validation | string;
 
 
 /**
@@ -304,6 +320,25 @@ export type Validations = typeof validations;
   }
   return VALIDATIONS;
 }
+
+/**
+ * Parses the validation array, check for string value,
+ * return the needed validaiton function 
+ * @param {ValidationItem[]} validations 
+ * @returns {Array} Array of validation Function
+ */
+export const parseValidationArray = (validations: ValidationItem[]) => {
+  const hasString = (item:ValidationItem): item is string => typeof item === 'string';
+  // if array of string and function
+  if (validations.find(hasString)) {
+    const _validationStrings = parseValidationString(validations.filter(hasString).join('|'));
+    const _validationFuncs = validations.filter(item=>!hasString(item));
+    return [ ..._validationStrings, ..._validationFuncs];
+  } 
+  // if array of func
+  else { return validations; }
+}
+
 
 export default {
   validations,

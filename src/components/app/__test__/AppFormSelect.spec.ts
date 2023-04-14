@@ -33,7 +33,16 @@ describe(name, () => {
   //   expect(defaultSlot_result[0].text()).toBe(namedSlot_text);
   // })
   // Input related Test
-  inputTest(component,  { props: { items} });
+  inputTest(component,  { 
+    options: {props: { items}},
+    disableTest: async (wrapper, testEmit)=>{
+      const trigger = wrapper.find('input')
+      await trigger.trigger('click');
+      await wrapper.vm.$nextTick();
+      expect(wrapper.find('ul').exists()).toBeFalsy()
+      await testEmit();
+    }, 
+  });
   
   // validation related Test
   validationTest(component,  { props: { items} })

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
-import { computed, toRef, watch } from 'vue';
+import { computed, toRef } from 'vue';
 import { AppFormError, AppFormLabel } from '.';
 
 
@@ -25,9 +25,8 @@ const { updateInputValue } = useInputValue(emits);
 const { 
   errorMessage, 
   isRequired, 
-  checkError 
+  validateOnChange, 
 } = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name)
-watch(toRef(props, 'modelValue'), checkError );
 
 
 // value to check whether the state is active or not
@@ -37,12 +36,14 @@ const inactiveValue = props.inactiveValue === undefined ? props.inactiveValue : 
 const isActive = computed(()=>props.modelValue === activeValue);
 
 /** Handles The input event of main input element*/
-function onChangeHandler(){
+function onChangeHandler() {
   if (props.disabled) return;
   
   const inputValue = props.modelValue !== activeValue 
     ? activeValue 
     : inactiveValue;
+
+  validateOnChange.value = true;
   updateInputValue(inputValue);
 }
 
@@ -109,7 +110,7 @@ function onChangeHandler(){
         {{ props.label }}
       </AppFormLabel>
     </div>
-    <AppFormError>
+    <AppFormError :class="props.errorClass">
       {{ props.error || errorMessage }}
     </AppFormError>
   </div>

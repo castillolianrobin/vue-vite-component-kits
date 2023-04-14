@@ -4,7 +4,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <template>
   <div class="p-5 h-full flex flex-col items-center justify-center">
-    <h1 class="text-3xl font-semibold">
+    <h1 class="text-3xl text-center font-semibold">
       Component Sets for Dashboard
     </h1>
     <div class="mx-10 mt-10 pt-5 border-t-2 w-full flex flex-col items-center">

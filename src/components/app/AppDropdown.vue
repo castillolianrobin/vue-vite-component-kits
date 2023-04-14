@@ -75,13 +75,17 @@ const positionClass = computed(()=>{
 <template>
   <div class="relative inline-block">
     <!-- Trigger -->
-    <slot name="trigger" v-bind="{ props:triggerAttrs, toggleMenu }">
+    <slot 
+      name="trigger" 
+      v-bind="{ props:triggerAttrs, toggleMenu }"
+    >
       <AppButton
         v-bind="{ ...triggerAttrs }"
       >
         {{  isActive ? 'Hide' : 'Show'  }} Dropdown
       </AppButton>
     </slot>
+
     <!-- Menu -->
     <div 
       v-if="isActive || props.eager"

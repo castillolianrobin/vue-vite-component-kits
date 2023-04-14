@@ -10,7 +10,14 @@ describe(name, () => {
   // validation test
   validationTest(component);
   // input test
-  inputTest(component)
+  inputTest(component, {
+    disableTest: async (wrapper, testEmit)=>{
+      const input = wrapper.find('textarea');
+      // input.element.value = 'new Value';
+      await input.trigger('input');
+      await testEmit();
+    },
+  })
   // slot tests
   namedSlotTest(component, 'prepend');
   namedSlotTest(component, 'append');

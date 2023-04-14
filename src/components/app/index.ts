@@ -5,6 +5,7 @@ export { default as AppForm } from './AppForm.vue';
 export { default as AppFormCheckbox } from './AppFormCheckbox.vue';
 export { default as AppFormCheckboxGroup } from './AppFormCheckboxGroup.vue';
 export { default as AppFormError } from './AppFormError.vue';
+export { default as AppFormFile } from './AppFormFile.vue';
 export { default as AppFormInput } from './AppFormInput.vue';
 export { default as AppFormInputContainer } from './AppFormInputContainer.vue';
 export { default as AppFormLabel } from './AppFormLabel.vue';

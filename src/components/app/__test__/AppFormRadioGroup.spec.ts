@@ -48,6 +48,13 @@ describe(name, ()=> {
   });
 
 
-  inputTest(AppFormRadioGroup, { props: { items: [] } });
+  inputTest(AppFormRadioGroup, { 
+    options: {props: { items }},
+    disableTest: async (wrapper, testEmit)=>{
+      const radio = wrapper.find('[role="radio"]');
+      await radio.trigger('click');
+      await testEmit();
+    }, 
+  });
   validationTest(AppFormRadioGroup, { props: { items: [] } });
 })

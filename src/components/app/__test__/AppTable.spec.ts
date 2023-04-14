@@ -425,12 +425,13 @@ describe(name, ()=>{
     // IF STATIC
 
     const pageLength = 20;
+    const staticCurrentPage = pageLength - 1;
     const staticWrapper = mount(AppTable, {
       props: { 
         headers, 
         items, 
         itemsPerPage, 
-        currentPage,
+        currentPage: staticCurrentPage,
         pageLength,
         static: true, 
       },
@@ -438,7 +439,7 @@ describe(name, ()=>{
     
     // todo
     it('display pages based on pageLength prop if static', ()=> {
-      const pageBtn = staticWrapper.findAll('button[aria-label*="page"]')
+      const pageBtn = staticWrapper.findAll('button[aria-label^="page"]')
       const lastPageBtn = pageBtn.pop();
       expect(lastPageBtn?.text()).toBe(`${pageLength}`);
     })
@@ -449,7 +450,7 @@ describe(name, ()=>{
       await lastPageBtn?.trigger('click');
       const currentPageBtn = pageBtn.find(btn=>btn.classes().includes('scale-105'))
       
-      expect(currentPageBtn?.text()).toBe(`${currentPage}`);
+      expect(currentPageBtn?.text()).toBe(`${staticCurrentPage}`);
     })
   });
 

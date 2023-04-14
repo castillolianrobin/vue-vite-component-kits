@@ -2,7 +2,7 @@
 import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, validationProps } from '@/composables';
 import type {  } from '.';
 import { AppFormLabel, AppFormRadio, AppFormError } from '.';
-import { toRef, type PropType, watch } from 'vue';
+import { toRef, type PropType } from 'vue';
 
 export interface ItemProp {
   label: string;
@@ -30,15 +30,16 @@ const emits = defineEmits([...inputEmits]);
 const { updateInputValue } = useInputValue(emits)
 
 /** Form Validation Composable */
-const { errorMessage, isRequired, checkError } = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name);  
-watch(toRef(props, 'modelValue'), checkError );
+const { errorMessage, isRequired, validateOnChange } = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name);  
 
 
 /** Radio Group Logic */
 
 function onInputHandler(value:any) {
   if (props.modelValue === value) return;
+  
   updateInputValue(value)
+  validateOnChange.value = true;
 }
 
 </script>

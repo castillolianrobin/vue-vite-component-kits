@@ -1,9 +1,7 @@
-import { computed, inject, provide, ref, unref, watch, type ComputedRef, type PropType, type Ref } from "vue";
-import { parseValidationString, type Validation } from "./validations";
-export { type Validation } from './validations';
-
+import { computed, inject, isRef, provide, ref, unref, watch, type ComputedRef, type PropType, type Ref } from "vue";
+import { parseValidationArray, parseValidationString, type Validation } from "./validations";
+export { type Validation, type ValidationResults } from './validations';
 export const formValidationEmits:['validate'] = [ 'validate' ]
-
 /**
  * Initalizes the form component to be used for validating input components.
  * The useFormValidation() hook has script intended to utilize this hook
@@ -95,30 +93,21 @@ export const validationProps = {
  * @param name - Field name to display on error (will be passed as second argument to any validation functions) 
  */
 export const useFormValidation:UseFormValidation = function (value, validations, name) {
-  
+
   /** Error message to be displayed */
-  const errorMessage = ref<string>('');
+  const errorMessage = ref('');
 
   /** LOCAL COMPUTED VARIABLE: returns all the set of validation functions based on validation props */
-  const validationArr = computed<((Validation|(()=>Validation))[])>(() => {
+  const validationArr = computed<ValidationItemFunction[]>(() => {
     const _validations = unref(validations);
-    // if all string
+    
     if (typeof _validations === "string") {
       return parseValidationString(_validations)      
-    } 
-    // If array
-    else if (Array.isArray(_validations)) {
-      const hasString = (item:ValidationItem) => typeof item === 'string'
-      // if array of func and string
-      if (_validations.find(hasString)) {
-        const _validationStrings = parseValidationString(_validations.filter(hasString).join('|'));
-        const _validationFuncs = _validations.filter(item=>!hasString(item));
-        return [ ..._validationStrings, ..._validationFuncs];
-      } 
-      // if array of func
-      else { return _validations; }
-    } 
-    else { return []; }
+    } else if (Array.isArray(_validations)) {
+      return parseValidationArray(_validations);
+    } else { 
+      return []; 
+    }
   });
 
   /** Returns whether there is "required" validation on the validations property */
@@ -127,11 +116,7 @@ export const useFormValidation:UseFormValidation = function (value, validations,
     if (typeof _validations === "string") {
       return _validations.includes("required");
     } else {
-      return (
-        validationArr.value.filter((rule) => {
-          return rule("").toString().includes("shouldn't be empty.");
-        }).length > 0
-      );
+      return _isRequired(validationArr.value)
     }
   });
 
@@ -141,22 +126,10 @@ export const useFormValidation:UseFormValidation = function (value, validations,
    */
   function validateValue(val: unknown): string | false {
     const _value = val;
+    const _validations = unref(validationArr);
     const fieldName = unref(name) || '';
     
-    for (const rule of unref(validationArr)) {
-      let validate: string | boolean = false;
-      
-      const innerRule = rule();
-      if (typeof innerRule === "function") {
-        validate = innerRule(_value, fieldName);
-      } else if (typeof innerRule === 'boolean' || typeof innerRule === 'string') {
-        validate = rule(_value, fieldName) as (string | true)
-      }
-      if (validate !== true) {                                  
-        return validate;
-      }
-    }
-    return false;
+    return _validateValue(_value, _validations, fieldName);
   }
 
   /**
@@ -178,7 +151,6 @@ export const useFormValidation:UseFormValidation = function (value, validations,
    * Adds validation via createFormValidation()'s providers
    */
   const formProvider = inject<FormProvider | undefined>('formProvider', undefined );
-
   if (formProvider?.validationKey) {
     formProvider.addInput();
     
@@ -187,14 +159,51 @@ export const useFormValidation:UseFormValidation = function (value, validations,
       formProvider.addValidatedInput(unref(errorMessage))
     });
   }
+  /**
+  * This script will only work if validateOnChange is toggled
+  */
+  const validateOnChange = ref(false);
+  if (isRef(value)) {
+    watch(value, ()=> {
+      validateOnChange.value && checkError(unref(value));
+    });
+  }
 
   return {
     isRequired,
     checkError,
     errorMessage,
+    validateOnChange,
   };
 }
 
+/** useValidation Local Functions */
+function _isRequired(validations: (Validation|(()=>Validation))[] ) {
+  return (
+    validations.filter((rule) => {
+      return rule("")
+        .toString()
+        .includes("shouldn't be empty.");
+    }).length > 0
+  );
+}
+
+
+  function _validateValue(_value: unknown, validations: ValidationItemFunction[], fieldName?:string): string | false {
+  for (const rule of validations) {
+    let validate: string | boolean = false;
+    const innerRule = rule();
+    if (typeof innerRule === "function") {
+      validate = innerRule(_value, fieldName);
+    } else if (typeof innerRule === 'boolean' || typeof innerRule === 'string') {
+      validate = rule(_value, fieldName) as (string | true)
+    }
+    if (validate !== true) {                                  
+      return validate;
+    }
+  }
+  return false;
+}
 
 
 /** TYPE DEFINITION */
@@ -236,8 +245,10 @@ interface useFormValidationReturn {
   isRequired: ComputedRef<boolean>;
   checkError: (val?: unknown) => string | boolean;
   errorMessage: Ref<string>;
+  validateOnChange: Ref<boolean>;
   // updateValid: (flag: boolean) => void;
 }
 
 /** Used in validation props. Type for validation passed in useformValidation() second argument  */
-export type ValidationItem = Validation | string | (() => Validation);
+export type ValidationItem = Validation | string;
+export type ValidationItemFunction = (Validation|(()=>Validation))

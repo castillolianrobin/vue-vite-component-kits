@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+  html {
+    @apply overflow-hidden;
+  }
+  
   .scrollbar::-webkit-scrollbar {
     width: 7px;
     height: 10px;

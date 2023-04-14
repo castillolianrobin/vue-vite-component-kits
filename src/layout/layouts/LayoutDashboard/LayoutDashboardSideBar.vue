@@ -12,7 +12,8 @@ const navigations: Navigation[] = [
   { routeName: 'Form', label: 'Form' },
   { routeName: 'FormInput', label: 'Form Input & Text Area' },
   { routeName: 'FormSelect', label: 'Form Select' },
-  { routeName: 'FormCheckboxRadio', label: 'Checkbox & Radio' },
+  { routeName: 'FormCheckboxRadio', label: 'Form Checkbox & Radio' },
+  { routeName: 'FormFileUpload', label: 'Form File Upload' },
   { routeName: 'Sandbox', label: 'SandBox' },
 ];
 
