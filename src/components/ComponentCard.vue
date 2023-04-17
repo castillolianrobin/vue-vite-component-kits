@@ -5,8 +5,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col">
-    <h4 class="mt-6 mb-3 font-semibold">
+  <div class="flex flex-col my-5 rounded overflow-hidden">
+    <h4 class="p-2 font-semibold bg-primary-200 text-primary-900">
       {{ props.title }}
     </h4>
     <div 
