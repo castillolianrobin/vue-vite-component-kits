@@ -17,11 +17,12 @@
 - AppCards [PARTIALLY DONE] [TESTED] [PAGED]
 - AppDropdown [DONE] [TESTED] [PAGED] 
 
-2 AppTabs
-3 AppTooltip
-4 AppSteps
-5 AppToast
-6 AppChip
+- AppTabs [PARTIAL] [TESTED] [PAGED]
+2 AppTooltip
+3 AppSteps
+4 AppToast
+5 AppChip
+6 Skeleton
 
 EXTRAS: 
 Accordion

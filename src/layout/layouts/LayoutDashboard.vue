@@ -13,7 +13,7 @@ import LayoutDashboardSideBar from './LayoutDashboard/LayoutDashboardSideBar.vue
   >
     <!-- Top Navigation -->
     <header class="bg-primary-100 row-start-1 col-span-2">
-      <h1 class="my-1 text-center text-xl font-semibold">
+      <h1 class="my-1 px-3 py-1 text-center font-bold text-primary-500">
         Component Kits (Vite + Vue 3 + Typescript)
       </h1>
     </header>
