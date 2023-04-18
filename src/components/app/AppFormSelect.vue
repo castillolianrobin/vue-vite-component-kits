@@ -177,9 +177,11 @@ type SelectItem = SelectItemProp | string | number;
           z-10
           w-full max-h-[150px]
           overflow-auto scrollbar
-          absolute top-[110%] right-0 
+          absolute top-[115%] right-0 
           bg-white dark:bg-secondary-800
-          shadow rounded-lg outline outline-1 outline-secondary-200
+          outline outline-1 outline-secondary-200 dark:outline-secondary-600
+          shadow 
+          rounded 
         "
         role="listbox"
       >
