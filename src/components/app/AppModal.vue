@@ -74,13 +74,14 @@ function toggleModal(state: boolean | null = null) {
             <div 
               class="
                 relative 
-                py-4 p-2 
+                py-4 p-2
                 rounded shadow
-                bg-white 
+                bg-white dark:bg-secondary-900
+                max-w-[95vw]
               "
             >
               <!-- Close button -->
-              <div class="absolute top-1 right-1">
+              <div class="absolute top-1 right-1 z-10">
                 <AppButton
                   v-if="props.closeIcon" 
                   color="secondary-500"

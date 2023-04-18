@@ -212,7 +212,7 @@ function drop(event: DragEvent) {
                   .join(',  ')
                 "
               role="presentation"
-              class="outline-none cursor-pointer w-full"
+              class="outline-none cursor-pointer w-full bg-transparent"
               readonly
             />
           </div>
@@ -262,7 +262,7 @@ function drop(event: DragEvent) {
               name="dropzone-title"
               v-bind="{ color, props }"
             >
-              <span class="text-black">
+              <span class="text-secondary-800 dark:text-secondary-100">
                 Drop files here or
               </span> 
               <u>click here to browse</u>.

@@ -24,6 +24,21 @@
 5 AppChip
 6 Skeleton
 
+
+
+Dark:
+  Text: secondary-100
+  Bg: secondary-900
+  border: secondary-700
+  accent: primary-200
+
+Light:
+  Text: secondary-800
+  Bg: secondary-100/white
+  border: secondary-200
+  accent: primary-900
+
+
 EXTRAS: 
 Accordion
 HOC/Renderless Component for fetching api then returning it to scoped slots

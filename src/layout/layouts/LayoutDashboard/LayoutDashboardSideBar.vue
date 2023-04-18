@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { AppButton } from '@/components/app';
+import { ref } from 'vue';
 import type { RouteRecordName } from 'vue-router';
 
 const navigations: Navigation[] = [
@@ -18,6 +20,8 @@ const navigations: Navigation[] = [
   { routeName: 'Sandbox', label: 'SandBox' },
 ];
 
+const active = ref(false);
+
 interface Navigation {
   routeName: RouteRecordName;
   label: string;
@@ -25,42 +29,66 @@ interface Navigation {
 </script>
 
 <template>
-  <aside 
+  <div
     class="
-      w-[30vw] max-w-full h-full 
-      overflow-auto 
+      flex
+      relative
+      h-full
+      bg-primary-900 text-secondary-200
       shadow-xl
-      bg-secondary-200
+      z-20
     "
   >
-    <h3 
-      class="mt-3 text-lg text-center uppercase font-semibold"
-    >
-      Components
-    </h3>
-
-    <ul class="mt-5">
-      <li
-        v-for="nav in navigations"
-        :key="nav.label"
+    <div class="p-1 flex-shrink-0 md:sr-only z-20 bg-success-800">
+      <AppButton 
+        variant="outline"
+        size="sm"
+        @click="active = !active"
       >
-        <router-link 
-          :to="{ name: nav.routeName }"
-          class="
-            w-full 
-            block 
-            pl-3 my-2 
-            outline-none            
-            focus-within:bg-primary-200
-            hover:text-primary-500
-            border-l-4 border-primary-500/0
-            transition-colors
-          "
-          active-class="border-primary-500/100 font-semibold"
-        >
-          {{  nav.label  }}
-        </router-link>
-      </li>
-    </ul>
-  </aside>
+        {{ active ? '&lsaquo;' : '&rsaquo;'  }}
+      </AppButton>
+    </div>
+    <aside 
+        class="
+          transition-all
+          md:w-screen max-w-[250px] h-full 
+          overflow-auto
+          absolute md:relative left-full md:left-0  
+          bg-inherit
+        "
+        :class="{
+          'w-0': !active,
+          'w-screen': active,
+        }"
+      >
+    
+        <ul class="mt-5">
+          <li
+            v-for="nav in navigations"
+            :key="nav.label"
+          >
+            <router-link 
+              :to="{ name: nav.routeName }"
+              class="
+                w-full 
+                block 
+                pl-3 my-2 
+                outline-none            
+                focus-within:text-primary-200
+                hover:text-primary-300
+                border-l-4 border-primary-500/0
+                transition-colors
+              "
+              active-class="
+                border-primary-500/100 
+                font-semibold
+              "
+              @click="active = false"
+            >
+              {{  nav.label  }}
+            </router-link>
+          </li>
+        </ul>
+    </aside>
+  </div>
 </template>

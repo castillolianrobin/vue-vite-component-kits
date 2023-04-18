@@ -95,7 +95,13 @@ const positionClass = computed(()=>{
     >
       <slot>
         <ul 
-          class="bg-white rounded shadow-lg"
+          class="
+            bg-white 
+            dark:bg-secondary-900 
+            dark:text-secondary-100
+            rounded 
+            shadow-lg
+          "
           role="listbox"
 
         >

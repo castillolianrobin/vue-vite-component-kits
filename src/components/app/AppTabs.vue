@@ -50,7 +50,7 @@ function setActiveTab(item: ItemProp) {
 </script>
 
 <template>
-  <div role="tablist">
+  <div role="tablist" class="dark:text-secondary-100">
     <slot
       name="tabs" 
       v-bind="{ 
@@ -61,8 +61,9 @@ function setActiveTab(item: ItemProp) {
     >
       <div 
         class="
+          mb-2
           flex flex-wrap gap-2 
-          border-b
+          border-b border-secondary-200 dark:border-secondary-700
         "
       >
         <button 

@@ -23,7 +23,7 @@ const tabItems2 = [
     <div class="">
       <!-- Default Tabs -->
       <ComponentCard title="Default Tabs">
-        <div class="bg-secondary-200 p-5 h-full">
+        <div class="p-5 h-full">
           <AppCard class="h-full">
             <AppTabs
               :items="tabItems1"
@@ -49,7 +49,7 @@ const tabItems2 = [
 
       <!-- Tab with key -->
       <ComponentCard title="Tabs With Key Property">
-        <div class="bg-secondary-200 p-5 h-full">
+        <div class="p-5 h-full">
           <AppCard class="h-full">
             <AppTabs
               :items="tabItems2"

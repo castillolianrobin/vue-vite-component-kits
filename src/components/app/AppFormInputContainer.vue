@@ -21,7 +21,7 @@ const colorInactive = computed(():ThemeColors => {
 </script>
 
 <template>
-  <div class="group">
+  <div class="group dark:text-secondary-100">
     <!-- Label -->
     <AppFormLabel 
       :required="props.required"
@@ -40,7 +40,8 @@ const colorInactive = computed(():ThemeColors => {
       :class="[`
           p-1
           flex
-          bg-white/50
+          bg-white/10
+          
           rounded
           border border-${colorInactive} group-focus-within:border-${props.color}
         `,

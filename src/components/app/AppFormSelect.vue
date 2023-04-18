@@ -139,7 +139,7 @@ type SelectItem = SelectItemProp | string | number;
     <slot name="prepend"></slot>
     
     <!-- Select Display -->
-    <div>
+    <div class="flex-shrink flex-grow">
       <slot name="display" v-bind="{ displayValue, disabled: props.disabled }">
         <input
           readonly
@@ -149,7 +149,13 @@ type SelectItem = SelectItemProp | string | number;
             'cursor-pointer': !props.disabled && !$attrs.readonly
           }"
           tabindex="0"
-          class="w-full outline-none focus disabled:text-secondary-400"
+          class="
+            w-full 
+            outline-none 
+            focus 
+            disabled:text-secondary-400 
+            bg-transparent
+          "
           @click="toggleItems()" 
           @keydown.space="toggleItems()" 
         />
@@ -172,7 +178,7 @@ type SelectItem = SelectItemProp | string | number;
           w-full max-h-[150px]
           overflow-auto scrollbar
           absolute top-[110%] right-0 
-          bg-white
+          bg-white dark:bg-secondary-800
           shadow rounded-lg outline outline-1 outline-secondary-200
         "
         role="listbox"

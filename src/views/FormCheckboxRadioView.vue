@@ -66,19 +66,8 @@ const radioItems = [
           <AppFormCheckbox
             v-model="checkBox"
             label="Custom Checkbox 1"
+            toggle-input
           >
-            <template #button="{ isActive, onChangeHandler }">
-              <div 
-                tabindex="1"
-                class="relative mx-2 w-8 h-4 border border-secondary-500 rounded-full"
-                @keypress.space="onChangeHandler"
-              >
-                <div 
-                  class="absolute transition-[right] bg-primary-500 h-full aspect-square rounded-full"
-                  :class="isActive ? 'right-0' : 'right-4'"
-                ></div>
-              </div>
-            </template>
           </AppFormCheckbox>
         </div>
         <div class="flex justify-center">

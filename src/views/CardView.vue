@@ -12,7 +12,7 @@ import { AppButton, AppCard } from '@/components/app';
     <div class="grid lg:grid-cols-2 items-stretch gap-2">
       <!-- Default Card -->
       <ComponentCard title="Default Card">
-        <div class="bg-secondary-200 p-5 h-full">
+        <div class="p-5 h-full">
           <AppCard class="h-full">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet gravida augue. Curabitur et erat non ligula iaculis malesuada id at magna. Nulla pharetra, lacus at blandit porta, mi metus congue nisl, iaculis tristique dui sem a libero. Aenean tempor, tortor non blandit gravida, urna felis malesuada massa, quis rutrum felis nisi vitae sem. Aenean volutpat orci massa. Fusce eget mollis felis, tristique gravida sem.
           </AppCard>
@@ -21,7 +21,7 @@ import { AppButton, AppCard } from '@/components/app';
 
       <!-- Card Slots -->
       <ComponentCard title="Card Slot Composition">
-        <div class="bg-secondary-200 p-5 h-full">
+        <div class="p-5 h-full">
           <AppCard class="h-full">
             <template #title>Slot Name: title</template>
             <template #subtitle>Slot Name: Subtitle</template>
@@ -38,7 +38,7 @@ import { AppButton, AppCard } from '@/components/app';
 
     <!-- Sample Card -->
     <ComponentCard title="Sample Card with slots">
-        <div class="bg-secondary-200 p-5">
+        <div class=" p-5">
           <AppCard class="mx-auto w-[500px]">
             <template #title>Confirm Transaction!</template>
             <template #subtitle>Transaction ID: 5x-453453-234X</template>

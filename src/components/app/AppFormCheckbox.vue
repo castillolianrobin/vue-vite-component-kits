@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
-import { computed, toRef } from 'vue';
+import { computed, toRef, type PropType } from 'vue';
 import { AppFormError, AppFormLabel } from '.';
 
 
@@ -11,6 +11,7 @@ const props = defineProps({
   ...validationProps,
   activeValue: { type: undefined, default: true, required: false },
   inactiveValue: { type: undefined, default: false, required: false },
+  toggleInput: Boolean as PropType<boolean>, 
 });
 
 const emits = defineEmits([...inputEmits])
@@ -51,7 +52,7 @@ function onChangeHandler() {
 </script>
 
 <template>
-  <div class="inline">
+  <div class="inline dark:text-secondary-100">
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
       class="flex gap-1 flex-nowrap items-center"
@@ -61,6 +62,19 @@ function onChangeHandler() {
       <!-- Checkbox Button -->
       <slot name="button" v-bind="{ isActive, disabled, onChangeHandler }">
         <div 
+          v-if="props.toggleInput"
+          :tabindex="props.disabled ? undefined : 0"
+          class="relative mx-2 w-8 h-4 border border-secondary-500 rounded-full"
+          @keypress.space="onChangeHandler"
+        >
+          <div 
+            class="absolute transition-[right] bg-primary-500 h-full aspect-square rounded-full"
+            :class="isActive ? 'right-0' : 'right-4'"
+          ></div>
+        </div>
+        
+        <div 
+          v-else
           :tabindex="props.disabled ? undefined : 0"
           :class="[
             `

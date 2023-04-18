@@ -60,7 +60,7 @@ const radioAttrs = computed(()=>({
 </script>
 
 <template>
-  <div class="inline">
+  <div class="inline dark:text-secondary-100">
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
       class="flex flex-nowrap flex-row gap-1 items-center"
