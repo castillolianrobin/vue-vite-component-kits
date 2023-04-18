@@ -30,7 +30,7 @@ const props = defineProps({
     </h4>
     <div 
       class="
-        py-6 md:p-3 
+        py-6 p-1 md:p-3 
         flex-grow
         rounded-b
         w-full

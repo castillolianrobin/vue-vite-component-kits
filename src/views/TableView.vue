@@ -38,6 +38,7 @@ const items = [
       <AppTable
         :headers="headers"
         :items="items"
+        mobile-column-number="2"
       ></AppTable>
     </ComponentCard>
 
@@ -55,6 +56,7 @@ const items = [
         :headers="headers"
         :items="items"
         items-per-page="5"
+        :persist-column-on-small="[2]"
       >
       <template #item-first_name="{ item }">
         <p class="text-primary-500">

@@ -2,7 +2,7 @@
 import { themedColorProps, useThemedColor } from '@/composables';
 import { toRef, computed, type PropType, ref, nextTick } from 'vue';
 import { AppButton, AppPagination } from '.';
-import { emit } from 'process';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 
 export interface HeadersProp {
   text: string; // Text to be displayed as header
@@ -62,7 +62,16 @@ const props = defineProps({
     default: 1, 
     required: false,
   },
-
+  mobileColumnNumber: {
+    type: [String, Number] as PropType<string | number>,
+    default: 1,
+    required: false,
+  },
+  persistColumnOnSmall: {
+    type: Array as PropType<number[]>,
+    default: ()=>[],
+    required: false,
+  }, 
   /** Configuration for the table pagination.*/
   // paginationConfig: {
   //   type: Object as PropType<PaginationConfig>,
@@ -239,22 +248,87 @@ function internalPaginate(items: Record<string, any>[]) {
   const endIndex = +startIndex + (+itemsPerPage);
   return items.slice(startIndex, endIndex);
 }
+
+/** Mobile Responsive Logic */
+
+const visibleCell = computed(()=>{
+  const _visible = [...props.persistColumnOnSmall];
+  for (let i = 0; i < +props.mobileColumnNumber; i++) {
+    _visible.push(i+visibleCellOffset.value)
+  }
+  return _visible;
+});
+
+const visibleCellOffset = ref(0);
+
+function incrementOffset(increment = 1) {
+  const newOffset = visibleCellOffset.value + increment;
+  const { headers } = props;
+  if (
+    newOffset < 0  
+    || newOffset + visibleCell.value.length > headers.length 
+  ) return;
+
+  visibleCellOffset.value += increment;
+}
 </script>
 
 <template>
   <div>
-    <table class="w-full">
+
+    <table 
+      class="
+        w-full
+        relative
+        [&_.visible-cell]:table-cell
+        [&_.visible-cell]:px-5
+        [&_.cell]:hidden
+        md:[&_.cell]:table-cell
+      "
+    >
       <!-- Table Header -->
-       <thead>
-        <tr :class="`bg-${color} text-white font-semibold`">
+      <thead class="relative">
+        <!-- Mobile Only: Column Navigation -->
+        <div class="md:sr-only">
+          <div class="absolute top-0 right-[91%] h-full flex items-center">
+            <AppButton 
+              size="sm"
+              variant="text"
+              color="white"
+              @click="incrementOffset(-1)"
+            >
+              <ChevronLeftIcon class="h-6 w-6" />
+            </AppButton>
+          </div>
+  
+          <div class="absolute top-0 left-[92%] h-full flex items-center">
+            <AppButton 
+              size="sm"
+              variant="text"
+              color="white"
+              class="px-0"
+              @click="incrementOffset(1)"
+            >
+              <ChevronRightIcon class="h-6 w-6" />
+            </AppButton>
+          </div>
+        </div>
+        
+        <tr 
+          :class="`bg-${color} text-white font-semibold`"
+        >
           <th
             v-for="header, i in headersComputed"
             :key="header.key"
             :aria-label="`column ${i+1}`"
-            :class="`
-              header-${header.key} 
-              py-1 px-2
-            `"
+            :class="[
+              `
+                cell
+                header-${header.key} 
+                py-1 px-2
+              `,
+              { 'visible-cell': visibleCell.includes(i) },
+            ]"
           >
             <div class="flex items-center">
               <p class="mr-2">{{ header.text }}</p>
@@ -307,8 +381,10 @@ function internalPaginate(items: Record<string, any>[]) {
                 v-for="(property, propertyIndex) in headersComputed"
                 :key="`table-item-${itemIndex}-${propertyIndex}`"
                 :class="[
+                  'cell',
                   `item-${itemIndex}-${property.key}`,
                   'p-2',
+                  { 'visible-cell': visibleCell.includes(propertyIndex) },
                 ]"
               >
                 <slot

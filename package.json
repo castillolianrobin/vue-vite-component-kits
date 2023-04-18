@@ -16,6 +16,7 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.0.17",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
     "happy-dom": "^9.1.9",
