@@ -60,7 +60,7 @@ function onChangeHandler() {
       v-bind="{ ...$attrs }"
     >
       <!-- Checkbox Button -->
-      <slot name="button" v-bind="{ isActive, disabled, onChangeHandler }">
+      <slot name="checkbox" v-bind="{ isActive, disabled, onChangeHandler }">
         <div 
           v-if="props.toggleInput"
           :tabindex="props.disabled ? undefined : 0"

@@ -61,7 +61,7 @@ const radioItems = [
 
     <!-- Custom Checkbox -->
     <ComponentCard title="Custom Checkboxes">
-      <div class="grid md:grid-cols-2 gap-4">
+      <div class="grid md:grid-cols-2 gap-4 items-center">
         <div class="flex justify-center">
           <AppFormCheckbox
             v-model="checkBox"
@@ -74,8 +74,9 @@ const radioItems = [
           <AppFormCheckbox
             v-model="checkBox"
             label="Custom Checkbox 2"
+            class="items-center"
           >
-            <template #button="{ isActive, onChangeHandler }">
+            <template #checkbox="{ isActive, onChangeHandler }">
             <AppButton
               :color="isActive ? 'primary-500' : 'secondary-500'"
               @keypress.space="onChangeHandler"

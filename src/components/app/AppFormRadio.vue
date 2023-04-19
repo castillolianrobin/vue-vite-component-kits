@@ -68,7 +68,7 @@ const radioAttrs = computed(()=>({
       v-bind="{ ...$attrs }"
     >
       <!-- Radio Button -->
-      <slot v-bind="{ props: radioAttrs }">
+      <slot name="radio" v-bind="{ props: radioAttrs }">
         <div
           :tabindex="props.disabled ? undefined : 0"
           :class="[
