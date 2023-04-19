@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { themedColorProps, useThemedColor } from '@/composables';
 import { toRef, computed, type PropType, ref, nextTick } from 'vue';
-import { AppButton, AppPagination } from '.';
+import { AppButton, AppLoading, AppPagination } from '.';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 
 export interface HeadersProp {
@@ -24,6 +24,18 @@ const props = defineProps({
     default: false, 
     required: false 
   },
+  /** Disables navigation on table */
+  disabled: { 
+    type: Boolean as PropType<boolean>, 
+    default: false, 
+    required: false 
+  }, 
+  /** Add loading overlay to table */
+  loading: { 
+    type: Boolean as PropType<boolean>, 
+    default: false, 
+    required: false 
+  }, 
   /** Table headers to be displayed. can be String or Object */
   headers: {
     type: Array as PropType<(HeadersProp | string)[]>,
@@ -287,16 +299,28 @@ function incrementOffset(increment = 1) {
 </script>
 
 <template>
-  <div>
-
-    <table 
+  <div class="relative">
+    <AppLoading 
+      v-if="props.loading"
       class="
-        w-full
-        relative
-        [&_.cell]:hidden
-        md:[&_.cell]:table-cell
-        [&_.visible-cell]:table-cell
+        w-full 
+        h-full 
+        absolute 
+        bg-black/20 z-20
       "
+      spinner-class="w-7 h-7"
+    ></AppLoading>
+    <table 
+      :class="[
+        `
+          w-full
+          relative
+          [&_.cell]:hidden
+          md:[&_.cell]:table-cell
+          [&_.visible-cell]:table-cell
+        `,
+        { 'blur-sm': props.loading }
+      ]"
     >
       <!-- Table Header -->
       <thead class="relative">
@@ -414,6 +438,7 @@ function incrementOffset(increment = 1) {
     <AppPagination
       :length="pageLengthComputed"
       :model-value="currentPageComputed"
+      :disabled="props.loading || props.disabled"
       @update:model-value="onPageChangeHandler"
     ></AppPagination>
   </div>

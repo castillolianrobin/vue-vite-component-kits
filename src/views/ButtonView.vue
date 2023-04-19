@@ -20,7 +20,7 @@ const buttons:Button[] = [
   { title: 'Success', color: 'success-500' },
   { title: 'Error', color: 'error-500' },
   { title: 'Disabled', color: 'primary-500', disabled: true },
-  { title: 'Loading', color: 'primary-500', loading: true },
+  { title: 'Loading', color: 'error-500', loading: true },
   { title: 'Small', color: 'primary-500', size: 'sm' },
   { title: 'Medium', color: 'primary-500', size: 'md' },
   { title: 'Large', color: 'primary-500', size: 'lg' },

@@ -455,19 +455,41 @@ describe(name, ()=>{
   });
 
   describe('loading', ()=> {
+    const headers: HeadersProp[] = [
+      { text: 'Header 1', key: 'header_1', sortable: true },
+      { text: 'Header 2', key: 'header_2' },
+      { text: 'Header 3', key: 'header_3'},
+    ];
+    const items = [
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+      { 0: 'Content 1', 1: 'Content 2', 2: 'content 3' },
+    ];
+
+    
     const wrapper = mount(AppTable, {
-      props: { loading: true, headers: [], items: [] }
+      props: {  headers, items, loading: true }
     })
     it('show loading overlay on body when enabled', ()=> {
-      const loadingOverlay = wrapper
-        .find('tbody')
-        .find('div[role="alert"][aria-busy="true"]')
+      const loadingOverlay = wrapper.find('[aria-label="loading overlay"]')
+        // .find('div[role="alert"][aria-busy="true"]')
 
       expect(loadingOverlay.exists()).toBeTruthy();
     })
 
-    it('disables button and sorting when loading', ()=> {
-      expect(true).toBe(false);
+    it('disables button and sorting when loading', async ()=> {
+      const paginationBtns = wrapper.findAll('button[aria-label^="page"]')
+      await paginationBtns[1].trigger('click');
+      expect(wrapper.emitted('update:currentPage')?.length).toBeFalsy();
     })
   });
 })

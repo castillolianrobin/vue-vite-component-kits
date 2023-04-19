@@ -42,7 +42,6 @@ const items = [
       ></AppTable>
     </ComponentCard>
 
-
     <ComponentCard title="Table with 5 items per page">
       <AppTable
         :headers="headers"
@@ -84,6 +83,15 @@ const items = [
         </div>
       </template>
       </AppTable>
+    </ComponentCard>
+
+    <ComponentCard title="Loading Table">
+      <AppTable
+        :headers="headers"
+        :items="items"
+        mobile-column-number="2"
+        loading
+      ></AppTable>
     </ComponentCard>
   </div>
 </template>

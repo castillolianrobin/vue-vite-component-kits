@@ -75,6 +75,7 @@ const textClass = computed(()=>{
     <AppLoading 
       v-if="props.loading"
       class="absolute"
+      v-bind="{ color }"
     ></AppLoading>
     <span :class="{ 'opacity-0': props.loading }">
       <slot></slot>

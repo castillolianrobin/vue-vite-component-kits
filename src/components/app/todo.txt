@@ -1,10 +1,9 @@
 - AppButton [DONE] [TESTED] [PAGED]
 - AppForm [DONE] [TESTED] [PAGED] 
 - AppFormInput [DONE] [TESTED] [PAGED]
-- AppFormInput [DONE] [TESTED] [PAGED]
-7 AppFormCheckbox [DONE] [PAGED]
+~ AppFormCheckbox [DONE] [SEMI TESTED] [PAGED]
 - AppFormCheckboxGroup [DONE] [TESTED] [PAGED]
-8 AppFormRadio [DONE] [PAGED]
+~ AppFormRadio [DONE] [SEMI TESTED] [PAGED]
 - AppFormRadioGroup [DONE] [TESTED] [PAGED]
 - AppFormSelect [DONE] [TESTED] [PAGED]
 - AppFormMultiSelect [PARTIALLY DONE] [TESTED] [PAGED]
@@ -17,7 +16,7 @@
 - AppCards [PARTIALLY DONE] [TESTED] [PAGED]
 - AppDropdown [DONE] [TESTED] [PAGED] 
 
-- AppTabs [PARTIAL] [TESTED] [PAGED]
+~ AppTabs [PARTIAL] [TESTED] [PAGED]
 2 AppTooltip
 3 AppSteps
 4 AppToast
