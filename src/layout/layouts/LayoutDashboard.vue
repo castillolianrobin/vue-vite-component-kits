@@ -12,7 +12,7 @@ const isDarkMode = useDark();
   <div 
     class="
       relative 
-      w-screen h-screen 
+      w-full h-full 
       grid grid-rows-dashboard grid-cols-dashboard
       text-secondary-800 dark:text-secondary-200
       bg-secondary-100 dark:bg-secondary-900 

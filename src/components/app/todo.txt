@@ -17,6 +17,7 @@
 - AppDropdown [DONE] [TESTED] [PAGED] 
 
 ~ AppTabs [PARTIAL] [TESTED] [PAGED]
+1 PageLoader
 2 AppTooltip
 3 AppSteps
 4 AppToast
