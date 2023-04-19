@@ -83,7 +83,14 @@ const props = defineProps({
     type: Array as PropType<number[]>,
     default: ()=>[],
     required: false,
-  }, 
+  },
+  caption: String,
+  hideCaption: { 
+    type: Boolean as PropType<boolean>, 
+    default: false, 
+    required: false 
+  },
+ 
   /** Configuration for the table pagination.*/
   // paginationConfig: {
   //   type: Object as PropType<PaginationConfig>,
@@ -306,7 +313,7 @@ function incrementOffset(increment = 1) {
         w-full 
         h-full 
         absolute 
-        bg-black/20 z-20
+        bg-black/20 z-10
       "
       spinner-class="w-7 h-7"
     ></AppLoading>
@@ -322,6 +329,12 @@ function incrementOffset(increment = 1) {
         { 'blur-sm': props.loading }
       ]"
     >
+      <caption 
+        class="mb-2 text-left text-sm  font-light "
+        :class="{ 'sr-only': props.hideCaption }"
+      >
+        {{ props.caption }}
+      </caption>
       <!-- Table Header -->
       <thead class="relative">
         <!-- Mobile Only: Column Navigation -->
