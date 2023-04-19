@@ -251,22 +251,35 @@ function internalPaginate(items: Record<string, any>[]) {
 
 /** Mobile Responsive Logic */
 
-const visibleCell = computed(()=>{
+// List of columns displayable in mobile dimensions
+const visibleColumns = computed(()=>{
   const _visible = [...props.persistColumnOnSmall];
   for (let i = 0; i < +props.mobileColumnNumber; i++) {
     _visible.push(i+visibleCellOffset.value)
   }
-  return _visible;
+  return _visible.sort();
 });
 
+// offset the current number  visible columns 
+// (works like pagination)
 const visibleCellOffset = ref(0);
 
+// class helper for visible columns
+function getVisibleCellClass(i: number) {
+  return { 
+    'visible-cell': visibleColumns.value.includes(i), 
+    'pl-7 md:pl-2': visibleColumns.value[0] === i, 
+    'pr-7 md:pr-2': [...visibleColumns.value].pop() === i, 
+  };
+}
+
+// handler for changing offset
 function incrementOffset(increment = 1) {
   const newOffset = visibleCellOffset.value + increment;
   const { headers } = props;
   if (
     newOffset < 0  
-    || newOffset + visibleCell.value.length > headers.length 
+    || newOffset + visibleColumns.value.length > headers.length 
   ) return;
 
   visibleCellOffset.value += increment;
@@ -280,10 +293,9 @@ function incrementOffset(increment = 1) {
       class="
         w-full
         relative
-        [&_.visible-cell]:table-cell
-        [&_.visible-cell:last-of-type]:bg-error-500
         [&_.cell]:hidden
         md:[&_.cell]:table-cell
+        [&_.visible-cell]:table-cell
       "
     >
       <!-- Table Header -->
@@ -327,7 +339,7 @@ function incrementOffset(increment = 1) {
                 header-${header.key} 
                 py-1 px-2
               `,
-              { 'visible-cell': visibleCell.includes(i) },
+              { ...getVisibleCellClass(i) },
             ]"
           >
             <div class="flex items-center">
@@ -384,7 +396,7 @@ function incrementOffset(increment = 1) {
                   'cell',
                   `item-${itemIndex}-${property.key}`,
                   'p-2',
-                  { 'visible-cell': visibleCell.includes(propertyIndex) },
+                  { ...getVisibleCellClass(propertyIndex) },
                 ]"
               >
                 <slot
