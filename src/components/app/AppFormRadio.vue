@@ -63,7 +63,7 @@ const radioAttrs = computed(()=>({
   <div class="inline dark:text-secondary-100">
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
-      class="flex flex-nowrap flex-row gap-1 items-center"
+      class="flex flex-nowrap flex-row gap-1"
       @click="onChangeHandler"
       v-bind="{ ...$attrs }"
     >
@@ -73,8 +73,9 @@ const radioAttrs = computed(()=>({
           :tabindex="props.disabled ? undefined : 0"
           :class="[
             `
-              p-0.5
+              mt-0.5 p-0.5
               h-[1rem] w-[1rem] 
+              flex-shrink-0
               rounded-full
               border border-${color}
               group-hover:outline focus:outline outline-2 outline-${color}/50

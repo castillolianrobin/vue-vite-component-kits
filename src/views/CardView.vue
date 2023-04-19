@@ -39,7 +39,7 @@ import { AppButton, AppCard } from '@/components/app';
     <!-- Sample Card -->
     <ComponentCard title="Sample Card with slots">
         <div class=" p-5">
-          <AppCard class="mx-auto w-[500px]">
+          <AppCard class="mx-auto w-[500px] max-w-full">
             <template #title>Confirm Transaction!</template>
             <template #subtitle>Transaction ID: 5x-453453-234X</template>
             <template #actions>

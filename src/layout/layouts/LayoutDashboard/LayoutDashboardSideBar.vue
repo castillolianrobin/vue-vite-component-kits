@@ -43,6 +43,8 @@ interface Navigation {
       <AppButton 
         variant="outline"
         size="sm"
+        class="px-0.5"
+        color="white"
         @click="active = !active"
       >
         {{ active ? '&lsaquo;' : '&rsaquo;'  }}

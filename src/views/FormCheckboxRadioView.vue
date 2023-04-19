@@ -98,6 +98,7 @@ const radioItems = [
               :items="checkItems"
               label="To do"
               class="mx-auto"
+              container-class="flex-col md:flex-row"
             ></AppFormCheckboxGroup>
           </div>
 
@@ -136,6 +137,7 @@ const radioItems = [
               :items="radioItems"
               label="Favorite Dessert"
               class="mx-auto"
+              container-class="flex-col md:flex-row"
               validations="required"
             ></AppFormRadioGroup>
           </div>

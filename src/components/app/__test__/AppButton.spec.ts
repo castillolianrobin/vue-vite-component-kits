@@ -6,7 +6,17 @@ import { defaultSlotTest } from '../../__tests__/helpers/slot.spec';
 const name = 'AppButton';
 
 describe(name, () => {
-  defaultSlotTest(AppButton);
+
+  it('renders a button element', () => {
+    const wrapper = mount(AppButton)
+    expect(wrapper.find('button').exists()).toBe(true)
+  })
+
+  it('emits a click event when clicked', () => {
+    const wrapper = mount(AppButton)
+    wrapper.find('button').trigger('click')
+    expect(wrapper.emitted().click).toBeTruthy()
+  })
 
   /** test if hover is working */
   const wrapper = mount(AppButton);
@@ -52,4 +62,6 @@ describe(name, () => {
   /** test if variant is working */
 
   /** test if sizes is working */
+
+  defaultSlotTest(AppButton);
 })

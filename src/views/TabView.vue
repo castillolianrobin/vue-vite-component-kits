@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import ComponentCard from '@/components/ComponentCard.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import { AppButton, AppCard, AppTabs } from '@/components/app';
+import { AppButton, AppCard, AppFormInput, AppTabs } from '@/components/app';
 
 
 const tabItems1 = [
@@ -69,6 +69,54 @@ const tabItems2 = [
               </template>
             </AppTabs>
           </AppCard>
+        </div>
+      </ComponentCard>
+
+      <!-- Tab with Eager prop -->
+      <ComponentCard title="Tabs With Eager Property">
+        <p class="mt-2 text-center">
+          Tab with eager props will not unmount inactive tab content
+        </p>
+        <div class=" p-5 grid grid-cols-2 gap-3 h-full">
+          <AppCard class="h-full">
+            <template #subtitle>Tab with Eager prop on</template>
+            <AppTabs
+              :items="tabItems2"
+              eager
+            >
+              <template
+                v-for="(item) in tabItems2"
+                :key="item.key" 
+                #[`${item.key}`]
+              >
+                <div class="flex flex-col md:flex-row gap-3 items-center">
+                  <AppFormInput
+                    :label="`Input for ${item.text}`"
+                  ></AppFormInput>
+                </div>
+              </template>
+            </AppTabs>
+          </AppCard>
+
+          <AppCard class="h-full">
+            <template #subtitle>Tab with Eager prop off</template>
+            <AppTabs
+              :items="tabItems2"
+            >
+              <template
+                v-for="(item) in tabItems2"
+                :key="item.key" 
+                #[`${item.key}`]
+              >
+                <div class="flex flex-col md:flex-row gap-3 items-center">
+                  <AppFormInput
+                    :label="`Input for ${item.text}`"
+                  ></AppFormInput>
+                </div>
+              </template>
+            </AppTabs>
+          </AppCard>
+
         </div>
       </ComponentCard>
     </div>

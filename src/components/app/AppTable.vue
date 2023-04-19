@@ -281,7 +281,7 @@ function incrementOffset(increment = 1) {
         w-full
         relative
         [&_.visible-cell]:table-cell
-        [&_.visible-cell]:px-5
+        [&_.visible-cell:last-of-type]:bg-error-500
         [&_.cell]:hidden
         md:[&_.cell]:table-cell
       "
@@ -290,7 +290,7 @@ function incrementOffset(increment = 1) {
       <thead class="relative">
         <!-- Mobile Only: Column Navigation -->
         <div class="md:sr-only">
-          <div class="absolute top-0 right-[91%] h-full flex items-center">
+          <div class="absolute top-0 -left-2 h-full flex items-center">
             <AppButton 
               size="sm"
               variant="text"
@@ -301,7 +301,7 @@ function incrementOffset(increment = 1) {
             </AppButton>
           </div>
   
-          <div class="absolute top-0 left-[92%] h-full flex items-center">
+          <div class="absolute top-0 -right-2 h-full flex items-center">
             <AppButton 
               size="sm"
               variant="text"
@@ -314,7 +314,7 @@ function incrementOffset(increment = 1) {
           </div>
         </div>
         
-        <tr 
+        <tr
           :class="`bg-${color} text-white font-semibold`"
         >
           <th

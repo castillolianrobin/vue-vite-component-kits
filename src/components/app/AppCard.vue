@@ -28,7 +28,7 @@ const slots = useSlots();
     <!-- Card Subtitle -->
     <p
       v-if="slots.subtitle" 
-      class="text-sm text-gray-500"
+      class="text-sm text-gray-500 dark:text-gray-400"
     >
       <slot name="subtitle"></slot>
     </p>

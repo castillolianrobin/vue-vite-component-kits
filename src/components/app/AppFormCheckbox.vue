@@ -55,7 +55,7 @@ function onChangeHandler() {
   <div class="inline dark:text-secondary-100">
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
-      class="flex gap-1 flex-nowrap items-center"
+      class="flex gap-1 flex-nowrap"
       @click="onChangeHandler"
       v-bind="{ ...$attrs }"
     >
@@ -64,7 +64,7 @@ function onChangeHandler() {
         <div 
           v-if="props.toggleInput"
           :tabindex="props.disabled ? undefined : 0"
-          class="relative mx-2 w-8 h-4 border border-secondary-500 rounded-full"
+          class="relative mt-0.5 mx-2 w-8 h-4 border border-secondary-500 rounded-full"
           @keypress.space="onChangeHandler"
         >
           <div 
@@ -78,7 +78,9 @@ function onChangeHandler() {
           :tabindex="props.disabled ? undefined : 0"
           :class="[
             `
+              mt-0.5 
               h-[1rem] w-[1rem] 
+              flex-shrink-0
               border border-${color}
               group-hover:outline focus:outline outline-2 outline-${color}/50
               transition-[outline] ease-in-out duration-75
