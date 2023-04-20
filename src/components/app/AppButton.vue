@@ -70,6 +70,7 @@ const textClass = computed(()=>{
       disabled:brightness-75 
       disabled:opacity-80
     "
+    :aria-busy="loading"
     v-bind="{ ...props }"
   >
     <AppLoading 

@@ -6,6 +6,7 @@ const slots = useSlots();
 
 <template>
   <div 
+    role="dialog"
     aria-label="card" 
     class="
       card 

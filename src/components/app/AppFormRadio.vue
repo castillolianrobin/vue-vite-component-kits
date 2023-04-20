@@ -62,8 +62,14 @@ const radioAttrs = computed(()=>({
 <template>
   <div class="inline dark:text-secondary-100">
     <div 
-      :class="{ 'group cursor-pointer': !props.disabled }"
-      class="flex flex-nowrap flex-row gap-1"
+      :class="[
+        'flex flex-nowrap flex-row gap-1',
+        { 'group cursor-pointer': !props.disabled },
+      ]"
+      :aria-disabled="props.disabled"
+      :aria-checked="isActive"
+      :data-value="activeValue"
+      role="radio"
       @click="onChangeHandler"
       v-bind="{ ...$attrs }"
     >
@@ -83,13 +89,7 @@ const radioAttrs = computed(()=>({
             `,
             { 'border-secondary-400': props.disabled },
           ]"
-          :aria-disabled="props.disabled"
-          :aria-label="props.label"
-          :aria-checked="isActive"
-          :data-value="activeValue"
-          role="radio"
-          @keypress.space.enter="onChangeHandler"
-    
+          @keypress.space.enter="onChangeHandler"    
         >
           <div
             v-if="isActive" 

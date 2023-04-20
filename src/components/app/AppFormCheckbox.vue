@@ -56,6 +56,9 @@ function onChangeHandler() {
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
       class="flex gap-1 flex-nowrap"
+      :aria-checked="isActive"
+      :aria-disabled="props.disabled"
+      role="checkbox"
       @click="onChangeHandler"
       v-bind="{ ...$attrs }"
     >
@@ -87,8 +90,6 @@ function onChangeHandler() {
             `,
             { 'border-secondary-400': props.disabled }
           ]"
-          :aria-checked="isActive"
-          role="checkbox"
           @keypress.space="onChangeHandler"
         >
           <div

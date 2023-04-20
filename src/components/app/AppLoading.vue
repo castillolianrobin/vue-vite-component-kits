@@ -13,6 +13,8 @@ const { color } = useThemedColor(props.color);
   <div 
     class="flex items-center justify-center"
     aria-label="loading spinner"
+    role="alert" 
+    aria-busy="true"
   >
     <svg 
       :class="[
