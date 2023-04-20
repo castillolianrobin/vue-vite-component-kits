@@ -12,9 +12,9 @@ The components are customizable and themeable, specially in colors. All the comp
 
 - [TailwindCSS](https://tailwindcss.com/)
 - [Vite](https://vitejs.dev/)
+- [HeroIcon](https://heroicons.com/)
 
-
-## Recommended IDE Setup
+# Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
