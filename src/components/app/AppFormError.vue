@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
   <p 
     :class="`text-error-500 text-xs`"
-    aria-label="error message"
+    aria-label="error"
   >
     <slot>{{ props.error }}</slot>
   </p>

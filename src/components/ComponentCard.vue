@@ -12,7 +12,8 @@ const props = defineProps({
         flex-col 
         border dark:border-secondary-600
         rounded
-        max-w-screen 
+        max-w-screen
+        h-full 
       "
     >
       <h4 

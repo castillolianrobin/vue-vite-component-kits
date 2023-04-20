@@ -1,24 +1,14 @@
 <script setup lang="ts">
 import { AppButton } from '@/components/app';
+import dashboardRoutes from '@/router/dashboardRoutes';
 import { ref } from 'vue';
 import type { RouteRecordName } from 'vue-router';
 
-const navigations: Navigation[] = [
-  { routeName: 'Home', label: 'Home' },
-  { routeName: 'Cards', label: 'Cards' },
-  { routeName: 'Buttons', label: 'Buttons' },
-  { routeName: 'Dropdowns', label: 'Dropdowns' },
-  { routeName: 'Tabs', label: 'Tabs' },
-  { routeName: 'Modals', label: 'Modals' },
-  { routeName: 'Pagination', label: 'Paginations' },
-  { routeName: 'Table', label: 'Tables' },
-  { routeName: 'Form', label: 'Form' },
-  { routeName: 'FormInput', label: 'Form Input & Text Area' },
-  { routeName: 'FormSelect', label: 'Form Select' },
-  { routeName: 'FormCheckboxRadio', label: 'Form Checkbox & Radio' },
-  { routeName: 'FormFileUpload', label: 'Form File Upload' },
-  { routeName: 'Sandbox', label: 'SandBox' },
-];
+const navigations: Navigation[] = dashboardRoutes
+  .map(({ name, label })=>({
+    routeName: name, 
+    label,
+  }));
 
 const active = ref(false);
 

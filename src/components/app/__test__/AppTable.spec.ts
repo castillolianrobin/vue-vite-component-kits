@@ -480,7 +480,7 @@ describe(name, ()=>{
       props: {  headers, items, loading: true }
     })
     it('show loading overlay on body when enabled', ()=> {
-      const loadingOverlay = wrapper.find('[aria-label="loading overlay"]')
+      const loadingOverlay = wrapper.find('[aria-label="loading spinner"]')
         // .find('div[role="alert"][aria-busy="true"]')
 
       expect(loadingOverlay.exists()).toBeTruthy();

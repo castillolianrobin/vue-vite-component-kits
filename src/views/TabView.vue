@@ -77,7 +77,7 @@ const tabItems2 = [
         <p class="mt-2 text-center">
           Tab with eager props will not unmount inactive tab content
         </p>
-        <div class=" p-5 grid grid-cols-2 gap-3 h-full">
+        <div class=" p-5 grid md:grid-cols-2 gap-3 h-full">
           <AppCard class="h-full">
             <template #subtitle>Tab with Eager prop on</template>
             <AppTabs

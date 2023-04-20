@@ -44,7 +44,7 @@ describe(name, async ()=> {
           const dropbox = wrapper.find('[aria-label="dropzone box"]');
           await dropbox.trigger('drop', { dataTransfer: dT });
           await wrapper.vm.$nextTick();
-          const errorTag = wrapper.find('[aria-label="error message"]');
+          const errorTag = wrapper.find('[aria-label="error"]');
           expect(errorTag.text()).toContain(`exceeded ${maxSize} KB`);
         })
       }

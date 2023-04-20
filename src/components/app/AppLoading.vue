@@ -12,7 +12,7 @@ const { color } = useThemedColor(props.color);
 <template>
   <div 
     class="flex items-center justify-center"
-    aria-label="loading overlay"
+    aria-label="loading spinner"
   >
     <svg 
       :class="[
