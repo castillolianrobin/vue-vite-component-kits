@@ -17,12 +17,12 @@
 - AppDropdown [DONE] [TESTED] [PAGED] 
 
 ~ AppTabs [PARTIAL] [TESTED] [PAGED]
-1 PageLoader
-2 AppTooltip
-3 AppSteps
-4 AppToast
-5 AppChip
-6 Skeleton
+- PageLoader
+- AppTooltip [DONE] [TESTED] [PAGEd]
+1 AppSteps
+2 AppToast
+3 AppChip
+4 Skeleton
 
 
 

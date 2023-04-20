@@ -30,6 +30,13 @@ export default [
     meta: { layout: 'Dashboard' },
   },
   {
+    path: '/tooltip',
+    name: 'Tooltips',
+    label: 'Tooltips',
+    component: () => import('../views/TooltipView.vue'),
+    meta: { layout: 'Dashboard' },
+  },
+  {
     path: '/tabs',
     name: 'Tabs',
     label: 'Tabs',
