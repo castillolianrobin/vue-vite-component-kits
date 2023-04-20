@@ -90,7 +90,7 @@ function setActiveTab(item: ItemProp) {
         <TransitionGroup
           enter-active-class="duration-200 ease-out"
           enter-from-class="-translate-x-full opacity-0"
-          enter-to-class="translate-x-0 opacity-100"
+          enter-to-class="-translate-x-2/3 opacity-100"
           leave-active-class="absolute top-0 left-0 duration-150 ease-in"
           leave-from-class="translate-x-2/3 md:translate-x-0 opacity-50"
           leave-to-class="translate-x-full opacity-0"

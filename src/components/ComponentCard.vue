@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="py-5">
+  <div class="pb-5">
     <div 
       class="
         flex 

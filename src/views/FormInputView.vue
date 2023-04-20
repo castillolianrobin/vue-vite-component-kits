@@ -47,7 +47,7 @@ const defaultTextArea = ref('');
         </div>
     </ComponentCard>
 
-    <div class="grid md:grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-4">
       <ComponentCard title="Password Inputs">
           <div class="grid md:grid-cols-2 gap-2">
             <AppFormInput

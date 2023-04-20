@@ -58,7 +58,7 @@ const persistModal = ref(true);
       </AppModal>
     </ComponentCard>
 
-    <div class="grid md:grid-cols-2 gap-2">
+    <div class="grid md:grid-cols-2 gap-4">
       
       <!-- Persisting Modal -->
       <ComponentCard title="Persisting Modal">

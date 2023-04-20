@@ -40,7 +40,7 @@ const fourthPagination = ref(5);
         </p>
       </div>
     </ComponentCard>
-    <div class="grid lg:grid-cols-2 gap-2">
+    <div class="grid lg:grid-cols-2 gap-4">
       <ComponentCard title="Pagination Length">
         <div class="grid lg:grid-cols-2 items-end justify-center">
           <div>
@@ -84,7 +84,7 @@ const fourthPagination = ref(5);
 
     
 
-    <div class="grid lg:grid-cols-2 gap-2 w-full overflow-hidden">
+    <div class="grid lg:grid-cols-2 gap-4 w-full overflow-hidden">
       <!-- persistEdgePAges props -->
       <ComponentCard title="Pagination with persisting edge pages">
         <div class="grid items-center justify-center">

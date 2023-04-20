@@ -56,7 +56,7 @@ const dropPositions: DropProp[] = [
         </div>
       </ComponentCard>
 
-      <div class="grid md:grid-cols-2 gap-2">
+      <div class="grid md:grid-cols-2 gap-4">
         
         <!-- Slotted Dropdown -->
         <ComponentCard title="Dropdown Trigger Slot">
@@ -82,7 +82,7 @@ const dropPositions: DropProp[] = [
             <AppDropdown>
               <div class="p-2 bg-primary-300 relative whitespace-nowrap">
                 <p>Showing an AppCard instead</p>
-                <AppCard class="w-full">
+              w  <AppCard class="w-full">
                   Hello World
                 </AppCard>
               </div>

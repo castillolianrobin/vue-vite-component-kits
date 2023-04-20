@@ -9,7 +9,7 @@
 - AppFormMultiSelect [PARTIALLY DONE] [TESTED] [PAGED]
 - AppFormTextArea [DONE] [TESTED] [PAGED]
 - AppFormFile [DONE] [TESTED] [PAGED]
-1 AppFormDatePicker (POSTPONED)
+3 AppFormDatePicker (POSTPONED)
 - AppModal [DONE] [PAGED]
 - AppPagination  [DONE] [TESTED] [PAGED]
 - AppTable [DONE] [TESTED] [PAGED]
@@ -20,9 +20,10 @@
 - PageLoader
 - AppTooltip [DONE] [TESTED] [PAGEd]
 1 AppSteps
-2 AppToast
-3 AppChip
-4 Skeleton
+2 AppChip
+
+4 Login (Cypress Test)
+5 Use Creation (Steps) (Cypress Test)
 
 
 
@@ -45,3 +46,5 @@ HOC/Renderless Component for fetching api then returning it to scoped slots
 Progress Bar
 Avatar
 Slider
+Skeleton
+AppToast
