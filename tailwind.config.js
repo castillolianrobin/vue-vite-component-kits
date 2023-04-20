@@ -27,7 +27,7 @@ module.exports = {
         info: colors.blue,
         alert: colors.orange,
         error: colors.red,
-        success: colors.emerald,
+        success: colors.green,
       },
       gridTemplateColumns: {
         dashboard: "auto 1fr",
