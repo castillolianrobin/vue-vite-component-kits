@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, toRef, type HtmlHTMLAttributes, type PropType } from 'vue';
+import { computed, ref, toRef, type PropType } from 'vue';
 import { AppButton } from '.';
 import { createThemedColor, themedColorProps } from '@/composables';
 import { vOnClickOutside } from '@vueuse/components';
@@ -73,7 +73,10 @@ const positionClass = computed(()=>{
 </script>
 
 <template>
-  <div class="relative inline-block">
+  <div 
+    class="relative inline-block"
+    v-on-click-outside="()=>toggleMenu(false)"
+  >
     <!-- Trigger -->
     <slot 
       name="trigger" 
@@ -87,47 +90,55 @@ const positionClass = computed(()=>{
     </slot>
 
     <!-- Menu -->
-    <div 
-      v-if="isActive || props.eager"
-      v-show="isActive"
-      :class="[ 'absolute min-w-full z-20', positionClass ]"
-      v-on-click-outside="()=>toggleMenu(false)"
+    <Transition
+      enter-active-class="duration-150 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100"
+      leave-active-class="duration-150 ease-in"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 -translate-y-2"
     >
-      <slot>
-        <ul 
-          class="
-            bg-white 
-            dark:bg-secondary-900 
-            dark:text-secondary-100
-            rounded 
-            shadow-lg
-          "
-          role="listbox"
+      <div 
+        v-if="isActive || props.eager"
+        v-show="isActive"
+        :class="[ 'absolute min-w-full z-20', positionClass ]"
+      >
+        <slot>
+          <ul 
+            class="
+              bg-white 
+              dark:bg-secondary-900 
+              dark:text-secondary-100
+              rounded 
+              shadow-lg
+            "
+            role="listbox"
 
-        >
-          <li
-            v-for="item, i in props.items"
-            :key="`${item.text}-${i}`"
-            :class="[
-              `
-                px-2 py-1 
-                cursor-pointer
-                overflow-auto 
-                whitespace-nowrap
-                hover:text-white
-                active:brightness-75
-              `,
-              `hover:bg-${color}`
-            ]"
-            tabindex="0"
-            @click="onDropdownItemClickHandler(item)"
-            @keydown.space.enter="onDropdownItemClickHandler(item)"
           >
-            {{ item.text }}
-          </li>
-        </ul>
-      </slot>
-    </div>
+            <li
+              v-for="item, i in props.items"
+              :key="`${item.text}-${i}`"
+              :class="[
+                `
+                  px-2 py-1 
+                  cursor-pointer
+                  overflow-auto 
+                  whitespace-nowrap
+                  hover:text-white
+                  active:brightness-75
+                `,
+                `hover:bg-${color}`
+              ]"
+              tabindex="0"
+              @click="onDropdownItemClickHandler(item)"
+              @keydown.space.enter="onDropdownItemClickHandler(item)"
+            >
+              {{ item.text }}
+            </li>
+          </ul>
+        </slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
