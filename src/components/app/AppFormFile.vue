@@ -211,6 +211,7 @@ function drop(event: DragEvent) {
                   ?.map(({name})=>name)
                   .join(',  ')
                 "
+              :aria-label="props.label"
               role="presentation"
               class="outline-none cursor-pointer w-full bg-transparent"
               readonly
@@ -338,7 +339,7 @@ function drop(event: DragEvent) {
                   flex 
                   flex-col md:flex-row 
                   flex-grow flex-shrink 
-                  gap-2 
+                  md:gap-2 
                 "
               >
                 <!-- File Name -->
@@ -358,6 +359,7 @@ function drop(event: DragEvent) {
                 </span>
                 <!-- Close Icon -->
                 <AppButton
+                  :disabled="props.disabled"
                   :aria-label="`file ${i+1} close icon`"
                   :color="color"
                   size="sm"
@@ -383,6 +385,7 @@ function drop(event: DragEvent) {
       type="file"
       class="sr-only peer"
       tabindex="-1"
+      aria-hidden="true"
       v-bind="{ ...props }"
       @change="onFileSelectHandler"
     />
