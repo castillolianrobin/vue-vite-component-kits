@@ -64,18 +64,29 @@ function onChangeHandler() {
     >
       <!-- Checkbox Button -->
       <slot name="checkbox" v-bind="{ isActive, disabled, onChangeHandler }">
+        <!-- Toggle Style -->
         <div 
           v-if="props.toggleInput"
           :tabindex="props.disabled ? undefined : 0"
-          class="relative mt-0.5 mx-2 w-8 h-4 border border-secondary-500 rounded-full"
+          class="
+            p-[1px] 
+            mx-2 
+            w-9 h-5 
+            border border-secondary-500 
+            rounded-full
+            outline-secondary-300
+          "
           @keypress.space="onChangeHandler"
         >
-          <div 
-            class="absolute transition-[right] bg-primary-500 h-full aspect-square rounded-full"
-            :class="isActive ? 'right-0' : 'right-4'"
-          ></div>
+          <div class=" relative w-full h-full">
+            <div 
+              class="absolute transition  h-full aspect-square bg-primary-500 rounded-full"
+              :class="{ 'translate-x-full': isActive }"
+            ></div>
+          </div>
         </div>
         
+        <!-- Checkbox Style -->
         <div 
           v-else
           :tabindex="props.disabled ? undefined : 0"
