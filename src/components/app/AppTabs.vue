@@ -85,19 +85,30 @@ function setActiveTab(item: ItemProp) {
         </button>
       </div>
     </slot>
-    <slot name="panel">
-      <div
-       v-for="item in itemSlot"
-       :key="item.key"
-       v-show="isActiveTab(item)"
-       role="tabpanel"
-       :aria-label="`${item.key} tabpanel`"
-     >
-       <slot :name="`${item.key}`">
-         <p class="text-secondary-400">No Content</p>
-       </slot>
-     </div>
-    </slot>
+    <div class="relative overflow-hidden">
+      <slot name="panel">
+        <TransitionGroup
+          enter-active-class="duration-150 ease-out"
+          enter-from-class="-translate-x-1/2 opacity-0"
+          enter-to-class="translate-x-0 opacity-100"
+          leave-active-class="absolute top-0 duration-150 ease-in"
+          leave-from-class="translate-x-0 opacity-50"
+          leave-to-class="translate-x-1/2 opacity-0"
+        >
+          <div
+           v-for="item in itemSlot"
+           :key="item.key"
+           v-show="isActiveTab(item)"
+           role="tabpanel"
+           :aria-label="`${item.key} tabpanel`"
+         >
+           <slot :name="`${item.key}`">
+             <p class="text-secondary-400">No Content</p>
+           </slot>
+         </div>
+        </TransitionGroup>
+      </slot>
+    </div>
   </div>
 </template>
 
