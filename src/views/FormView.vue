@@ -33,7 +33,10 @@ const inputVal = ref(new Array(inputs.length).fill(''));
     <PageHeader>Form</PageHeader>
     
     <ComponentCard title="Form Validation">
-        <AppForm class="p-4 flex flex-col gap-4">
+        <AppForm 
+          class="p-4 flex flex-col gap-4"
+          color="error-500"
+        >
           <AppFormInput
             v-for="(input, index) in inputs"
             v-model="inputVal[index]"

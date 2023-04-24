@@ -12,7 +12,8 @@ const props = defineProps({
 const emits = defineEmits([
   ...formValidationEmits,
 ]);
-createThemedColor(toRefs(props).color);
+/** Themed Color Composables */
+createThemedColor(toRefs(props).color); 
 
 const { errors, startFormValidation } = createFormValidation(emits)
 
@@ -25,6 +26,6 @@ const { errors, startFormValidation } = createFormValidation(emits)
     @submit.prevent="startFormValidation"
   >
     <!-- {{ errors  }} -->
-    <slot></slot>
+    <slot v-bind="errors"></slot>
   </form>
 </template>

@@ -51,6 +51,7 @@ function setActiveTab(item: ItemProp) {
 
 <template>
   <div role="tablist" class="dark:text-secondary-100">
+    <!-- TABS -->
     <slot
       name="tabs" 
       v-bind="{ 
@@ -85,6 +86,7 @@ function setActiveTab(item: ItemProp) {
         </button>
       </div>
     </slot>
+    <!-- CONTENT -->
     <div class="relative overflow-hidden">
       <slot name="panel">
         <TransitionGroup
@@ -96,16 +98,16 @@ function setActiveTab(item: ItemProp) {
           leave-to-class="translate-x-full opacity-0"
         >
           <div
-           v-for="item in itemSlot"
-           :key="item.key"
-           v-show="isActiveTab(item)"
-           role="tabpanel"
-           :aria-label="`${item.key} tabpanel`"
-         >
-           <slot :name="`${item.key}`">
-             <p class="text-secondary-400">No Content</p>
-           </slot>
-         </div>
+            v-for="item in itemSlot"
+            :key="item.key"
+            v-show="isActiveTab(item)"
+            role="tabpanel"
+            :aria-label="`${item.key} tabpanel`"
+          >
+            <slot :name="`${item.key}`">
+              <p class="text-secondary-400">No Content</p>
+            </slot>
+          </div>
         </TransitionGroup>
       </slot>
     </div>

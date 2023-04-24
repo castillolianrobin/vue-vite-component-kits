@@ -44,6 +44,13 @@ export default [
     meta: { layout: 'Dashboard' },
   },
   {
+    path: '/steps',
+    name: 'Stepper',
+    label: 'Stepper',
+    component: () => import('../views/StepperView.vue'),
+    meta: { layout: 'Dashboard' },
+  },
+  {
     path: '/modal',
     name: 'Modals',
     label: 'Modals',
@@ -99,14 +106,11 @@ export default [
     component: () => import('../views/FormFileView.vue'),
     meta: { layout: 'Dashboard' },
   },
-  {
-    path: '/sanbox',
-    name: 'Sandbox',
-    label: 'Component Dump',
-    // route level code-splitting
-    // this generates a separate chunk (About.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import('../views/SandboxView.vue'),
-    meta: { layout: 'Dashboard' },
-  }
+  // {
+  //   path: '/sanbox',
+  //   name: 'Sandbox',
+  //   label: 'Component Dump',
+  //   component: () => import('../views/SandboxView.vue'),
+  //   meta: { layout: 'Dashboard' },
+  // }
 ]

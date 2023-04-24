@@ -16,6 +16,7 @@ export { default as AppFormTextArea } from './AppFormTextArea.vue';
 export { default as AppLoading } from './AppLoading.vue';
 export { default as AppModal } from './AppModal.vue';
 export { default as AppPagination } from './AppPagination.vue';
+export { default as AppSteps } from './AppSteps.vue';
 export { default as AppTable, type HeadersProp } from './AppTable.vue';
 export { default as AppTabs } from './AppTabs.vue';
 export { default as AppTooltip } from './AppTooltip.vue';

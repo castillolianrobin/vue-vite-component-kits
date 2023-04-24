@@ -55,7 +55,7 @@ const {
     :error="props.error || errorMessage"
     :error-class="props.errorClass"
     :disabled="disabled"
-    :color="props.color"
+    v-bind="{ color }" 
   >
     <slot name="prepend"></slot>
     <input
