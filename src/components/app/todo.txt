@@ -6,8 +6,8 @@
 ~ AppFormRadio [DONE] [SEMI TESTED] [PAGED]
 - AppFormRadioGroup [DONE] [TESTED] [PAGED]
 - AppFormSelect [DONE] [TESTED] [PAGED]
-- AppFormMultiSelect [PARTIALLY DONE] [TESTED] [PAGED]
 - AppFormTextArea [DONE] [TESTED] [PAGED]
+- AppFormMultiSelect [PARTIALLY DONE] [TESTED] [PAGED] --- EMPTY STATE
 - AppFormFile [DONE] [TESTED] [PAGED]
 3 AppFormDatePicker (POSTPONED)
 - AppModal [DONE] [PAGED]
@@ -18,9 +18,9 @@
 
 ~ AppTabs [PARTIAL] [TESTED] [PAGED]
 - PageLoader
-- AppTooltip [DONE] [TESTED] [PAGEd]
-1 AppSteps
-2 AppChip
+- AppTooltip [DONE] [TESTED] [PAGED]
+- AppSteps DONE] [TESTED] [PAGED]
+1 AppChip
 
 4 Login (Cypress Test)
 5 Use Creation (Steps) (Cypress Test)

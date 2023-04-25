@@ -96,8 +96,8 @@ function isActive(item: SelectItem) {
   const itemValue = isItemString(item) ? item : item.value;
   
   return props.multiselect && Array.isArray(props.modelValue)
-    ? props.modelValue.includes(itemValue)
-    : itemValue === props.modelValue;
+    ? props.modelValue.some(( item)=> JSON.stringify(item) === JSON.stringify(itemValue))
+    : JSON.stringify(itemValue) === JSON.stringify(props.modelValue);
 }
 // Select item click/keypress handler 
 function onItemSelect(item: SelectItem) {
@@ -107,6 +107,7 @@ function onItemSelect(item: SelectItem) {
     const modelValue = Array.isArray(props.modelValue) ? [...props.modelValue] : [];
     const existIndex = modelValue
       .findIndex((item)=> JSON.stringify(item) === JSON.stringify(value))
+    
     
     if (existIndex >= 0) {
       modelValue.splice(existIndex, 1);

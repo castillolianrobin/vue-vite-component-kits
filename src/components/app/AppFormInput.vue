@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRef, type PropType, watch, type InputHTMLAttributes } from 'vue';
+import { toRef, type PropType, type InputHTMLAttributes } from 'vue';
 // Composables
 import { 
   themedColorProps, 

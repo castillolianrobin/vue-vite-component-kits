@@ -106,6 +106,13 @@ export default [
     component: () => import('../views/FormFileView.vue'),
     meta: { layout: 'Dashboard' },
   },
+  {
+    path: '/form/date-picker',
+    name: 'FormDatePicker',
+    label: 'Form Date Picker',
+    component: () => import('../views/CalendarView.vue'),
+    meta: { layout: 'Dashboard' },
+  },
   // {
   //   path: '/sanbox',
   //   name: 'Sandbox',
