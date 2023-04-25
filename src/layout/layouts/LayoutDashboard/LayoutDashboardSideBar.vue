@@ -29,7 +29,7 @@ interface Navigation {
       z-20
     "
   >
-    <div class="p-1 flex-shrink-0 md:sr-only z-20 bg-success-800">
+    <div class="p-1 flex-shrink-0 md:sr-only z-20 shadow-md">
       <AppButton 
         variant="outline"
         size="sm"

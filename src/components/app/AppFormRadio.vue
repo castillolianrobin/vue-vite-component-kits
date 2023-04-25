@@ -92,15 +92,17 @@ const radioAttrs = computed(()=>({
           @keypress.space.enter="onChangeHandler"    
         >
           <div
-            v-if="isActive" 
-            :class="`
-              relative
-              rounded-full
-              flex items-center justify-center 
-              h-full w-full 
-              text-white
-              bg-${color}
-            `"
+            :class="[
+              `
+                relative
+                rounded-full
+                flex items-center justify-center 
+                h-full w-full 
+                text-white
+                transition-colors
+              `,
+              { [`bg-${color}`]: isActive}
+            ]"
           >
           </div>
         </div>

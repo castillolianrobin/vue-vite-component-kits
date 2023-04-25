@@ -97,9 +97,12 @@ function onChangeHandler() {
               flex-shrink-0
               border border-${color}
               group-hover:outline focus:outline outline-2 outline-${color}/50
-              transition-[outline] ease-in-out duration-75
+              transition ease-in-out duration-75
             `,
-            { 'border-secondary-400': props.disabled }
+            { 
+              [`bg-${color}`]: isActive,
+              'bg-secondary-400': props.disabled,
+              'border-secondary-400': props.disabled }
           ]"
           @keypress.space="onChangeHandler"
         >
@@ -112,14 +115,15 @@ function onChangeHandler() {
               flex items-center justify-center
             "
             :class="[
-              `bg-${color}`,
-              { 'bg-secondary-400': props.disabled },
+              
             ]"
           >
             <!-- Check Icon (Lazy) -->
-            <span class="absolute font-bold">
-              &#x2713;
-            </span>
+            <div class="w-full h-ful font-bold fill-white">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/>
+              </svg>
+            </div>
           </div>
         </div>
       </slot>

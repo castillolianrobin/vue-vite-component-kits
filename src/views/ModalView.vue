@@ -62,20 +62,20 @@ const persistModal = ref(true);
       
       <!-- Persisting Modal -->
       <ComponentCard title="Persisting Modal">
-        <AppModal :persist="persistModal" close-icon >
-          <h1 
-            class="my-3 text-lg text-center drop-shadow-lg font-semibold text-primary-500"
-          >
-            Persisting Modal
-          </h1>
-          <div class="flex flex-col items-center">
-            <p class="my-3">This modal will not close unless toggled</p>
-            <AppFormCheckbox
-              v-model="persistModal"
-              label="Activate Persist"
-              class="mb-3"
-            ></AppFormCheckbox>
-          </div>
+        <AppModal :persist="persistModal" close-icon>
+          <template #default="{ toggleModal }">
+            <h1 
+              class="my-3 text-lg text-center drop-shadow-lg font-semibold text-primary-500"
+            >
+              Persisting Modal
+            </h1>
+            <div class="flex flex-col items-center">
+              <p class="my-3">This modal will not close unless the force close button is clicked</p>
+              <AppButton color="secondary-500" @click="toggleModal(false)">
+                Force Close Modal
+              </AppButton>
+            </div>
+          </template>
           <!-- Trigger -->
           <template #trigger="{ toggleModal }">
             <div class="flex justify-center">

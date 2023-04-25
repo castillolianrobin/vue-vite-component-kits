@@ -62,7 +62,7 @@ const tabItems2 = [
         <div class="p-1 md:p-5 h-full ">
           <AppSteps 
             :steps="['Add', 'Push', 'Commit']" 
-            container-class="p-5 border rounded"
+            container-class="p-5 border rounded dark:border-secondary-500"
           >
             <template #step-1>
               <div class="text-center ">

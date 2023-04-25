@@ -25,7 +25,10 @@ const props = defineProps({
 const emits = defineEmits(['update:active']);
 
 // internal modal state
+
 const isActive = ref(props.active);
+const isClicked = ref(false);
+
 watch(toRef(props, 'active'), value=> {
   isActive.value = value;
 });
@@ -58,13 +61,17 @@ function toggleModal(state: boolean | null = null) {
           flex items-center justify-center 
           w-screen h-screen 
           bg-black/50`,
-          { '[&_.modal-dialog]:active:animate-modal': persist }
         ]"
         @click.self="!persist && toggleModal(false)"
+        @mousedown.self="isClicked = true"
+        @mouseup.self="isClicked = false"
       >
         <div
           role="dialog" 
-          class="modal-dialog"
+          :class="[
+            'modal-dialog',
+            { 'animate-modal':props.persist && isClicked },
+          ]"
         >
           <slot 
             name="template" 
@@ -94,6 +101,8 @@ function toggleModal(state: boolean | null = null) {
                     w-[1.5rem]
                   "
                   @click="!persist && toggleModal(false)"
+                  @mousedown="isClicked = true"
+                  @mouseup="isClicked = false"
                 >
                   &#x2715;
                 </AppButton>

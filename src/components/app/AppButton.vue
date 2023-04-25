@@ -67,8 +67,7 @@ const textClass = computed(()=>{
       flex items-center justify-center
       rounded border-2
       transition
-      disabled:brightness-75 
-      disabled:opacity-80
+      disabled:opacity-75
     "
     :aria-busy="loading"
     v-bind="{ ...props }"

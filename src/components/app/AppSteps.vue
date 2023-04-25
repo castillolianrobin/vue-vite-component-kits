@@ -186,7 +186,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
     </div>
 
     <!-- Actions -->
-    <div class="pt-2 flex sm:justify-end gap-4 border-t">
+    <div class="pt-2 flex sm:justify-end gap-4 border-t dark:border-secondary-400">
 
       <AppButton
         :disabled="props.disabled || currentStep === 1"
