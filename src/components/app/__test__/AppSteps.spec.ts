@@ -48,15 +48,38 @@ describe(name, ()=> {
   it('next button functions properly',  async ()=> { 
     const defaultNextButon = ()=> defaultW.find('[aria-label="next step button"]');
     const labeledNextButon = ()=> labeledW.find('[aria-label="next step button"]');
-    const defaultWSlot2 = defaultW.find('#step-2-slot');  
-    const labeledWSlot2 = labeledW.find('#step-2-slot'); 
-    const defaultcurrent = ()=> defaultW.find('[aria-current="step"]');
-    const labeledcurrent = ()=> labeledW.find('[aria-current="step"]');
+    const defaultWSlot2 = ()=>defaultW.find('#step-2-slot');  
+    const labeledWSlot2 = ()=>labeledW.find('#step-2-slot'); 
+    // const defaultcurrent = ()=> defaultW.find('[aria-current="step"]');
+    // const labeledcurrent = ()=> labeledW.find('[aria-current="step"]');
     await defaultNextButon().trigger('click');
+
     expect(defaultNextButon().attributes()).toHaveProperty('disabled')
-    expect(defaultWSlot2.exists()).toBeTruthy()
+    expect(defaultWSlot2().exists()).toBeTruthy()
+    expect(defaultWSlot2().isVisible()).toBeTruthy()
+    
+    await labeledNextButon().trigger('click');
+    
     expect(labeledNextButon().attributes()).toHaveProperty('disabled')
-    expect(labeledWSlot2.exists()).toBeTruthy()
+    expect(labeledWSlot2().exists()).toBeTruthy()
+    expect(labeledWSlot2().isVisible()).toBeTruthy()
   })
-  it('previous button functions properly',  ()=> { expect('asd').toBeFalsy() })
+
+  it('previous button functions properly', async ()=> { 
+    const defaultBackButon = ()=> defaultW.find('[aria-label="previous step button"]');
+    const labeledBackButon = ()=> labeledW.find('[aria-label="previous step button"]');
+    const defaultWSlot2 = ()=>defaultW.find('#step-1-slot');  
+    const labeledWSlot2 = ()=>labeledW.find('#step-1-slot'); 
+    await defaultBackButon().trigger('click');
+    
+    expect(defaultBackButon().attributes()).toHaveProperty('disabled')
+    expect(defaultWSlot2().exists()).toBeTruthy()
+    expect(defaultWSlot2().isVisible()).toBeTruthy()
+    
+    await labeledBackButon().trigger('click');
+    
+    expect(labeledBackButon().attributes()).toHaveProperty('disabled')
+    expect(labeledWSlot2().exists()).toBeTruthy() 
+    expect(labeledWSlot2().isVisible()).toBeTruthy() 
+  })
 })

@@ -14,6 +14,8 @@ const props = defineProps({
     required: true,
   },
   disabled: Boolean as PropType<boolean>,
+  eager: Boolean as PropType<boolean>,
+  containerClass: String,
   ...themedColorProps,
 })
 
@@ -103,12 +105,15 @@ watch(toRef(props, 'modelValue'), (val)=> {
                 hidden sm:flex items-center justify-center
                 transition-colors
               `,
+              `outline-${color} focus:outline-4`,
               {
                 [`bg-${color} text-white`]: step <= currentStep,
                 'bg-secondary-100 text-secondary-300': step > currentStep,
               },
             ]"
+            tabindex="0"
             @click="gotoStep(step)"
+            @keypress="gotoStep(step)"
           >
             {{ step }}   
           </div>
@@ -157,25 +162,26 @@ watch(toRef(props, 'modelValue'), (val)=> {
       </li>
     </ol>
     <!-- Content -->
-    <div class="my-3 relative overflow-hidden">
-      <TransitionGroup
-        enter-active-class="duration-200 ease-out"
-        enter-from-class="-translate-x-full opacity-0"
-        enter-to-class="-translate-x-2/3 opacity-100"
-        leave-active-class="absolute top-0 left-0 duration-150 ease-in"
-        leave-from-class="translate-x-2/3 md:translate-x-0 opacity-50"
-        leave-to-class="translate-x-full opacity-0"
-      >
-        <div
-          v-for="step in stepsComputed.length"
-          :key="`slot-step-${step}`"
-          v-show="currentStep === step"
+    <div 
+      class="my-3 relative overflow-hidden"
+      :class="containerClass"
+    >
+        <TransitionGroup
+          enter-active-class="duration-200 ease-out"
+          enter-from-class="-translate-x-full opacity-0"
+          enter-to-class="-translate-x-0 opacity-100"
         >
-          <slot
-            :name="`step-${step}`"
-          ></slot>
-        </div>
-      </TransitionGroup>
+          <div
+            v-for="step in stepsComputed.length"
+            :key="`slot-step-${step}`"
+            v-show="currentStep === step"
+          >
+            <slot
+              v-if="eager || currentStep === step"
+              :name="`step-${step}`"
+            ></slot>
+          </div>
+        </TransitionGroup>
     </div>
 
     <!-- Actions -->

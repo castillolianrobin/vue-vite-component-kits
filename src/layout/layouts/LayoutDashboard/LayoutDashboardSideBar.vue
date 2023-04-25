@@ -59,7 +59,7 @@ interface Navigation {
             v-for="nav in navigations"
             :key="nav.label"
           >
-            <router-link 
+            <router-link
               :to="{ name: nav.routeName }"
               class="
                 w-full 
