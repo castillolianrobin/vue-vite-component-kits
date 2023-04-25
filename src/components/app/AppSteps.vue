@@ -85,6 +85,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
           flex flex-col
           text-xs md:text-sm
         "
+        :class="{ 'hidden md:flex': step === 1 }"
       >
         <!-- Step Number -->
         <div 

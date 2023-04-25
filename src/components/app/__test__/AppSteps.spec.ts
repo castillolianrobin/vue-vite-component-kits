@@ -50,8 +50,6 @@ describe(name, ()=> {
     const labeledNextButon = ()=> labeledW.find('[aria-label="next step button"]');
     const defaultWSlot2 = ()=>defaultW.find('#step-2-slot');  
     const labeledWSlot2 = ()=>labeledW.find('#step-2-slot'); 
-    // const defaultcurrent = ()=> defaultW.find('[aria-current="step"]');
-    // const labeledcurrent = ()=> labeledW.find('[aria-current="step"]');
     await defaultNextButon().trigger('click');
 
     expect(defaultNextButon().attributes()).toHaveProperty('disabled')
