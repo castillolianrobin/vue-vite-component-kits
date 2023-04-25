@@ -109,7 +109,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
               `outline-${color} focus:outline-4`,
               {
                 [`bg-${color} text-white`]: step <= currentStep,
-                'bg-secondary-100 text-secondary-300': step > currentStep,
+                'bg-secondary-100 dark:bg-secondary-600 text-secondary-300 dark:text-secondary-300': step > currentStep,
               },
             ]"
             tabindex="0"
@@ -126,7 +126,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
               {
                 'sm:sr-only': step === 1,
                 [`bg-${color}`]: step <= currentStep, 
-                'bg-secondary-300': step > currentStep, 
+                'bg-secondary-300 dark:bg-secondary-600': step > currentStep, 
               }
             ]"
           ></div>
@@ -138,8 +138,8 @@ watch(toRef(props, 'modelValue'), (val)=> {
               {
                 'sm:sr-only': step === stepsComputed.length,
                 [`bg-${color}`]: step < currentStep,
-                'bg-secondary-300': step > currentStep, 
-                [`bg-${color} sm:bg-secondary-300`]: step === currentStep,  
+                'bg-secondary-300 dark:bg-secondary-600': step > currentStep, 
+                [`bg-${color} sm:bg-secondary-300 sm:dark:bg-secondary-600`]: step === currentStep,  
               }
             ]"
           ></div>
