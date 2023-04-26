@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, toRef, type PropType } from 'vue';
 import { AppButton } from '.';
+import type { VariantProp } from './AppButton.vue';
 import { createThemedColor, themedColorProps } from '@/composables';
 import { vOnClickOutside } from '@vueuse/components';
 
@@ -23,6 +24,8 @@ const props = defineProps({
     default: false,
     required: false,
   },
+  triggerVariant: { type: String as PropType<VariantProp>, default: 'solid', required: false },
+  triggerText: String,
 });
 
 const emits = defineEmits(['itemClick'])
@@ -63,10 +66,10 @@ const triggerAttrs = computed(()=>({
 /** Menu Classes */
 const positionClass = computed(()=>{
   switch (props.drop) {
-    case 'up': return 'bottom-full left-0'
+    case 'up': return 'bottom-full right-0'
     case 'left': return 'top-0 right-full'
     case 'right': return 'top-0 left-full'
-    case 'down':default: return 'top-full left-0';
+    case 'down':default: return 'top-full left-0 right-0';
   }
 });
 
@@ -83,9 +86,15 @@ const positionClass = computed(()=>{
       v-bind="{ props:triggerAttrs, toggleMenu }"
     >
       <AppButton
+        :variant="props.triggerVariant"
         v-bind="{ ...triggerAttrs }"
       >
-        {{  isActive ? 'Hide' : 'Show'  }} Dropdown
+        <span v-if="triggerText">
+          {{  triggerText  }}
+        </span>
+        <span v-else>
+          {{  isActive ? 'Hide' : 'Show'  }} Dropdown
+        </span>
       </AppButton>
     </slot>
 

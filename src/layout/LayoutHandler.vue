@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router';
 
 /** $route Composable */
 const route = useRoute();
-
 // layout meta tag listed in the route definition
 const metaLayout = computed(()=> route.meta?.layout as string)
 // Name of the layout to be displayed

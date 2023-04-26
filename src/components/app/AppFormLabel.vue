@@ -33,6 +33,7 @@ const textSizeClass = computed(()=>{
     :class="[
       textSizeClass,
       `select-none`,
+      'transition-colors',
       { 'text-secondary-400': props.disabled, }
     ]" 
     v-bind="{ ...$attrs }"

@@ -57,7 +57,10 @@ const {
     :disabled="disabled"
     v-bind="{ color }" 
   >
+    <!-- Prepend -->
     <slot name="prepend"></slot>
+    
+    <!-- Input -->
     <input
       class="
         flex-grow 
@@ -72,6 +75,8 @@ const {
       @focus="validateOnChange = true"
       v-bind="{ ...props, ...$attrs }"
     />
+    
+    <!-- Append -->
     <slot name="append"></slot>
   </AppFormInputContainer>
 </template>

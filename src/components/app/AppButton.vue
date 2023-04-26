@@ -1,15 +1,20 @@
 <script setup lang="ts">
 import { themedColorProps, useThemedColor } from '@/composables';
 import { computed, type ButtonHTMLAttributes, type PropType, toRef, unref } from 'vue';
+import type { RouteLocationRaw } from 'vue-router';
 import { AppLoading } from './';
+
+export type SizeProp = 'lg' | 'md' | 'sm';
+export type VariantProp = 'solid' | 'outline' | 'text';
 
 const props = defineProps({
   type: { type: String as PropType<ButtonHTMLAttributes['type']>, default: 'button', required: false, },
   disabled: { type: Boolean as PropType<ButtonHTMLAttributes['disabled']>, default: false, required: false },
   loading: { type: Boolean as PropType<boolean>, default: false, required: false },
-  size: { type: String as PropType<'lg' | 'md' | 'sm'>, default: 'md', required: false,  },
-  variant: { type: String as PropType<'solid' | 'outline' | 'text'>, default: 'solid', required: false },
+  size: { type: String as PropType<SizeProp>, default: 'md', required: false,  },
+  variant: { type: String as PropType<VariantProp>, default: 'solid', required: false },
   ...themedColorProps,
+  to: [String, Object] as PropType<RouteLocationRaw>,
 });
 
 /** Theme color composable */
@@ -50,7 +55,7 @@ const textClass = computed(()=>{
 </script>
 
 <template>
-  <button 
+  <component :is="props.to && !props.disabled ? 'RouterLink' : 'button'"
     :class="[ 
       ...[ sizeClass, bgClass, textClass, borderClass ],
       `focus:outline-${color}/25 outline-2`,
@@ -80,5 +85,5 @@ const textClass = computed(()=>{
     <span :class="{ 'opacity-0': props.loading }">
       <slot></slot>
     </span>
-  </button>
+  </component>
 </template>

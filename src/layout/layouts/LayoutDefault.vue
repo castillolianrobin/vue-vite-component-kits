@@ -3,7 +3,9 @@
 </script>
 
 <template>
-  <div class="w-screen h-screen overflow-auto">
-    <slot></slot>
+  <div class="h-full w-full">
+    <slot>
+      <RouterView></RouterView>
+    </slot>
   </div>
 </template>
