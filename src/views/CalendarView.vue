@@ -1,22 +1,12 @@
 <script setup lang="ts">
 import ComponentCard from '@/components/ComponentCard.vue';
 import PageHeader from '@/components/PageHeader.vue';
-import { AppButton, AppCard, AppFormDatePicker, AppFormInput, AppTabs } from '@/components/app';
+import { AppCard, AppFormDatePicker } from '@/components/app';
 import { ref } from 'vue';
 
-
-const tabItems1 = [
-  { text: 'Tab 1' },
-  { text: 'Tab 2' },
-  { text: 'Tab 3' },
-];
-const tabItems2 = [
-  { text: 'Tab 1', key: 'tab-1' },
-  { text: 'Tab 2', key: 'tab-2' },
-  { text: 'Tab 3', key: 'tab-3' },
-];
-
-const date1 = ref<[Date, Date]>([]);
+const date1 = ref<[any, any]>();
+const date2 = ref<[any, any]>();
+const date3 = ref<[any, any]>();
 
 </script>
 
@@ -31,25 +21,30 @@ const date1 = ref<[Date, Date]>([]);
             This date picker uses a third party component for the functionality and UI of the calendar.
           </p>
           <AppCard class="h-full">
-            <AppFormDatePicker
-              v-model="date1"
-              label="Date Picker"
-              placeholder="Select a Date"
-            ></AppFormDatePicker>
-
-            <AppFormDatePicker
-              v-model="date1"
-              color="secondary-500"
-              label="Date Picker"
-              placeholder="Select a Date"
-            ></AppFormDatePicker>
-
-            <AppFormDatePicker
-              v-model="date1"
-              color="error-500"
-              label="Date Picker"
-              placeholder="Select a Date"
-            ></AppFormDatePicker>
+            <div class="flex flex-col gap-5">
+              <AppFormDatePicker
+                v-model="date1"
+                label="Date Picker"
+                placeholder="Select a Date"
+              ></AppFormDatePicker>
+  
+              <AppFormDatePicker
+                v-model="date2"
+                color="secondary-500"
+                label="Date Picker with Single Calendar"
+                placeholder="Select a Date"
+                as-single
+              ></AppFormDatePicker>
+  
+              <AppFormDatePicker
+                v-model="date3"
+                color="error-500"
+                label="Range Date Picker with Single Calendar"
+                placeholder="Select a Date"
+                as-single
+                use-range
+              ></AppFormDatePicker>
+            </div>
           </AppCard>
         </div>
       </ComponentCard>

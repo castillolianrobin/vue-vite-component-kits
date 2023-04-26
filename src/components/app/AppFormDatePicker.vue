@@ -86,15 +86,11 @@ const {
         outline-none 
         bg-transparent 
         disabled:text-secondary-400
-        [&>^_.bg-vtd-primary-110]:text-error-500
-        [&>*_.bg-vtd-primary-500]:bg-${color}
-        [&>*_.bg-vtd-primary-100]:bg-${color}
-        [&>*_.bg-vtd-primary-100]:bg-opacity-10
-        [&>*_.vtd-shortcuts]:text-${color}
+        peer-first:[&>*_button]:sr-only
       `"
-      input-classes="outline-none border-none"
       :aria-label="props.label"
       :model-value="props.modelValue"
+      input-classes="outline-none border-none"
       @update:model-value="updateInputValue"
     />
       <!-- @input="updateInputValue"
