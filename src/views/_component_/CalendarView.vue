@@ -4,9 +4,9 @@ import PageHeader from '@/components/PageHeader.vue';
 import { AppCard, AppFormDatePicker } from '@/components/app';
 import { ref } from 'vue';
 
-const date1 = ref<[any, any]>();
-const date2 = ref<[any, any]>();
-const date3 = ref<[any, any]>();
+const date1 = ref<[any, any] | string>('');
+const date2 = ref<[any, any] | string>('');
+const date3 = ref<[any, any] | string>('');
 
 </script>
 
