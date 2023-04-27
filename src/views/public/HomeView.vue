@@ -5,8 +5,7 @@ import { useDark } from '@vueuse/core';
 import type { RouteRecordName } from 'vue-router';
 
 
-const isDarkMode = useDark();
-
+const isDarkMode = useDark({ initialValue: 'dark' });
 const navigations: Navigation[] = componentRoutes
   .map(({ name, label })=>({
     routeName: name, 
