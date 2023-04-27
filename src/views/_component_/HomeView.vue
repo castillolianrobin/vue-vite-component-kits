@@ -3,17 +3,26 @@
 
 <template>
   <div class="p-3 md:p-10 h-full flex flex-col items-center justify-center">
-    <h1 class="text-4xl text-center font-bold text-primary-600 uppercase">
+    <h1 class="text-2xl md:text-4xl text-center font-bold text-primary-600 uppercase">
       Component Sets for Dashboard
     </h1>
     
-    <p class="mt-5 text-lg text-center text-secondary-400 italic">
+    <p class="mt-5 text-sm md:text-lg text-center text-secondary-400 italic">
       "Themeable dashboard components made with Vue + Typescript + Tailwind CSS."
     </p>
     <p class="mt-7 text-center text-xs md:text-base">
-      A set of vue components utilizing Tailwind css with the intention to improve the acceleration of development by providing reusable components similar to Vuetify but with the flexibility of Tailwind.
-
-      The components are customizable and themeable, specially in colors. All the components uses custom colors declared in the tailwind config (primary, secondary, info, alert, error, success). The components itself are also flexible via props which would lessen the need to customize the component codebase.
+      A set of vue components utilizing Tailwind css with the intention to improve the acceleration of development by providing reusable components similar to Vuetify but with the styling flexibility of Tailwind.
+      <br />
+      <br />
+      The components are customizable and themeable, specially in colors. All the components uses custom colors declared in the tailwind config 
+      (
+        <span class="text-primary-500">primary</span>, 
+        <span class="text-secondary-500">secondary</span>, 
+        <span class="text-alert-500">alert</span>, 
+        <span class="text-error-500">alert</span>, 
+        <span class="text-success-500">alert</span>, 
+      ). 
+      The components itself are also flexible via props which would lessen the need to customize the component codebase.
     </p>
     <div 
       class="
