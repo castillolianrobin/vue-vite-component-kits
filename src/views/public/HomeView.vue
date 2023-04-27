@@ -179,7 +179,6 @@ interface Navigation {
           class="flex-shrink sm:w-1/3"
           :to="{ name: 'Login'}"
           target="_blank"
-          disabled
         >
           Sample Dashboard
         </AppButton>

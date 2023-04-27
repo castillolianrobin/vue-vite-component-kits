@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { AppButton } from '@/components/app';
 </script>
 
 <template>
@@ -28,7 +29,7 @@
       class="
         mx-10 mt-10 pt-5 
         border-t-2 w-full 
-        flex flex-col md:flex-row items-center justify-center gap-4 text-primary-800
+        flex flex-col md:flex-row items-center justify-center gap-4 text-primary-800 dark:text-primary-300
       "
     >
       <!-- Github Link -->
@@ -47,6 +48,21 @@
       </a>
 
       <!-- Netlify Sample -->
+      <router-link
+        :to="{ name: 'Login'}"
+        class="flex items-center hover:text-primary-500 hover:underline"
+        target="_blank"
+      >
+        <img 
+          src="https://static-00.iconduck.com/assets.00/netlify-icon-507x512-sppiy9gt.png" 
+          alt="GitHub Link"
+          class="h-5 aspect-square"
+        />
+
+        <p class="ml-2">SAMPLE DASHBOARD</p>
+      </router-link>
+
+      <!-- Netlify Sample -->
       <a 
         href="https://zen-wozniak-de473d.netlify.app/login"
         class="flex items-center hover:text-primary-500 hover:underline"
@@ -58,7 +74,7 @@
           class="h-5 aspect-square"
         />
 
-        <p class="ml-2">SAMPLE DASHBOARD</p>
+        <p class="ml-2">SAMPLE DASHBOARD <span class="text-secondary-400">(LEGACY)</span></p>
       </a>
     </div>
   </div>
