@@ -31,7 +31,10 @@ const isDarkMode = useDark({ ...props?.options });
           w-9 h-5 
           border border-secondary-500 
           rounded-full
-          outline-secondary-300
+          focus:outline outline-1 outline-secondary-600 dark:outline-secondary-300
+          bg-secondary-200
+          dark:bg-secondary-600
+          transition
         "
         @keypress.space="onChangeHandler"
       >
@@ -46,11 +49,13 @@ const isDarkMode = useDark({ ...props?.options });
               flex items-center justify-center
               text-[0.7rem]
               select-none
+              dark:bg-secondary-800 
+              bg-white
+              shadow 
+
             "
             :class="[
               {
-                'bg-secondary-600': isActive, 
-                'bg-secondary-100': !isActive, 
                 'translate-x-full': isActive 
               },
             ]"

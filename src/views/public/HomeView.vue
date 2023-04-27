@@ -18,15 +18,16 @@ interface Navigation {
 </script>
 
 <template>
-  <div class="flex flex-col dark:bg-secondary-800 h-full">
+  <div class="flex flex-col dark:bg-secondary-800 h-full transition-colors">
     <header 
       class="
         py-1
         px-2 
         shadow-md
+        flex items-center
+        transition-colors
         dark:text-secondary-100
         dark:bg-secondary-900
-        flex items-center
       "
     >
       
