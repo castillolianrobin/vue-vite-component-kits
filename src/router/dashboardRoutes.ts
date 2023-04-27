@@ -1,10 +1,9 @@
-
 export default [
-  // {
-  //   path: '/',
-  //   name: 'Home',
-  //   label: 'Home',
-  //   component: HomeView,
-  //   meta: { layout: 'Dashboard' },
-  // },
+  {
+    path: '/',
+    name: 'DashboardHome',
+    label: 'Dashboard',
+    component: () => import('@/views/dashboard/DashboardView.vue'),
+    meta: { layout: 'Dashboard' },
+  },
 ]

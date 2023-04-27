@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { AppButton } from '@/components/app';
-import componentRoutes from '@/router/componentRoutes';
+import dashboardRoutes from '@/router/dashboardRoutes';
 import { ref } from 'vue';
 import type { RouteRecordName } from 'vue-router';
 
-const navigations: Navigation[] = componentRoutes
+const navigations: Navigation[] = dashboardRoutes
   .map(({ name, label })=>({
     routeName: name, 
     label,

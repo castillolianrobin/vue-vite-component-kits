@@ -20,18 +20,18 @@ const router = createRouter({
     },
 
     // Dashboard Routes
-    // {
-    //   path: '/dashboard',
-    //   component: LayoutDefault,
-    //   children: [
-    //     ...dashboardRoutes.map((route)=>({
-    //       path: route.path.substring(1),
-    //       name: route.name,
-    //       component: route.component,
-    //       meta: { ...route.meta, layout: 'Dashboard' },
-    //     })),
-    //   ],
-    // },
+    {
+      path: '/dashboard',
+      component: LayoutDefault,
+      children: [
+        ...dashboardRoutes.map((route)=>({
+          path: route.path.substring(1),
+          name: route.name,
+          component: route.component,
+          meta: { ...route.meta, layout: 'Dashboard' },
+        })),
+      ],
+    },
 
     // Component Kit Routes
     {

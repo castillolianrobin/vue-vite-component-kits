@@ -63,7 +63,7 @@ interface Navigation {
             "
             >
             <li
-              v-for="nav in navigations"
+              v-for="nav in navigations.filter(item=>item.label !== 'Home')"
               :key="nav.label"
             >
               <router-link
