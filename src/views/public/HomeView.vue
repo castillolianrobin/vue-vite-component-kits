@@ -117,7 +117,7 @@ interface Navigation {
       <h3 
         class="
           mt-10 
-          text-center text-xl
+          text-center text-lg md:text-xl
           text-secondary-500 dark:text-secondary-300
         "
       >
@@ -125,7 +125,7 @@ interface Navigation {
       </h3>
       
       <!-- Technologies -->
-      <div class="mt-7 mx-auto w-[250px] max-w-full grid grid-cols-3 gap-10">
+      <div class="mt-7 mx-auto w-[200px] md:w-[250px] max-w-full grid grid-cols-3 gap-10">
         <img 
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png" 
           alt="Vue"
