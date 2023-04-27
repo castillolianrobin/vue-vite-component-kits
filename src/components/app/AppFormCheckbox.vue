@@ -63,7 +63,7 @@ function onChangeHandler() {
       v-bind="{ ...$attrs }"
     >
       <!-- Checkbox Button -->
-      <slot name="checkbox" v-bind="{ isActive, disabled, onChangeHandler }">
+      <slot name="checkbox" v-bind="{ isActive, disabled, onChangeHandler, color }">
         <!-- Toggle Style -->
         <div 
           v-if="props.toggleInput"
@@ -80,8 +80,11 @@ function onChangeHandler() {
         >
           <div class=" relative w-full h-full">
             <div 
-              class="absolute transition  h-full aspect-square bg-primary-500 rounded-full"
-              :class="{ 'translate-x-full': isActive }"
+              :class="[
+                'absolute transition  h-full aspect-square rounded-full',
+                `bg-${color}`,
+                { 'translate-x-full': isActive }
+              ]"
             ></div>
           </div>
         </div>

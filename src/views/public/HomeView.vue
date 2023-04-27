@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { AppButton, AppDropdown, AppFormCheckbox } from '@/components/app';
+import ToggleDarkMode from '@/components/ToggleDarkMode.vue';
 import componentRoutes from '@/router/componentRoutes';
-import { useDark } from '@vueuse/core';
 import type { RouteRecordName } from 'vue-router';
 
 
-const isDarkMode = useDark({ initialValue: 'dark' });
 const navigations: Navigation[] = componentRoutes
   .map(({ name, label })=>({
     routeName: name, 
@@ -46,7 +45,7 @@ interface Navigation {
         <span>Github</span>
       </a>
 
-      <div class="ml-auto mr-5 flex gap-3 items-center">
+      <div class="ml-auto md:mr-5 flex gap-3 items-center">
         <AppDropdown
           trigger-variant="text"
           trigger-text="Components"
@@ -86,12 +85,9 @@ interface Navigation {
           </ul>
         </AppDropdown>
 
-        <AppFormCheckbox
-          v-model="isDarkMode"
-          label="Dark"
-          class="ml-auto"
-          toggle-input
-        ></AppFormCheckbox>
+        <ToggleDarkMode
+          :options="{ initialValue: 'dark' }"
+        ></ToggleDarkMode>
       </div>
 
     

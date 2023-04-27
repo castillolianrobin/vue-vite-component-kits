@@ -14,6 +14,7 @@ const props = defineProps({
         rounded
         max-w-screen
         h-full 
+        transition-colors
       "
     >
       <h4 

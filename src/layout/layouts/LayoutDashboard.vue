@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import { useDark } from '@vueuse/core';
 import LayoutDashboardSideBar from './LayoutDashboard/LayoutDashboardSideBar.vue';
-import { AppFormCheckbox } from '@/components/app';
-
-const isDarkMode = useDark();
-
+import { ToggleDarkMode } from '@/components';
   
 </script>
 
@@ -48,12 +44,7 @@ const isDarkMode = useDark();
         Component Kits | Vite+Vue3+Typescript
       </h1>
 
-      <AppFormCheckbox
-        v-model="isDarkMode"
-        label="Dark"
-        class="ml-auto"
-        toggle-input
-      ></AppFormCheckbox>
+      <ToggleDarkMode></ToggleDarkMode>
     </header>
     <!-- Side Bar -->
     <LayoutDashboardSideBar
