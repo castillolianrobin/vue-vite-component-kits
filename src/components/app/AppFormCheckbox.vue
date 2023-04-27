@@ -70,7 +70,7 @@ function onChangeHandler() {
           :tabindex="props.disabled ? undefined : 0"
           class="
             p-[1px] 
-            mx-2 
+            mr-2 
             w-9 h-5 
             border border-secondary-500 
             rounded-full

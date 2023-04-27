@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { themedColorProps, useThemedColor } from '@/composables';
-import { toRef, computed, type PropType, ref, nextTick } from 'vue';
+import { toRef, computed, type PropType, ref, nextTick, watch } from 'vue';
 import { AppButton, AppLoading, AppPagination } from '.';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 
@@ -279,18 +279,10 @@ const visibleColumns = computed(()=>{
   return _visible.sort();
 });
 
+
 // offset the current number  visible columns 
 // (works like pagination)
 const visibleCellOffset = ref(0);
-
-// class helper for visible columns
-function getVisibleCellClass(i: number) {
-  return { 
-    'visible-cell': visibleColumns.value.includes(i), 
-    'pl-7 md:pl-2': visibleColumns.value[0] === i, 
-    'pr-7 md:pr-2': [...visibleColumns.value].pop() === i, 
-  };
-}
 
 // handler for changing offset
 function incrementOffset(increment = 1) {
@@ -303,6 +295,41 @@ function incrementOffset(increment = 1) {
 
   visibleCellOffset.value += increment;
 }
+
+// Template Ref for table
+const TableRef = ref<HTMLTableElement | null>(null);
+
+// function that adds the class to make cells visible on mobile 
+watch(visibleColumns, ()=>{
+  nextTick(()=> {
+    const rows = TableRef.value?.getElementsByTagName('tr');
+    if (rows && rows?.length) {
+      for (let iRow = 0; iRow < rows.length; iRow++) {
+        const row = rows.item(iRow);
+        let cells = row?.getElementsByTagName('td');
+        
+        if (!cells?.length)
+          cells = row?.getElementsByTagName('th');
+
+        if (!cells?.length) continue;
+        for (let iCell = 0; iCell < cells?.length; iCell++) {
+          const cell = cells.item(iCell);
+          const visibleClass = 'visible-cell';
+          const firstVisible = [ 'pl-7' ];
+          const lastVisible = [ 'pr-7' ];
+          
+          if (visibleColumns.value.includes(iCell)) {
+            cell?.classList.add(visibleClass);
+            visibleColumns.value[0] === iCell && cell?.classList.add(...firstVisible);
+            [...visibleColumns.value].pop() === iCell && cell?.classList.add(...lastVisible);
+          } else {
+            cell?.classList.remove(visibleClass, ...firstVisible, ...lastVisible)
+          }
+        }
+      }  
+    }
+  })
+}, { immediate: true })
 </script>
 
 <template>
@@ -317,13 +344,15 @@ function incrementOffset(increment = 1) {
       "
       spinner-class="w-7 h-7"
     ></AppLoading>
-    <table 
+    <table
+      ref="TableRef" 
       :class="[
         `
           w-full
           relative
-          [&_.cell]:hidden
-          md:[&_.cell]:table-cell
+          border dark:border-secondary-700
+          [&_th]:hidden md:[&_th]:table-cell
+          [&_td]:hidden md:[&_td]:table-cell
           [&_.visible-cell]:table-cell
         `,
         { 'blur-sm': props.loading }
@@ -341,6 +370,7 @@ function incrementOffset(increment = 1) {
         <div class="md:sr-only">
           <div class="absolute top-0 -left-2 h-full flex items-center">
             <AppButton 
+              :disabled="!props.items.length"
               size="sm"
               variant="text"
               color="white"
@@ -352,6 +382,7 @@ function incrementOffset(increment = 1) {
   
           <div class="absolute top-0 -right-2 h-full flex items-center">
             <AppButton 
+              :disabled="!props.items.length"
               size="sm"
               variant="text"
               color="white"
@@ -370,14 +401,10 @@ function incrementOffset(increment = 1) {
             v-for="header, i in headersComputed"
             :key="header.key"
             :aria-label="`column ${i+1}`"
-            :class="[
-              `
-                cell
-                header-${header.key} 
-                py-1 px-2
-              `,
-              { ...getVisibleCellClass(i) },
-            ]"
+            :class="`
+              py-1 md:pl-2 md:pr-2
+              header-${header.key} 
+            `"
           >
             <div class="flex items-center">
               <p class="mr-2">{{ header.text }}</p>
@@ -399,9 +426,9 @@ function incrementOffset(increment = 1) {
       </thead>
 
       <!-- Empty Table Body -->
-      <tr v-if="!props.items">
-        <td 
-          class="font-bold text-center p-3" 
+      <tr v-if="!props.items.length">
+        <td
+          class="table-cell font-bold text-center py-10" 
           :colspan="headers.length"
         >
           No items to show
@@ -429,12 +456,10 @@ function incrementOffset(increment = 1) {
               <td
                 v-for="(property, propertyIndex) in headersComputed"
                 :key="`table-item-${itemIndex}-${propertyIndex}`"
-                :class="[
-                  'cell',
-                  `item-${itemIndex}-${property.key}`,
-                  'p-2',
-                  { ...getVisibleCellClass(propertyIndex) },
-                ]"
+                :class="`
+                  py-2 md:pl-2 md:pr-2
+                  item-${itemIndex}-${property.key}
+                `"
               >
                 <slot
                   :name="`item-${property.key}`"
@@ -449,6 +474,7 @@ function incrementOffset(increment = 1) {
       </tbody>
     </table>
     <AppPagination
+      v-if="props.items.length"
       :length="pageLengthComputed"
       :model-value="currentPageComputed"
       :disabled="props.loading || props.disabled"

@@ -12,11 +12,12 @@ const slots = useSlots();
       card 
       p-3
       flex flex-col 
-      bg-white dark:bg-secondary-900
+      bg-white dark:bg-secondary-800
       text-secondary-800 dark:text-secondary-200
-      border border-secondary-200 dark:border-secondary-700 
+      border border-secondary-200 dark:border-secondary-600 
       shadow-md
       rounded
+      transition-colors
     "
   >
     <!-- Card Title -->
