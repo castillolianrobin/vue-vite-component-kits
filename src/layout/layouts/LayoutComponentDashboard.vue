@@ -42,8 +42,9 @@ import { ToggleDarkMode } from '@/components';
       </a>
 
       <!-- Title -->
-      <h1 class="mx-3 my-2 flex-grow text-center font-semibold truncate hidden md:block ">
-        Component Kits | Vite+Vue3+Typescript
+      <h1 class="mx-3 my-2 flex-grow text-center font-semibold truncate ">
+        <span>Component Kits For Vue</span> 
+        <span class="text-secondary-400 hidden md:inline">/ Vite + Vue 3 + Typescript</span>
       </h1>
 
       <ToggleDarkMode></ToggleDarkMode>

@@ -22,6 +22,9 @@ const props = defineProps({
           p-2
           rounded-t
           font-semibold 
+          bg-gradient-to-r 
+          from-primary-200 dark:from-primary-700 
+          to-secondary-100 dark:to-secondary-700 
           bg-primary-200 dark:bg-primary-700
           text-primary-900 dark:text-primary-100
           truncate

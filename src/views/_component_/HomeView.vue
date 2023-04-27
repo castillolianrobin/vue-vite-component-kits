@@ -3,9 +3,13 @@
 
 <template>
   <div class="p-3 md:p-10 h-full flex flex-col items-center justify-center">
-    <h1 class="text-3xl text-center font-semibold">
+    <h1 class="text-4xl text-center font-bold text-primary-600 uppercase">
       Component Sets for Dashboard
     </h1>
+    
+    <p class="mt-5 text-lg text-center text-secondary-400 italic">
+      "Themeable dashboard components made with Vue + Typescript + Tailwind CSS."
+    </p>
     <p class="mt-7 text-center text-xs md:text-base">
       A set of vue components utilizing Tailwind css with the intention to improve the acceleration of development by providing reusable components similar to Vuetify but with the flexibility of Tailwind.
 
