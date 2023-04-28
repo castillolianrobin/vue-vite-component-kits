@@ -6,12 +6,12 @@ import {
   AppFormInput, 
   AppFormCheckbox
 } from '@/components/app'; 
-import { useDark } from '@vueuse/core';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+// Router 
 const router = useRouter();
-useDark().value = false;
+
 // Login Data
 const username = ref('');
 const password = ref('');
