@@ -94,7 +94,14 @@ interface Navigation {
     
     </header>
 
-    <main class="px-5 pb-5 flex flex-col flex-grow">
+    <main 
+      class="
+        px-5 pb-5 
+        flex-grow flex-shrink 
+        flex flex-col 
+        overflow-auto scrollbar
+      "
+    >
       <!-- Title -->
       <h1
         class="
