@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Vue  
-import { defineAsyncComponent, ref } from 'vue';
+import { defineAsyncComponent, ref, type FunctionalComponent, type HTMLAttributes, type VNodeProps } from 'vue';
 import type { RouteRecordName } from 'vue-router';
 // Components
 import { AppButton } from '@/components/app';
@@ -21,6 +21,7 @@ const active = ref(false);
 interface Navigation {
   routeName: RouteRecordName;
   label: string;
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps, {}>
 }
 </script>
 
@@ -72,7 +73,7 @@ interface Navigation {
                 flex items-center gap-2
                 pl-3 my-2 
                 outline-none            
-                focus-within:text-primary-200
+                focus-with    in:text-primary-200
                 hover:text-primary-300
                 border-l-4 border-primary-500/0
                 transition-colors
