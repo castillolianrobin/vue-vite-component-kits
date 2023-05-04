@@ -1,13 +1,19 @@
 <script setup lang="ts">
-import { AppButton } from '@/components/app';
-import dashboardRoutes from '@/router/dashboardRoutes';
-import { ref } from 'vue';
+// Vue  
+import { defineAsyncComponent, ref } from 'vue';
 import type { RouteRecordName } from 'vue-router';
+// Components
+import { AppButton } from '@/components/app';
+// icons
+import { HomeIcon } from '@heroicons/vue/24/solid'
+// Extra
+import dashboardRoutes from '@/router/dashboardRoutes';
 
 const navigations: Navigation[] = dashboardRoutes
-  .map(({ name, label })=>({
+  .map(({ name, label, icon })=>({
     routeName: name, 
     label,
+    icon: icon ? defineAsyncComponent(icon) : HomeIcon,
   }));
 
 const active = ref(false);
@@ -63,7 +69,7 @@ interface Navigation {
               :to="{ name: nav.routeName }"
               class="
                 w-full 
-                block 
+                flex items-center gap-2
                 pl-3 my-2 
                 outline-none            
                 focus-within:text-primary-200
@@ -77,7 +83,13 @@ interface Navigation {
               "
               @click="active = false"
             >
-              {{  nav.label  }}
+              <!-- Icon -->
+              <component 
+                :is="nav.icon" 
+                class="h-5"
+              ></component>
+              <!-- Text -->
+              <span>{{  nav.label  }}</span>
             </router-link>
           </li>
         </ul>

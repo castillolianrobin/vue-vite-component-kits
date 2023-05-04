@@ -3,6 +3,7 @@
 import { computed, ref } from "vue";
 // Elements
 import { AppTable, AppCard } from "@/components/app";
+import { DashboardBody } from "@/components/dashboard";
 // Icons
 import {
   ShoppingCartIcon,
@@ -17,6 +18,7 @@ import {
   useDoughnutChart,
 } from 'vue-chart-3';
 import { Chart, registerables } from 'chart.js';
+
 Chart.register(...registerables);
 
 /******************************
@@ -137,7 +139,7 @@ const { doughnutChartProps } = useDoughnutChart({
 </script>
 
 <template>
-  <div class="px-10 py-5">
+  <DashboardBody>
     <!-- Weekly Overview -->
     <div>
       <h3 class="my-2 text font-semibold">Weekly Overview</h3>
@@ -226,5 +228,5 @@ const { doughnutChartProps } = useDoughnutChart({
         </template>
       </AppTable>
     </div>
-  </div>
+  </DashboardBody>
 </template>

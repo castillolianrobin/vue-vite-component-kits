@@ -7,6 +7,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/20/solid';
 export interface HeadersProp {
   text: string; // Text to be displayed as header
   key: string; //The key to match with the item
+  subKey?: string; // use this if the key is nested from the main key
   sortable?: boolean; //Flag to make the header sortable
   desc?: boolean; //Flag to sort the data by descending order
   className?: string; // class of the header
@@ -79,6 +80,12 @@ const props = defineProps({
     default: 1,
     required: false,
   },
+  persistColumnOnMobile: {
+    type: Array as PropType<number[]>,
+    default: ()=>[],
+    required: false,
+  },
+  /** TO be Deprecated */
   persistColumnOnSmall: {
     type: Array as PropType<number[]>,
     default: ()=>[],
@@ -272,7 +279,7 @@ function internalPaginate(items: Record<string, any>[]) {
 
 // List of columns displayable in mobile dimensions
 const visibleColumns = computed(()=>{
-  const _visible = [...props.persistColumnOnSmall];
+  const _visible = [...(props.persistColumnOnMobile || props.persistColumnOnSmall)];
   for (let i = 0; i < +props.mobileColumnNumber; i++) {
     _visible.push(i+visibleCellOffset.value)
   }
@@ -330,6 +337,25 @@ watch(visibleColumns, ()=>{
     }
   })
 }, { immediate: true })
+
+
+/** HELPERS */
+
+function getNestedString(o: { [key: string]: any; }, s: string) {
+  s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
+  s = s.replace(/^\./, '');           // strip a leading dot
+  let a = s.split('.');
+  for (let i = 0, n = a.length; i < n; ++i) {
+    let k = `${a[i]}`;
+    if (typeof o === 'object' && k in o) {
+      o = o[k];
+    } else {
+      return '';
+    }
+  }
+  return o;
+}
+
 </script>
 
 <template>
@@ -465,7 +491,10 @@ watch(visibleColumns, ()=>{
                   :name="`item-${property.key}`"
                   v-bind="{ item }"
                 >
-                  {{ item[property.key] }}
+                  {{ property.subKey 
+                    ? getNestedString(item, `${property.key}.${property.subKey}`)  
+                    : item[property.key] 
+                  }}
                 </slot>
               </td>
             </slot>

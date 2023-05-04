@@ -27,7 +27,7 @@ import { ToggleDarkMode } from '@/components';
       "
     >
       <!-- Github Link -->
-      <a 
+      <a
         href="https://github.com/castillolianrobin/vue-vite-component-kits/"
         class="p-1 rounded-full bg-secondary-50 hover:underline"
         target="_blank"

@@ -12,7 +12,10 @@ import { useRouter } from 'vue-router';
 // Router 
 const router = useRouter();
 
-// Login Data
+
+/** LOGIN LOGIC  */
+
+// Data
 const username = ref('');
 const password = ref('');
 const isRemember = ref(false);
@@ -23,7 +26,6 @@ async function loginUser(errors?: string[]) {
   if (errors?.length) return;
   
   loading.value = true;
-
   try {
     await sleep(1000);
     router.push({ name: 'DashboardHome' })
@@ -32,6 +34,7 @@ async function loginUser(errors?: string[]) {
   }
   loading.value = false;
 }
+
 
 /** Helpers */
 

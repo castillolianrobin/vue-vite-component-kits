@@ -9,7 +9,7 @@
 - AppFormTextArea [DONE] [TESTED] [PAGED]
 - AppFormMultiSelect [PARTIALLY DONE] [TESTED] [PAGED] --- EMPTY STATE
 - AppFormFile [DONE] [TESTED] [PAGED]
-3 AppFormDatePicker (POSTPONED)
+~ AppFormDatePicker (POSTPONED)
 - AppModal [DONE] [PAGED]
 - AppPagination  [DONE] [TESTED] [PAGED]
 - AppTable [DONE] [TESTED] [PAGED]
@@ -22,8 +22,11 @@
 - AppSteps DONE] [TESTED] [PAGED]
 1 AppChip
 
-4 Login (Cypress Test)
-5 Use Creation (Steps) (Cypress Test)
+- Login (Cypress Test)
+1 User List (with roles) (Cypress Test)
+2. Project List (with assigned people)
+3. Task List (with asigned poeple and project)
+* Use Creation (Steps) (Cypress Test)
 
 
 

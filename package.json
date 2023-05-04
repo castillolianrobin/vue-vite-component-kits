@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
+    "prebuild": "dotenv -- mv .env .env.backup",
+    "postbuild": "dotenv -- mv .env.backup .env",
     "preview": "vite preview",
     "test:unit": "vitest",
     "test:unit:dev": "vitest --ui",
@@ -20,7 +22,9 @@
     "@heroicons/vue": "^2.0.17",
     "@vueuse/components": "^9.13.0",
     "@vueuse/core": "^9.13.0",
+    "axios": "^1.4.0",
     "chart.js": "^3.9.1",
+    "dotenv": "^16.0.3",
     "happy-dom": "^9.1.9",
     "pinia": "^2.0.32",
     "vue": "^3.2.47",
