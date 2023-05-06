@@ -4,8 +4,12 @@ import {
   AppButton, 
   AppForm, 
   AppFormInput, 
-  AppFormCheckbox
+  AppFormCheckbox,
+AppFormError,
+AppTooltip
 } from '@/components/app'; 
+import { User } from '@/services';
+import type { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
@@ -16,10 +20,11 @@ const router = useRouter();
 /** LOGIN LOGIC  */
 
 // Data
-const username = ref('');
+const email = ref('');
 const password = ref('');
 const isRemember = ref(false);
 const loading = ref(false);
+const error = ref('');
 
 // Login Function
 async function loginUser(errors?: string[]) {
@@ -27,10 +32,16 @@ async function loginUser(errors?: string[]) {
   
   loading.value = true;
   try {
-    await sleep(1000);
+    const response = await User.login({ 
+      email: email.value, 
+      password: password.value, 
+    });
+    alert('Logged in successfully');
     router.push({ name: 'DashboardHome' })
-  } catch {
-    console.error('Login: Something went wrong')
+  } catch (e) {
+    console.error('Login: Something went wrong', e);
+    const err = (e as AxiosError<{ error: { message: string } }>).response?.data.error
+    error.value = err?.message || '';
   }
   loading.value = false;
 }
@@ -65,7 +76,11 @@ function sleep(ms:number) {
 
       <AppCard class="p-5 lg:px-16 h-fit">
         <h1 class="text-3xl font-bold text-primary-500">
-          Login
+          <span>Login</span> 
+          <AppTooltip
+            class="ml-3"
+            tooltip-text="email: test@email.com | password: pass123"
+          ></AppTooltip>
         </h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
         <AppForm 
@@ -73,9 +88,9 @@ function sleep(ms:number) {
           @validate="loginUser"
         >
           <AppFormInput
-            v-model="username"
-            label="Username"
-            name="Username"
+            v-model="email"
+            label="Email"
+            name="Email"
             placeholder="username_1@email.com"
             validations="required | email"
           ></AppFormInput>
@@ -106,6 +121,9 @@ function sleep(ms:number) {
               Login
             </AppButton>
           </div>
+
+          <AppFormError :error="error"></AppFormError>
+
         </AppForm>
       </AppCard>
     </div>

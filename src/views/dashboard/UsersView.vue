@@ -19,8 +19,9 @@ const headers: HeadersProp[]  = [
 const items = ref([])
 const itemsPerPage = ref(5);
 const currentPage = ref(1);
-watch(currentPage, (val)=> getData(val), { immediate: true });
 const pageLength = ref(1);
+
+watch(currentPage, (val)=> getData(val), { immediate: true });
 
 async function getData(page: number = 1) {
   try {

@@ -189,7 +189,7 @@ function _isRequired(validations: (Validation|(()=>Validation))[] ) {
 }
 
 
-  function _validateValue(_value: unknown, validations: ValidationItemFunction[], fieldName?:string): string | false {
+function _validateValue(_value: unknown, validations: ValidationItemFunction[], fieldName?:string): string | false {
   for (const rule of validations) {
     let validate: string | boolean = false;
     const innerRule = rule();
@@ -206,7 +206,7 @@ function _isRequired(validations: (Validation|(()=>Validation))[] ) {
 }
 
 
-/** TYPE DEFINITION */
+/** __TYPE DEFINITION__ */
 
 interface CreateFormValidation {
     (emit: FormEmits): {
