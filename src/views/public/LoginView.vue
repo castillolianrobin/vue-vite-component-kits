@@ -8,7 +8,7 @@ import {
 AppFormError,
 AppTooltip
 } from '@/components/app'; 
-import { user } from '@/services';
+import { Users } from '@/services';
 import type { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -37,7 +37,7 @@ async function loginUser(errors?: string[]) {
   
   loading.value = true;
   try {
-    const response = await user.login({ 
+    const response = await Users.login({ 
       email: email.value, 
       password: password.value, 
     });

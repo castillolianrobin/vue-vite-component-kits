@@ -3,7 +3,7 @@
 import { AppButton, AppTable, type HeadersProp } from '@/components/app';
 import { DashboardBody } from '@/components/dashboard';
 // services
-import { user, type User } from '@/services';
+import { Users, type User } from '@/services';
 import { ref, watch } from 'vue';
 
 /** Table Logic */
@@ -25,7 +25,7 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
 
 async function getData(page: number = 1) {
   try {
-    const data = await (await user.list({ page, limit: itemsPerPage.value })).data;
+    const data = await (await Users.list({ page, limit: itemsPerPage.value })).data;
     items.value = data.data;
     pageLength.value = data.lastPage;
   } catch (e) {
