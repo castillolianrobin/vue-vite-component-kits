@@ -8,10 +8,12 @@ import {
 AppFormError,
 AppTooltip
 } from '@/components/app'; 
-import { User } from '@/services';
+import { user } from '@/services';
 import type { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/authStore';
+
 
 // Router 
 const router = useRouter();
@@ -26,33 +28,31 @@ const isRemember = ref(false);
 const loading = ref(false);
 const error = ref('');
 
+/** Auth Store */
+const authStore = useAuthStore()
+
 // Login Function
 async function loginUser(errors?: string[]) {
   if (errors?.length) return;
   
   loading.value = true;
   try {
-    const response = await User.login({ 
+    const response = await user.login({ 
       email: email.value, 
       password: password.value, 
     });
+    const loggedUser = response.data.success.data;
+    authStore.setUser(loggedUser, isRemember.value)  
     alert('Logged in successfully');
     router.push({ name: 'DashboardHome' })
   } catch (e) {
+
     console.error('Login: Something went wrong', e);
     const err = (e as AxiosError<{ error: { message: string } }>).response?.data.error
     error.value = err?.message || '';
   }
   loading.value = false;
 }
-
-
-/** Helpers */
-
-function sleep(ms:number) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
 </script>
 
 <template>

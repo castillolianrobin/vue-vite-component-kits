@@ -1,28 +1,34 @@
 <script setup lang="ts">
 // Vue  
 import { defineAsyncComponent, ref, type FunctionalComponent, type HTMLAttributes, type VNodeProps } from 'vue';
-import type { RouteRecordName } from 'vue-router';
 // Components
 import { AppButton } from '@/components/app';
 // icons
-import { HomeIcon } from '@heroicons/vue/24/solid'
 // Extra
 import dashboardRoutes from '@/router/dashboardRoutes';
-
-const navigations: Navigation[] = dashboardRoutes
-  .map(({ name, label, icon })=>({
-    routeName: name, 
-    label,
-    icon: icon ? defineAsyncComponent(icon) : HomeIcon,
-  }));
+import userRoutes from '@/modules/User/routes';
+import {
+  default as LayoutDashboardSideBarItem,
+  type NavigationItem
+} from './LayoutDashboardSideBarItem.vue';
 
 const active = ref(false);
 
-interface Navigation {
-  routeName: RouteRecordName;
-  label: string;
-  icon: FunctionalComponent<HTMLAttributes & VNodeProps, {}>
-}
+const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ name, label, icon, children })=>({
+  name: name, 
+  label,
+  icon: icon ? defineAsyncComponent(icon) : undefined,
+  children: children ? children.map(mapRouteToSidebar) : undefined,
+});
+
+const navigations: NavigationItem[] = [
+  ...dashboardRoutes,
+  ...userRoutes,
+].map(mapRouteToSidebar);
+
+
+console.log(navigations);
+
 </script>
 
 <template>
@@ -60,39 +66,17 @@ interface Navigation {
           'w-screen': active,
         }"
       >
-    
-        <ul class="mt-5">
-          <li
-            v-for="nav in navigations"
-            :key="nav.label"
-          >
-            <router-link
-              :to="{ name: nav.routeName }"
-              class="
-                w-full 
-                flex items-center gap-2
-                pl-3 my-2 
-                outline-none            
-                focus-with    in:text-primary-200
-                hover:text-primary-300
-                border-l-4 border-primary-500/0
-                transition-colors
-              "
-              active-class="
-                border-primary-500/100 
-                font-semibold
-              "
-              @click="active = false"
-            >
-              <!-- Icon -->
-              <component 
-                :is="nav.icon" 
-                class="h-5"
-              ></component>
-              <!-- Text -->
-              <span>{{  nav.label  }}</span>
-            </router-link>
-          </li>
+        <ul 
+          class="mt-5"
+        >
+          <LayoutDashboardSideBarItem
+            v-for="{ 
+              label, name, icon, children, 
+            } in navigations"
+            :key="label"
+            class="my-4 border-l-4 border-primary-500/0"
+            v-bind="{ label, name, icon, children }"
+          ></LayoutDashboardSideBarItem>
         </ul>
     </aside>
   </div>
