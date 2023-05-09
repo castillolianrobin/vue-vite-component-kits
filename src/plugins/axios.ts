@@ -1,3 +1,4 @@
+import router from '@/router';
 import { useAuthStore } from '@/stores/authStore';
 import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
@@ -15,14 +16,18 @@ axios.interceptors.request.use(
         .setAuthorization(`Bearer ${user.token}`);
     }
     return config;
-  },
-  (error: AxiosError)=>{
-    const { logOut } = useAuthStore();
-    if (error.status === 401) {
-      logOut();
-    }
+  })
+
+axios.interceptors.response.use(null, (error: AxiosError)=>{
+  const { logOut } = useAuthStore();
+  if (error.response?.status === 401) {
+    logOut();
+    router.push({ name: 'Login' });
+    console.error('Error: Token Expired / Missing')
+  } else {
+    console.error(error)
   }
 
-)
+});
 
 export default axios;
