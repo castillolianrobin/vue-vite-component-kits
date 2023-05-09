@@ -1,19 +1,28 @@
 import { useAuthStore } from '@/stores/authStore';
-import axios, { type InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosError, type InternalAxiosRequestConfig } from 'axios';
 
 axios.defaults.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8081';
 
 
 
 // Request Interceptor for Beater Token Auth
-axios.interceptors.request.use((config)=> {
-  const { user } = useAuthStore();
-  if (user && user?.token && !config.headers?.Authorization) {
-    config
-      .headers
-      .setAuthorization(`Bearer ${user.token}`);
+axios.interceptors.request.use(
+  (config)=> {
+    const { user } = useAuthStore();
+    if (user && user?.token && !config.headers?.Authorization) {
+      config
+        .headers
+        .setAuthorization(`Bearer ${user.token}`);
+    }
+    return config;
+  },
+  (error: AxiosError)=>{
+    const { logOut } = useAuthStore();
+    if (error.status === 401) {
+      logOut();
+    }
   }
-  return config;
-})
+
+)
 
 export default axios;

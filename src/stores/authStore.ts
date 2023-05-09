@@ -15,7 +15,9 @@ export const useAuthStore = defineStore('counter', () => {
     }
   }
 
-  return { user, setUser }
+  function logOut() { setUser(null, true) }
+
+  return { user, setUser, logOut }
 })
 
 

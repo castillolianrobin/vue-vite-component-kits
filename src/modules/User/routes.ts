@@ -1,5 +1,4 @@
 import LayoutDefault from '@/layout/layouts/LayoutDefault.vue';
-import test from '@/middlewares/test';
 
 export default [
   {
