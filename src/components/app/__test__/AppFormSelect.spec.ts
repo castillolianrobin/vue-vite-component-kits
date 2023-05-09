@@ -64,10 +64,6 @@ describe(name, () => {
     const itemEls = listbox().findAll('li')
     await itemEls[0].trigger('click')
     
-    expect(listbox().exists()).toBeTruthy();
-    
-    
-
-    
+    expect(listbox().exists()).toBeTruthy();    
   })
 });

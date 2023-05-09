@@ -8,13 +8,15 @@ export interface NavigationItem {
   name: string;
   label?: string;
   icon?: FunctionalComponent<HTMLAttributes & VNodeProps, {}> | any;
-  children?: NavigationItem[]
+  children?: NavigationItem[],
+  hidden?: boolean,
 }
 const props = defineProps({
   name: String as PropType<string>,
   label: String as PropType<string>,
   icon: [Object, Function] as PropType<FunctionalComponent<HTMLAttributes & VNodeProps, {}> | any>,
   children: Array as PropType<NavigationItem[]>,
+  hidden: Boolean as PropType<boolean>,
 });
 
 const route = useRoute();
@@ -26,7 +28,7 @@ const showChildren = computed(()=> {
 </script>
 
 <template>
-  <li class="my-1">
+  <li v-if="!props.hidden" class="my-1">
     <span class="flex item-center">
       <router-link
         :to="{ name: props.children ? props.children[0].name : props.name }"

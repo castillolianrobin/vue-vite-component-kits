@@ -22,10 +22,10 @@ const slots = useSlots();
   >
     <!-- Card Title -->
     <h3 
-      v-if="slots.title" 
-      class="text-2xl font-semibold"
+      v-if="slots.title || $attrs.title" 
+      class="text-lg md:text-xl font-semibold"
     >
-      <slot name="title"></slot>
+      <slot name="title">{{  $attrs.title }}</slot>
     </h3>
     <!-- Card Subtitle -->
     <p

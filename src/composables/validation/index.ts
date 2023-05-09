@@ -76,7 +76,7 @@ export const createFormValidation: CreateFormValidation = function (emit) {
 export const validationProps = {
   /** List of validation to be checked */
   validations: {
-    type: [String, Array] as PropType<Validation[] | string>,
+    type: [String, Array] as PropType<ValidationItem[] | string>,
     default: [],
     required: false,
   },

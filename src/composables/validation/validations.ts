@@ -194,7 +194,7 @@ export function matchString(
     console.log(value, stringMatch);
     return (
       value === stringMatch ||
-      `${fieldName || "This"} field should match with${
+      `${fieldName || "This"} field should match with ${
         `${stringFieldName} field` || "The string"
       }`
     );

@@ -347,7 +347,7 @@ function getNestedString(o: { [key: string]: any; }, s: string) {
   let a = s.split('.');
   for (let i = 0, n = a.length; i < n; ++i) {
     let k = `${a[i]}`;
-    if (typeof o === 'object' && k in o) {
+    if (typeof o === 'object' && o && k in o) {
       o = o[k];
     } else {
       return '';

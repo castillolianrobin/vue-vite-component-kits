@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
-import { AppFormInputContainer } from '.';
 import { ref, toRef, computed, type PropType, useAttrs } from 'vue';
+// Composables
+import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
 import { vOnClickOutside } from '@vueuse/components';
-
+// Components
+import { AppFormInputContainer } from '.';
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/20/solid';
 export interface SelectItemProp {
   value: any;
   label?: string;
@@ -210,6 +212,12 @@ type SelectItem = SelectItemProp | string | number;
         </li>
       </ul>
     </Transition>
+    
     <slot name="append"></slot>
+    <div>
+      <component :is="isOpen ? ChevronUpIcon : ChevronDownIcon"
+        class="h-6"
+      ></component>
+    </div>
   </AppFormInputContainer>
 </template>

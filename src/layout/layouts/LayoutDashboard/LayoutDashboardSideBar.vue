@@ -14,11 +14,12 @@ import {
 
 const active = ref(false);
 
-const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ name, label, icon, children })=>({
+const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ name, label, icon, children, hidden })=>({
   name: name, 
   label,
   icon: icon ? defineAsyncComponent(icon) : undefined,
   children: children ? children.map(mapRouteToSidebar) : undefined,
+  hidden, 
 });
 
 const navigations: NavigationItem[] = [

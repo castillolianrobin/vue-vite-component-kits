@@ -13,25 +13,34 @@ export default {
     return axios.get<TableResponse<User>>(`/${base}`, { params });
   },
   show(id: number) {
-    return axios.get(`/${base}/${id}`);
+    return axios.get<User>(`/${base}/${id}`);
+  },
+  create(data: CreateUser ) {
+    return axios.post<SuccessResponse<User>>(`/${base}/`, data);
   }
 }
 
 
 /** __TYPE DEFINITION__ */
 
-export interface User {
+export interface User<userInfo = UserInfo, userType = UserType> {
   email: string;
+  password?: string;
   id: number;
   token?: string; 
   tokenExpiration?: string;
-  userInfo?: UserInfo | number;
-  userType?: UserType | number;
+  userInfo?: userInfo;
+  userType?: userType;
   updatedAt: string;
   createdAt: string;
 }
 
-export interface UserInfo {}
+export interface UserInfo {
+  firstName: string;
+  lastName: string;
+  middleName?: string;
+  birthday?: string;
+}
  
 export interface UserType {
   id: number;
@@ -39,3 +48,13 @@ export interface UserType {
   updatedAt: string;
   createdAt: string;
 }
+
+interface CreateUser extends Modify<User,{
+  id?: undefined;
+  userInfo: UserInfo;
+  userType: string;
+  updatedAt?: string;
+  createdAt?: string;
+}> {}
+
+type Modify<T, R> = Omit<T, keyof R> & R;

@@ -9,7 +9,8 @@ import { ref, watch } from 'vue';
 /** Table Logic */
 // Table Headers
 const headers: HeadersProp[]  = [
-  { text: 'Fist Name', key: 'first_name' },
+  { text: 'Fist Name', key: 'userInfo', subKey: 'firstName' },
+  { text: 'Last Name', key: 'userInfo', subKey: 'lastName' },
   { text: 'Email', key: 'email' },
   { text: 'Type', key: 'userType', subKey: 'name' },
   { text: '', key: 'actions' },
@@ -41,7 +42,11 @@ async function getData(page: number = 1) {
     <!-- Header -->
     <div class="mb-6 flex justify-between items-center">
       <h3>Users</h3>
-      <AppButton>Create User</AppButton>
+      <AppButton 
+        :to="{ name: 'UserCreate' }"
+      >
+        Create User
+      </AppButton>
     </div>  
 
     <AppTable
@@ -50,9 +55,10 @@ async function getData(page: number = 1) {
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
-      <template #item-actions="{ }">
+      <template #item-actions="{ item }">
         <AppButton 
-          class="block ml-auto"
+        :to="{ name: 'UserShow', params: {id: item.id} }"  
+        class="block ml-auto"
           variant="text"
           size="sm"
         >
