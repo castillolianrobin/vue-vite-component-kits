@@ -13,6 +13,7 @@ export const useAuthStore = defineStore('counter', () => {
     } else {
       localStorage.removeItem(storageUserKey);
     }
+    
   }
 
   function logOut() { setUser(null, true) }
