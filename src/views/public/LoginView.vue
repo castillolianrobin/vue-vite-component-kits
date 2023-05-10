@@ -46,7 +46,6 @@ async function loginUser(errors?: string[]) {
     alert('Logged in successfully');
     router.push({ name: 'DashboardHome' })
   } catch (e) {
-
     console.error('Login: Something went wrong', e);
     const err = (e as AxiosError<{ error: { message: string } }>).response?.data.error
     error.value = err?.message || '';
