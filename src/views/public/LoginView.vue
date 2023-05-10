@@ -11,15 +11,9 @@ AppTooltip
 import { Users } from '@/services';
 import type { AxiosError } from 'axios';
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/authStore';
-
-
-// Router 
-const router = useRouter();
-
-
-/** LOGIN LOGIC  */
+import { useDark } from '@vueuse/core';
+import { useRouter } from 'vue-router';
 
 // Data
 const email = ref('');
@@ -27,6 +21,11 @@ const password = ref('');
 const isRemember = ref(false);
 const loading = ref(false);
 const error = ref('');
+
+/** Dark Mode Composable */
+const isDark = useDark();
+/** Router composable */
+const router = useRouter();
 
 /** Auth Store */
 const authStore = useAuthStore()
@@ -44,6 +43,7 @@ async function loginUser(errors?: string[]) {
     });
     const loggedUser = response.data.success.data;
     authStore.setUser(loggedUser)  
+    isDark.value = true;
     router.push({ name: 'DashboardHome' })
   } catch (e) {
 

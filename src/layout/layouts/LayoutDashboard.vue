@@ -5,16 +5,18 @@ import { AppButton, AppModal } from '@/components/app';
 import { ref } from 'vue';
 import { Users } from '@/services';
 import { useRouter } from 'vue-router';
+import { useDark } from '@vueuse/core';
   
 
 const logoutLoading = ref(false);
 const router = useRouter();
-
+const isDark = useDark();
 async function logOut() {
   logoutLoading.value = true;
   try {
     const response = await Users.logout();
     if (response.data.success) {
+      isDark.value = false;
       router.push({ name: 'Login' });
     } else {
       alert('Failed to logout. Try again')
@@ -85,7 +87,7 @@ async function logOut() {
             <p>Are you sure you want to logout?</p>
             <div class="mt-5 flex justify-end gap-3">
               <AppButton 
-                :disabled="logoutLoading"
+                :disab="logoutLoading"
                 variant="outline" 
                 @click="toggleModal"
               >
