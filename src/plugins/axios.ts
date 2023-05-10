@@ -19,9 +19,9 @@ axios.interceptors.request.use(
   })
 
 axios.interceptors.response.use(response=>response, (error: AxiosError)=>{
-  const { logOut } = useAuthStore();
+  const authStore = useAuthStore();
   if (error.response?.status === 401) {
-    logOut();
+    authStore.setUser(null);
     router.push({ name: 'Login' });
     console.error('Error: Token Expired / Missing')
   } else {

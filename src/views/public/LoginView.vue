@@ -39,13 +39,14 @@ async function loginUser(errors?: string[]) {
   try {
     const response = await Users.login({ 
       email: email.value, 
-      password: password.value, 
+      password: password.value,
+      remember: isRemember.value, 
     });
     const loggedUser = response.data.success.data;
-    authStore.setUser(loggedUser, isRemember.value)  
-    alert('Logged in successfully');
+    authStore.setUser(loggedUser)  
     router.push({ name: 'DashboardHome' })
   } catch (e) {
+
     console.error('Login: Something went wrong', e);
     const err = (e as AxiosError<{ error: { message: string } }>).response?.data.error
     error.value = err?.message || '';
@@ -88,6 +89,7 @@ async function loginUser(errors?: string[]) {
         >
           <AppFormInput
             v-model="email"
+            :disabled="loading"
             label="Email"
             name="Email"
             placeholder="username_1@email.com"
@@ -96,6 +98,7 @@ async function loginUser(errors?: string[]) {
   
           <AppFormInput
             v-model="password"
+            :disabled="loading"
             name="Password"
             type="password"
             label="Password"

@@ -6,19 +6,13 @@ export const useAuthStore = defineStore('counter', () => {
   const user = ref<User>(getRememberedUser());
   // const token = computed(() => user.value?.token)
   
-  function setUser(_user: any, remember?: boolean) {
+  function setUser(_user: any) {
     user.value = _user;
-    if (remember) {
-      localStorage.setItem(storageUserKey, JSON.stringify(_user));
-    } else {
-      localStorage.removeItem(storageUserKey);
-    }
-    
+    localStorage.setItem(storageUserKey, JSON.stringify(_user));
   }
+  
 
-  function logOut() { setUser(null, true) }
-
-  return { user, setUser, logOut }
+  return { user, setUser }
 })
 
 
