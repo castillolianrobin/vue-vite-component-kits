@@ -1,7 +1,29 @@
 <script setup lang="ts">
 import LayoutDashboardSideBar from './LayoutDashboard/LayoutDashboardSideBar.vue';
 import { ToggleDarkMode } from '@/components';
+import { AppButton, AppModal } from '@/components/app';
+import { ref } from 'vue';
+import { Users } from '@/services';
+import { useRouter } from 'vue-router';
   
+
+const logoutLoading = ref(false);
+const router = useRouter();
+
+async function logOut() {
+  logoutLoading.value = true;
+  try {
+    const response = await Users.logout();
+    if (response.data.success) {
+      router.push({ name: 'Login' });
+    } else {
+      alert('Failed to logout. Try again')
+    }
+  } catch(e) {
+    alert('Failed to logout. Try again')
+  }
+  logoutLoading.value = false;
+}
 </script>
 
 <template>
@@ -45,6 +67,40 @@ import { ToggleDarkMode } from '@/components';
       </h1>
 
       <ToggleDarkMode></ToggleDarkMode>
+
+      <!-- Log Out Modal -->
+      <AppModal :persist="logoutLoading">
+        <template #trigger="{ toggleModal }">
+          <AppButton 
+            size="sm" 
+            color="secondary-500"
+            class="ml-1"
+            @click="toggleModal"
+          >
+            Logout
+          </AppButton>
+        </template>
+        <template #default="{ toggleModal }">
+          <div class="m-3">
+            <p>Are you sure you want to logout?</p>
+            <div class="mt-5 flex justify-end gap-3">
+              <AppButton 
+                :disabled="logoutLoading"
+                variant="outline" 
+                @click="toggleModal"
+              >
+                Cancel
+              </AppButton>
+              <AppButton 
+                :loading="logoutLoading"
+                @click="logOut"
+              >
+                Logout
+              </AppButton>
+            </div>
+          </div>
+        </template>
+      </AppModal>
     </header>
     <!-- Side Bar -->
     <LayoutDashboardSideBar

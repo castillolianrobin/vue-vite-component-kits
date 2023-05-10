@@ -7,6 +7,9 @@ export default {
   login(params?: any) {
     return axios.post<SuccessResponse<User>>(`/login`, params);
   },
+  logout(params?: any) {
+    return axios.post<SuccessResponse<User>>(`/logout`, params);
+  },
 
   // CRUD
   list(params?: any) {

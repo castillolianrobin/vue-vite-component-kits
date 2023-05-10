@@ -36,7 +36,7 @@ watch(toRef(props, 'active'), value=> {
 function toggleModal(state: boolean | null = null) {
   const newValue = typeof state === 'boolean' 
     ? state 
-    : !(props.active || isActive); 
+    : !(props.active || isActive.value); 
   emits('update:active', newValue);
   isActive.value = newValue;
 }
