@@ -18,7 +18,7 @@ axios.interceptors.request.use(
     return config;
   })
 
-axios.interceptors.response.use(null, (error: AxiosError)=>{
+axios.interceptors.response.use(response=>response, (error: AxiosError)=>{
   const { logOut } = useAuthStore();
   if (error.response?.status === 401) {
     logOut();
@@ -27,7 +27,7 @@ axios.interceptors.response.use(null, (error: AxiosError)=>{
   } else {
     console.error(error)
   }
-
+  return Promise.reject(error);
 });
 
 export default axios;
