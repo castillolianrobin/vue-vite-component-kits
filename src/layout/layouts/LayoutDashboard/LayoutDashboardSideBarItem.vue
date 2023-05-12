@@ -56,7 +56,7 @@ const showChildren = computed(()=> {
         class="ml-auto mr-2 cursor-pointer select-none"
       >
         <component
-          :is="showChildren ? ChevronDownIcon : ChevronUpIcon"
+          :is="showChildren ? ChevronUpIcon : ChevronDownIcon"
           class="h-5"
         ></component>
       </span>

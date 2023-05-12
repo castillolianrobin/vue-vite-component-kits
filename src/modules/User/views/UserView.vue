@@ -3,21 +3,39 @@ import { AppButton, AppCard } from '@/components/app';
 import { DashboardBody } from '@/components/dashboard';
 import { DashboardCardItem } from '@/components/dashboard';
 import { Users, type User } from '@/services';
+import type { AxiosError } from 'axios';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 
 /** Route Composable */
 const route = useRoute()
 
+/** Route Composable */
+const router = useRouter()
+
+const { id } = route.params;
 const user = ref<User>(); 
 const loading = ref(false);
 
 async function getUser() {
-  const { id } = route.params;
   const response = await Users.show(+id);
   if (response.data)
     user.value = response.data;
+}
+
+async function deleteUser() {
+  try {
+    const response = await Users.delete(+id);
+    if (response.data.success)
+      alert('Deleted')
+      router.push({ name: 'UserList' })
+  } catch (e) {
+    const error = e as AxiosError;
+    if (error.response?.status) {
+      alert('Something went wrong');
+    }
+  }
 }
 
 getUser();
@@ -30,10 +48,22 @@ getUser();
     <div class="mb-5 flex">
       <!-- Actions -->
       <div class="ml-auto flex gap-2">
+        <!-- Back Btn -->
         <AppButton variant="outline" class="px-4">
           Back
         </AppButton>
-        <AppButton>Edit User</AppButton>
+        <!-- Delete Btn -->
+        <AppButton 
+          color="error-500"
+          @click="deleteUser"
+        >
+          Delete User
+        </AppButton>
+        
+        <!-- Edit Btn -->
+        <AppButton>
+          Edit User
+        </AppButton>
       </div>
     </div>
     

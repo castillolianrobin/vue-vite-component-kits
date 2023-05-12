@@ -6,13 +6,14 @@ import {
   AppFormInput, 
   AppFormCheckbox,
 AppFormError,
-AppTooltip
+AppTooltip,
+AppModal,
+AppLoading
 } from '@/components/app'; 
 import { Users } from '@/services';
 import type { AxiosError } from 'axios';
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
-import { useDark } from '@vueuse/core';
 import { useRouter } from 'vue-router';
 
 // Data
@@ -20,10 +21,9 @@ const email = ref('');
 const password = ref('');
 const isRemember = ref(false);
 const loading = ref(false);
+const success = ref(false);
 const error = ref('');
 
-/** Dark Mode Composable */
-const isDark = useDark();
 /** Router composable */
 const router = useRouter();
 
@@ -43,7 +43,7 @@ async function loginUser(errors?: string[]) {
     });
     const loggedUser = response.data.success.data;
     authStore.setUser(loggedUser)  
-    isDark.value = true;
+    success.value = true;
     router.push({ name: 'DashboardHome' })
   } catch (e) {
 
@@ -74,7 +74,7 @@ async function loginUser(errors?: string[]) {
       "
     >
 
-      <AppCard class="p-5 lg:px-16 h-fit">
+      <AppCard class="login-card p-4 lg:px-10">
         <h1 class="text-3xl font-bold text-primary-500">
           <span>Login</span> 
           <AppTooltip
@@ -107,13 +107,23 @@ async function loginUser(errors?: string[]) {
           ></AppFormInput>
           
   
-          <div class="mt-2 flex items-center justify-between">
+          <div class="mt-5 flex items-center justify-between">
             <AppFormCheckbox
               v-model="isRemember"
               label="Remember Me"
               toggle-input
             ></AppFormCheckbox>
-            
+
+            <!-- Submit Button -->
+            <AppButton
+              variant="text"
+              class="ml-auto mr-1"
+              :loading="loading"
+              :to="{ name: 'SignUp' }"
+            >
+              Sign up
+            </AppButton>
+
             <!-- Submit Button -->
             <AppButton
               class="px-7"
@@ -124,7 +134,7 @@ async function loginUser(errors?: string[]) {
             </AppButton>
           </div>
 
-          <AppFormError :error="error"></AppFormError>
+          <AppFormError :error="error" aria-label="form-error"></AppFormError>
 
         </AppForm>
       </AppCard>
@@ -147,5 +157,21 @@ async function loginUser(errors?: string[]) {
       </h1>
       <p class="hidden md:block mt-5 text-lg text-primary-50">Sample Dashboard for Vue 3 Component Kits</p>
     </div>
+
+    <AppModal :active="success" persist>
+      <div class="p-2 text-center">
+        <h3 
+          class="text-primary-600 font-bold uppercase"
+        >
+          Successfully logged in
+        </h3>
+
+        <p class="mt-3 mb-5 text-sm">
+          Please wait. Loading dashboard...
+        </p>
+
+        <AppLoading></AppLoading>
+      </div>
+    </AppModal>
   </div>
 </template>

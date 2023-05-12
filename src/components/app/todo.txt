@@ -22,12 +22,12 @@
 - AppSteps DONE] [TESTED] [PAGED]
 1 AppChip
 
-- Login (Cypress Test)
-1 User List (with roles) (Cypress Test)
-2. Project List (with assigned people)
-3. Task List (with asigned poeple and project)
-* Use Creation (Steps) (Cypress Test)
-
+- Login (Cypress Test) (API)
+- Use Creation (Steps) (Cypress Test)
+- User List (with roles) (Cypress Test) (API)
+1. Project List (with assigned people)
+2. Task List (with asigned poeple and project)
+3. DarkMOde on API
 
 
 Dark:

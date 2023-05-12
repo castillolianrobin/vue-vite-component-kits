@@ -31,6 +31,10 @@ describe('Login Page', () => {
   it('redirects to /dashboard if valid', ()=> {
     goToLogin();
     login('username@gmail.com', 'random', true);
+    const formError = "Incorrect email or password";
+    cy.get(loginForm.error).contains(formError);
+    
+    login('test@email.com', 'pass123', true);
     cy.url().should('contain', '/dashboard');
   })
 })

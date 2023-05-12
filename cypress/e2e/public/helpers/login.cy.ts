@@ -4,8 +4,9 @@
 
  export const loginForm = {
    submit:'button[type="submit"]',
-   username: 'input[aria-label="Username"]',
+   username: 'input[aria-label="Email"]',
    password:'input[aria-label="Password"]',
+   error: '[aria-label="form-error"]',
  }
  
  export function goToLogin() {

@@ -1,27 +1,49 @@
 import axios from '@/plugins/axios';
-import type { SuccessResponse, TableResponse } from './types';
+import { CRUDService, type SuccessResponse, type TableResponse } from './types';
 
-const base = 'user'
-export default {
+const base = 'user';
+
+class Users extends CRUDService<User, CreateUser>{
   // Auth
   login(params?: any) {
     return axios.post<SuccessResponse<User>>(`/login`, params);
-  },
+  }
   logout(params?: any) {
     return axios.post<SuccessResponse<User>>(`/logout`, params);
-  },
-
-  // CRUD
-  list(params?: any) {
-    return axios.get<TableResponse<User>>(`/${base}`, { params });
-  },
-  show(id: number) {
-    return axios.get<User>(`/${base}/${id}`);
-  },
-  create(data: CreateUser ) {
-    return axios.post<SuccessResponse<User>>(`/${base}/`, data);
+  }
+  register(user: CreateUser) {
+    return axios.post<SuccessResponse<User>>(`/register`, user);    
   }
 }
+
+export default new Users(base);
+
+// export default {
+//   // Auth
+//   login(params?: any) {
+//     return axios.post<SuccessResponse<User>>(`/login`, params);
+//   },
+//   logout(params?: any) {
+//     return axios.post<SuccessResponse<User>>(`/logout`, params);
+//   },
+//   register(user: CreateUser) {
+//     return axios.post<SuccessResponse<User>>(`/register`, user);    
+//   },
+
+//   // CRUD
+//   list(params?: any) {
+//     return axios.get<TableResponse<User>>(`/${base}`, { params });
+//   },
+//   show(id: number) {
+//     return axios.get<User>(`/${base}/${id}`);
+//   },
+//   create(data: CreateUser) {
+//     return axios.post<SuccessResponse<User>>(`/${base}/`, data);
+//   },
+//   delete(id: number) {
+//     return axios.post<SuccessResponse>(`/${base}/${id}/delete`);
+//   },
+// }
 
 
 /** __TYPE DEFINITION__ */
@@ -52,10 +74,12 @@ export interface UserType {
   createdAt: string;
 }
 
-interface CreateUser extends Modify<User,{
+export interface CreateUser extends Modify<User,{
   id?: undefined;
+  password: string, 
+  verify_password: string, 
   userInfo: UserInfo;
-  userType: string;
+  userType?: string;
   updatedAt?: string;
   createdAt?: string;
 }> {}

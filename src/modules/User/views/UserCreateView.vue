@@ -36,7 +36,7 @@ async function createUser(formError: string[]) {
   if (formError.length) return;
 
   try {
-    const response = await Users.create(form.value)
+    const response = await Users.create(form.value);
     if (response.data.success) {
       alert('User Created Successfully');
     }

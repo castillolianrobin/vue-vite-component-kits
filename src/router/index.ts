@@ -22,6 +22,12 @@ const router = createRouter({
       component: ()=>import('@/views/public/LoginView.vue'),
       meta: { layout: 'Default' },
     },
+    {
+      path: '/signup',
+      name: 'SignUp',
+      component: ()=>import('@/views/public/SignUpView.vue'),
+      meta: { layout: 'Default' },
+    },
 
     // Dashboard Routes
     {

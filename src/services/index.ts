@@ -1,1 +1,1 @@
-export { default as Users, type User, type UserInfo, type UserType } from './Users';
+export { default as Users, type User, type UserInfo, type UserType, type CreateUser } from './Users';

@@ -69,7 +69,7 @@ const {
         bg-transparent 
         disabled:text-secondary-400
       "
-      :aria-label="name"
+      :aria-label="name || label"
       :value="props.modelValue"
       @input="updateInputValue"
       @focus="validateOnChange = true"
