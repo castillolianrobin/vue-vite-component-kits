@@ -75,10 +75,10 @@ export interface UserType {
 }
 
 export interface CreateUser extends Modify<User,{
-  id?: undefined;
+  id?: number;
   password: string, 
   verify_password: string, 
-  userInfo: UserInfo;
+  userInfo: Modify<UserInfo, { birthday: string }>;
   userType?: string;
   updatedAt?: string;
   createdAt?: string;

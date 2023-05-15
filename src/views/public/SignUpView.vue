@@ -1,6 +1,6 @@
 
 <script setup lang="ts">
-import { AppButton, AppCard, AppForm, AppFormInput } from '@/components/app';
+import { AppButton, AppCard, AppForm, AppFormDatePicker, AppFormInput } from '@/components/app';
 import { ref } from 'vue';
 import { Users, type CreateUser } from '@/services';
 import type { AxiosError } from 'axios';
@@ -8,11 +8,11 @@ import type { ErrorResponse } from '@/services/types';
 import { matchString } from '@/composables/validation/validations';
 
 
-const form = ref<CreateUser>({
+const form = ref({
   email: '',
   password: '',
   verify_password: '',
-  userInfo: { firstName: '', lastName: '', middleName: ''},
+  userInfo: { firstName: '', lastName: '', middleName: '', birthday: ''},
 })
 const error = ref('');
 const loading = ref(false);
@@ -139,6 +139,13 @@ async function signupUser(errors: string[]) {
             placeholder="Siena"
             validations="required"
           ></AppFormInput>
+
+          <AppFormDatePicker
+            v-model="form.userInfo.birthday"
+            :disabled="loading"
+            label="Birthday"
+            as-single
+          ></AppFormDatePicker>
   
   
           <AppButton 
