@@ -41,9 +41,10 @@ const colorInactive = computed(():ThemeColors => {
           p-1
           flex
           bg-white/10
-          
           rounded
           border border-${colorInactive} group-focus-within:border-${props.color}
+          outline-1 outline-${props.color} group-focus-within:outline 
+          transition-all
         `,
         props.containerClass,
       ]"

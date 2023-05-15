@@ -46,7 +46,7 @@ const {
 
 </script>
 
-<template>
+<template>  
   <AppFormInputContainer
     :name="props.name"
     :required="isRequired"
@@ -63,10 +63,12 @@ const {
     <!-- Input -->
     <input
       class="
+        -m-1 p-1 
         flex-grow 
-        w-full 
+        w-full
+        rounded 
         outline-none 
-        bg-transparent 
+        bg-transparent
         disabled:text-secondary-400
       "
       :aria-label="name || label"
