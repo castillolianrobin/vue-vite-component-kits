@@ -5,10 +5,10 @@ import {
   AppForm, 
   AppFormInput, 
   AppFormCheckbox,
-AppFormError,
-AppTooltip,
-AppModal,
-AppLoading
+  AppFormError,
+  AppTooltip,
+  AppModal,
+  AppLoading
 } from '@/components/app'; 
 import { Users } from '@/services';
 import type { AxiosError } from 'axios';
@@ -107,31 +107,48 @@ async function loginUser(errors?: string[]) {
           ></AppFormInput>
           
   
-          <div class="mt-5 flex items-center justify-between">
+          <div 
+            class="
+              mt-5 
+              flex flex-col md:flex-row 
+              items-end md:items-center justify-between
+
+            "
+          >
+            <!-- Remember Checkbox -->
             <AppFormCheckbox
               v-model="isRemember"
               label="Remember Me"
               toggle-input
+              class="flex-shrink-0"
             ></AppFormCheckbox>
 
-            <!-- Submit Button -->
-            <AppButton
-              variant="text"
-              class="ml-auto mr-1"
-              :loading="loading"
-              :to="{ name: 'SignUp' }"
+            <!-- Actions Buttons -->
+            <div 
+              class="
+                md:ml-auto mt-8 md:mt-0 
+                flex justify-center items-center
+              "
             >
-              Sign up
-            </AppButton>
-
-            <!-- Submit Button -->
-            <AppButton
-              class="px-7"
-              type="submit"
-              :loading="loading"
-            >
-              Login
-            </AppButton>
+              <!-- Submit Button -->
+              <AppButton
+                variant="text"
+                class="mr-1"
+                :disabled="loading"
+                :to="{ name: 'SignUp' }"
+              >
+                Sign up
+              </AppButton>
+  
+              <!-- Submit Button -->
+              <AppButton
+                class="px-7"
+                type="submit"
+                :loading="loading"
+              >
+                Login
+              </AppButton>
+            </div>
           </div>
 
           <AppFormError :error="error" aria-label="form-error"></AppFormError>
