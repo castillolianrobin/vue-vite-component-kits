@@ -7,6 +7,7 @@ import { Users, type User } from '@/services';
 import { ref, watch } from 'vue';
 
 /** Table Logic */
+
 // Table Headers
 const headers: HeadersProp[]  = [
   { text: 'Fist Name', key: 'userInfo', subKey: 'firstName' },
@@ -21,19 +22,21 @@ const items = ref<User[]>([])
 const itemsPerPage = ref(5);
 const currentPage = ref(1);
 const pageLength = ref(1);
-
-watch(currentPage, (val)=> getData(val), { immediate: true });
+const loading = ref(false);
 
 async function getData(page: number = 1) {
+  loading.value = true;
   try {
-    const data = await (await Users.list({ page, limit: itemsPerPage.value })).data;
+    const data = (await Users.list({ page, limit: itemsPerPage.value })).data;
     items.value = data.data;
     pageLength.value = data.lastPage;
   } catch (e) {
     console.error('User Table: ', e)
   }
+  loading.value = false;
 }
 
+watch(currentPage, (val)=> getData(val), { immediate: true });
 </script>
 
 <template>
@@ -51,6 +54,7 @@ async function getData(page: number = 1) {
 
     <AppTable
       :persist-column-on-mobile="[3]"
+      :loading="loading" 
       static
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"

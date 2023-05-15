@@ -381,7 +381,6 @@ function getNestedString(o: { [key: string]: any; }, s: string) {
           [&_td]:hidden md:[&_td]:table-cell
           [&_.visible-cell]:table-cell
         `,
-        { 'blur-sm': props.loading }
       ]"
     >
       <caption 
