@@ -61,7 +61,7 @@ verifyUser();
     >
       <AppLoading v-if="loading"></AppLoading>
       <div
-        v-if="success" 
+        v-else-if="success" 
         class="flex flex-col items-center justify-center"
       >
         <CheckCircleIcon 
