@@ -21,9 +21,9 @@ const success = ref(false);
 const error = ref('');
 
 async function verifyUser() {
-  const { token, email } = route.query;
-  
-  if (!token || !email) {
+  const token = `${route.query?.token}`;
+  const email = `${route.query?.email}`;
+  if (token || !email) {
     success.value = false;
     return (error.value = 'Missing Parameter. Check the email sent to your email');
   }
