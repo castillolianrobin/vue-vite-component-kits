@@ -23,15 +23,14 @@ const error = ref('');
 async function verifyUser() {
   const token = `${route.query?.token}`;
   const email = `${route.query?.email}`;
-  if (token || !email) {
+  if (!token || !email) {
     success.value = false;
     return (error.value = 'Missing Parameter. Check the email sent to your email');
   }
   
   loading.value = true;
   try {
-    const response = await Users.verifyAccount({ token, email });
-
+    await Users.verifyAccount({ token, email });
     success.value = true;
   } catch (e) {
     const err = e as AxiosError<ErrorResponse>
