@@ -14,6 +14,7 @@ const headers: HeadersProp[]  = [
   { text: 'Last Name', key: 'userInfo', subKey: 'lastName' },
   { text: 'Email', key: 'email' },
   { text: 'Type', key: 'userType', subKey: 'name' },
+  { text: 'Status', key: 'status' },
   { text: '', key: 'actions' },
 ]
 
@@ -53,12 +54,26 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
     </div>  
 
     <AppTable
-      :persist-column-on-mobile="[3]"
+      :persist-column-on-mobile="['actions']"
       :loading="loading" 
       static
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
+      <!-- Status Column -->
+      <template #item-status="{ item }">
+        <span 
+          v-if="item.status === 'verified'"
+          class="px-2 uppercase text-sm font-light rounded-full bg-primary-800"
+        >
+          {{ item.status }}
+        </span>
+        <span v-else class="text-secondary">
+          {{ item.status }}
+        </span>
+      </template>
+      
+      <!-- Actions Column -->
       <template #item-actions="{ item }">
         <AppButton 
         :to="{ name: 'UserShow', params: {id: item.id} }"  

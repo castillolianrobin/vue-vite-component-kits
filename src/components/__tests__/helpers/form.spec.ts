@@ -43,6 +43,7 @@ export const inputTest = (component:any, config?:Config) => {
             ...config.options?.props, 
           },
         });
+
         const testEmit = async ()=> {
           await wrapper.vm.$nextTick();
           expect(wrapper.emitted('update:modelValue')?.length).toBeFalsy()

@@ -28,6 +28,12 @@ const router = createRouter({
       component: ()=>import('@/views/public/SignUpView.vue'),
       meta: { layout: 'Default' },
     },
+    {
+      path: '/verify',
+      name: 'VerifyUser',
+      component: ()=>import('@/views/public/VerifyAccountView.vue'),
+      meta: { layout: 'Default' },
+    },
 
     // Dashboard Routes
     {

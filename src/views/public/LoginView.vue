@@ -16,6 +16,12 @@ import { ref } from 'vue';
 import { useAuthStore } from '@/stores/authStore';
 import { useRouter } from 'vue-router';
 
+/** Router composable */
+const router = useRouter();
+
+/** Auth Store */
+const authStore = useAuthStore()
+
 // Data
 const email = ref('');
 const password = ref('');
@@ -24,15 +30,10 @@ const loading = ref(false);
 const success = ref(false);
 const error = ref('');
 
-/** Router composable */
-const router = useRouter();
-
-/** Auth Store */
-const authStore = useAuthStore()
 
 // Login Function
 async function loginUser(errors?: string[]) {
-  if (errors?.length) return;
+  if (errors?.length  ) return;
   
   loading.value = true;
   try {
@@ -42,7 +43,9 @@ async function loginUser(errors?: string[]) {
       remember: isRemember.value, 
     });
     const loggedUser = response.data.success.data;
-    authStore.setUser(loggedUser)  
+    authStore.setUser(loggedUser)
+    
+
     success.value = true;
     router.push({ name: 'DashboardHome' })
   } catch (e) {

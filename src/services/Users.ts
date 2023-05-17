@@ -1,9 +1,11 @@
 import axios from '@/plugins/axios';
 import { CRUDService, type SuccessResponse, type TableResponse } from './types';
 
-const base = 'user';
-
 class Users extends CRUDService<User, CreateUser>{
+  constructor() {
+    super('user')
+  }
+
   // Auth
   login(params?: any) {
     return axios.post<SuccessResponse<User>>(`/login`, params);
@@ -14,36 +16,12 @@ class Users extends CRUDService<User, CreateUser>{
   register(user: CreateUser) {
     return axios.post<SuccessResponse<User>>(`/register`, user);    
   }
+  verifyAccount(params: { email: string, token: string }) {
+    return axios.post('/verify-account', params);
+  }
 }
 
-export default new Users(base);
-
-// export default {
-//   // Auth
-//   login(params?: any) {
-//     return axios.post<SuccessResponse<User>>(`/login`, params);
-//   },
-//   logout(params?: any) {
-//     return axios.post<SuccessResponse<User>>(`/logout`, params);
-//   },
-//   register(user: CreateUser) {
-//     return axios.post<SuccessResponse<User>>(`/register`, user);    
-//   },
-
-//   // CRUD
-//   list(params?: any) {
-//     return axios.get<TableResponse<User>>(`/${base}`, { params });
-//   },
-//   show(id: number) {
-//     return axios.get<User>(`/${base}/${id}`);
-//   },
-//   create(data: CreateUser) {
-//     return axios.post<SuccessResponse<User>>(`/${base}/`, data);
-//   },
-//   delete(id: number) {
-//     return axios.post<SuccessResponse>(`/${base}/${id}/delete`);
-//   },
-// }
+export default new Users();
 
 
 /** __TYPE DEFINITION__ */

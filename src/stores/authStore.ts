@@ -2,7 +2,7 @@ import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { User } from '@/services/Users';
 
-export const useAuthStore = defineStore('counter', () => { 
+export const useAuthStore = defineStore('user', () => { 
   const user = ref<User>(getRememberedUser());
   // const token = computed(() => user.value?.token)
   

@@ -81,13 +81,13 @@ const props = defineProps({
     required: false,
   },
   persistColumnOnMobile: {
-    type: Array as PropType<number[]>,
+    type: Array as PropType<number[] | string[]>,
     default: ()=>[],
     required: false,
   },
   /** TO be Deprecated */
   persistColumnOnSmall: {
-    type: Array as PropType<number[]>,
+    type: Array as PropType<number[] | string[]>,
     default: ()=>[],
     required: false,
   },
@@ -279,7 +279,23 @@ function internalPaginate(items: Record<string, any>[]) {
 
 // List of columns displayable in mobile dimensions
 const visibleColumns = computed(()=>{
-  const _visible = [...(props.persistColumnOnMobile || props.persistColumnOnSmall)];
+  const mobilePersist = props.persistColumnOnMobile || props.persistColumnOnSmall;
+  const _mobilePersist = mobilePersist.map((col)=> {
+    if (typeof col === 'number') return col;
+
+    const headerByKey = props.headers.findIndex(headers=>{
+      if (typeof headers === 'string') 
+        return headers === col;
+      else
+        return `${headers.key}.${headers.subKey}` === col 
+                || headers.key === col;
+    })
+    
+    return headerByKey >= 0 ? headerByKey : -1; 
+  });
+
+  const _visible = [..._mobilePersist];
+  
   for (let i = 0; i < +props.mobileColumnNumber; i++) {
     _visible.push(i+visibleCellOffset.value)
   }

@@ -12,6 +12,12 @@ describe(name, () => {
     expect(wrapper.find('button').exists()).toBe(true)
   })
 
+  it('renders a link element if to prop is not empty', () => {
+    const wrapper = mount(AppButton, { props: { to: '/form'} })
+    expect(wrapper.find('routerlink').attributes()).toHaveProperty('to')
+    expect(wrapper.find('routerlink').exists()).toBe(true)
+  })
+
   it('emits a click event when clicked', () => {
     const wrapper = mount(AppButton)
     wrapper.find('button').trigger('click')
