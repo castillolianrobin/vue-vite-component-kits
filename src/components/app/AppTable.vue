@@ -279,8 +279,8 @@ function internalPaginate(items: Record<string, any>[]) {
 
 // List of columns displayable in mobile dimensions
 const visibleColumns = computed(()=>{
-  const mobilePersist = props.persistColumnOnMobile || props.persistColumnOnSmall;
-  const _mobilePersist = mobilePersist.map((col)=> {
+  const mobilePersistProps = props.persistColumnOnMobile || props.persistColumnOnSmall;
+  const mobilePersistCol = mobilePersistProps.map((col)=> {
     if (typeof col === 'number') return col;
 
     const headerByKey = props.headers.findIndex(headers=>{
@@ -294,7 +294,7 @@ const visibleColumns = computed(()=>{
     return headerByKey >= 0 ? headerByKey : -1; 
   });
 
-  const _visible = [..._mobilePersist];
+  const _visible = [...mobilePersistCol];
   
   for (let i = 0; i < +props.mobileColumnNumber; i++) {
     _visible.push(i+visibleCellOffset.value)
@@ -497,14 +497,20 @@ function getNestedString(o: { [key: string]: any; }, s: string) {
               <td
                 v-for="(property, propertyIndex) in headersComputed"
                 :key="`table-item-${itemIndex}-${propertyIndex}`"
-                :class="`
-                  py-2 md:pl-2 md:pr-2
-                  item-${itemIndex}-${property.key}
-                `"
+                :class="[
+                  `py-2 md:pl-2 md:pr-2`,
+                  {
+                    [`item-${itemIndex}-${property.key}`]: !property.subKey,
+                    [`item-${itemIndex}-${property.key}-${property.subKey}`]: property.subKey,
+                  },
+                ]"
               >
                 <slot
-                  :name="`item-${property.key}`"
-                  v-bind="{ item }"
+                  :name="property.subKey ? `item-${property.key}-${property.subKey}` : `item-${property.key}`"
+                  v-bind="{ 
+                    item, 
+                    data: property.subKey ? getNestedString(item, `${property.key}.${property.subKey}`) : item[property.key]  
+                  }"
                 >
                   {{ property.subKey 
                     ? getNestedString(item, `${property.key}.${property.subKey}`)  
@@ -517,12 +523,14 @@ function getNestedString(o: { [key: string]: any; }, s: string) {
         </slot>
       </tbody>
     </table>
-    <AppPagination
-      v-if="props.items.length"
-      :length="pageLengthComputed"
-      :model-value="currentPageComputed"
-      :disabled="props.loading || props.disabled"
-      @update:model-value="onPageChangeHandler"
-    ></AppPagination>
+    <div class="mt-2 flex justify-center md:justify-end">
+      <AppPagination
+        v-if="props.items.length"
+        :length="pageLengthComputed"
+        :model-value="currentPageComputed"
+        :disabled="props.loading || props.disabled"
+        @update:model-value="onPageChangeHandler"
+      ></AppPagination>
+    </div>
   </div>
 </template>

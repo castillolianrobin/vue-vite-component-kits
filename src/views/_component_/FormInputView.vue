@@ -26,6 +26,7 @@ const inputs:Input[] = [
 ]
 
 const defaultInput = ref('');
+
 const PasswordInput = ref('');
 const NumberInput = ref(0);
 const defaultTextArea = ref('');
@@ -35,7 +36,6 @@ const defaultTextArea = ref('');
 <template>
   <div class="p-3 px-6 w-full h-full">
     <PageHeader>Form Inputs & Text Area</PageHeader>
-    
     <ComponentCard title="Text Inputs">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-x-7 gap-4">
           <AppFormInput

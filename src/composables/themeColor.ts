@@ -36,7 +36,7 @@ export const themedColorProps = {
 type Color = ThemeColors | Ref<ThemeColors|undefined>;
 
 /** List of available color names in the project's theme */
-export type themeNames = 'primary'|'secondary'|'info'|'alert'|'error'|'success';
+type ThemeNames = 'primary'|'secondary'|'info'|'alert'|'error'|'success';
 
 /** Type format definition for availble theme colors */
-export type ThemeColors = `${themeNames}-${number}`|'black'|'white'|`[${string}]`;
+export type ThemeColors = `${ThemeNames}-${number}`|'black'|'white'|`[${string}]`;

@@ -127,12 +127,14 @@ describe(name, ()=>{
         { text: 'Header 1', key: 'header_1' },
         { text: 'Header 2', key: 'header_2' },
         { text: 'Header 3', key: 'header_3'},
+        { text: 'Header 4', key: 'header_4', subKey: 'subType1'},
       ];
       const items: Record<string, any>  = [
         { 
           header_1: 'content 1', 
           header_2: 'content 2', 
           header_3: 'content 3', 
+          header_4: { subType1: 'Test Subtype' }, 
         },
       ];
       const wrapper = mount(AppTable, { 
@@ -141,10 +143,15 @@ describe(name, ()=>{
       const item_1 = wrapper.find(`.item-${0}-${headers[0].key}`);
       const item_2 = wrapper.find(`.item-${0}-${headers[1].key}`);
       const item_3 = wrapper.find(`.item-${0}-${headers[2].key}`);
+      // With subkey
+      const item_4 = wrapper.find(`.item-${0}-${headers[3].key}-${headers[3].subKey}`);
 
       expect(item_1.text()).toBe(items[0][headers[0].key]);
       expect(item_2.text()).toBe(items[0][headers[1].key]);
       expect(item_3.text()).toBe(items[0][headers[2].key]);
+      if (headers[3].subKey) {
+        expect(item_4.text()).toBe(items[0][headers[3].key]?.[headers[3].subKey]);
+      }
     })
 
 

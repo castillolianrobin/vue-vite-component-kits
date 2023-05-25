@@ -135,7 +135,7 @@ async function loginUser(errors?: string[]) {
             >
               <!-- Submit Button -->
               <AppButton
-                variant="text"
+              variant="text"
                 class="mr-1"
                 :disabled="loading"
                 :to="{ name: 'SignUp' }"

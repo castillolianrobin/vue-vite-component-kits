@@ -43,14 +43,14 @@ const borderClass = computed(()=>{
     case 'outline': return `border-${unref(color)}`;   
     case 'solid': default: return `border-${unref(color)}`;
   }
-})
+});
 const textClass = computed(()=>{
   switch (props.variant) {
     case 'text': return `text-${unref(color)} disabled:text-opacity-50 hover:brightness-150`;    
     case 'outline': return `text-${unref(color)} hover:text-white active:text-${unref(color)} disabled:text-${unref(color)}`;   
     case 'solid': default: return `text-white`;
   }
-})
+});
 
 </script>
 
@@ -74,7 +74,7 @@ const textClass = computed(()=>{
       transition
       disabled:opacity-75
     "
-    :aria-busy="loading"
+    :aria-busy="props.loading"
     v-bind="{ ...props }"
   >
     <AppLoading 

@@ -25,7 +25,8 @@ const inputs:Input[] = [
 ]
 
 const inputVal = ref(new Array(inputs.length).fill(''));
-
+const gender = ref('');
+const id = ref([]);
 </script>
 
 <template>
@@ -35,7 +36,6 @@ const inputVal = ref(new Array(inputs.length).fill(''));
     <ComponentCard title="Form Validation">
         <AppForm 
           class="p-4 flex flex-col gap-4"
-          color="error-500"
         >
           <AppFormInput
             v-for="(input, index) in inputs"
@@ -45,7 +45,8 @@ const inputVal = ref(new Array(inputs.length).fill(''));
           ></AppFormInput>
 
           <AppFormRadioGroup
-            label="Gender"
+          v-model="gender"  
+          label="Gender"
             :items="[
               { label: 'Male', value: 'male' },
               { label: 'Female', value: 'female'},
@@ -55,6 +56,7 @@ const inputVal = ref(new Array(inputs.length).fill(''));
           ></AppFormRadioGroup>
 
           <AppFormCheckboxGroup
+            v-model="id"  
             label="ID"
             :items="[
               { label: 'Government ID', value: 1 },

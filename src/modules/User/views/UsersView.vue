@@ -60,6 +60,10 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
+      <!-- Type Column -->
+      <template #item-userType-name="{ item }">
+        <span class="capitalize">{{ item.userType.name }}</span>
+      </template>
       <!-- Status Column -->
       <template #item-status="{ item }">
         <span 
