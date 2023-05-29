@@ -19,9 +19,9 @@ const dropPositions: DropProp[] = [
 </script>
 
 <template>
-  <div class="p-3 px-6 w-full h-full">
-    <PageHeader>Dropdowns</PageHeader>
-    <div class="">
+    <div class="p-3 px-6 w-full h-full">
+      <PageHeader>Dropdowns</PageHeader>
+      <div class="">
       <!-- Default Dropdown -->
       <ComponentCard title="Default Dropdown">
         <div class="flex flex-wrap justify-center gap-4">
@@ -82,7 +82,7 @@ const dropPositions: DropProp[] = [
             <AppDropdown>
               <div class="p-2 bg-primary-300 relative whitespace-nowrap">
                 <p>Showing an AppCard instead</p>
-              w  <AppCard class="w-full">
+                <AppCard class="w-full">
                   Hello World
                 </AppCard>
               </div>

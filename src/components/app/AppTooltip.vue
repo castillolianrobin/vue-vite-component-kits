@@ -85,11 +85,11 @@ const arrowClass = computed(()=>{
         <div
           class="flex justify-center absolute"
           :class="{
-            'right-0': ['top', 'bottom', 'left'].includes(direction),
-            'left-0': ['top', 'bottom', 'right'].includes(direction),
-            'top-0': ['bottom', 'left', 'right'].includes(direction),
-            'top-1/3': ['left', 'right'].includes(direction),
-            'bottom-0': ['left', 'top', 'right'].includes(direction),
+            'right-0': ['top', 'bottom', 'left'].includes(props.direction),
+            'left-0': ['top', 'bottom', 'right'].includes(props.direction),
+            'top-0': ['bottom', 'left', 'right'].includes(props.direction),
+            'top-1/3': ['left', 'right'].includes(props.direction),
+            'bottom-0': ['left', 'top', 'right'].includes(props.direction),
           }"
         >
           <!-- Arrow -->
@@ -100,7 +100,7 @@ const arrowClass = computed(()=>{
               arrowClass 
             ]"
           ></div>
-        </div>
+        </div>  
         <!-- Text -->
         <label
           :class="`

@@ -110,7 +110,10 @@ const positionClass = computed(()=>{
       <div 
         v-if="isActive || props.eager"
         v-show="isActive"
-        :class="[ 'absolute min-w-full z-20', positionClass ]"
+        :class="[ 
+          'absolute min-w-full w-fit z-20', 
+          positionClass 
+        ]"
       >
         <slot>
           <ul 

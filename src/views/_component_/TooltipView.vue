@@ -21,10 +21,10 @@ import { AppButton, AppCard, AppTooltip } from '@/components/app';
           ></AppTooltip>
         </div>
       </div>
-      </ComponentCard>
+    </ComponentCard>
 
-      <!-- Tooltio Direction -->
-      <ComponentCard title="Tooltip Directions">
+    <!-- Tooltio Direction -->
+    <ComponentCard title="Tooltip Directions">
       <div class="p-4">
         <div class="grid grid-cols-2 lg:grid-cols-4 item-center justify-center gap-5">
           <AppTooltip 
