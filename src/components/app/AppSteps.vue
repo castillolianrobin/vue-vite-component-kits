@@ -50,7 +50,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
 
 <template>
   <div class="flex flex-col">
-    <!-- Current Step: Mobile -->
+    <!-- Current Step: Mobile View -->
     <div
       role="presentation" 
       class="mb-3 flex items-center gap-2 sm:sr-only"
@@ -73,9 +73,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
       </p>
     </div>
     <!-- Steps -->
-    <ol
-      class="flex flex-wrap"
-    >
+    <ol class="flex flex-wrap">
       <li
         v-for="step, i in stepsComputed.length"
         :key="stepsComputed[i]"
@@ -85,7 +83,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
           flex flex-col
           text-xs md:text-sm
         "
-        :class="{ 'hidden md:flex': step === 1 }"
+        :class="{ 'hidden sm:flex': step === 1 }"
       >
         <!-- Step Number -->
         <div 
@@ -146,7 +144,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
         </div>
         <!-- Step text -->
         <div 
-          class="min-h-[2rem] hidden sm:flex justify-center"
+          class="relative min-h-[2rem] hidden sm:flex justify-center"
         >
           <span 
             :class="[
@@ -165,7 +163,7 @@ watch(toRef(props, 'modelValue'), (val)=> {
     <!-- Content -->
     <div 
       class="my-3 relative overflow-hidden"
-      :class="containerClass"
+      :class="props.containerClass"
     >
         <TransitionGroup
           enter-active-class="duration-200 ease-out"
