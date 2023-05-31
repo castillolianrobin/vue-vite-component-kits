@@ -90,7 +90,7 @@ const persistModal = ref(true);
       <!-- Custom modal -->
       <ComponentCard title="Custom Modal">
         <AppModal>
-          <template #template="{toggleModal }">
+          <template #modal="{ toggleModal }">
             <div class="bg-primary-500 p-4 rounded-lg">
               <h1 
                 class="my-3 text-lg text-center drop-shadow-lg font-semibold text-white"

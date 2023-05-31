@@ -24,7 +24,7 @@ const props = defineProps({
 });
 const emits = defineEmits(['update:active']);
 
-// internal modal state
+/** Modal Logic */
 
 const isActive = ref(props.active);
 const isClicked = ref(false);
@@ -74,7 +74,7 @@ function toggleModal(state: boolean | null = null) {
           ]"
         >
           <slot 
-            name="template" 
+            name="modal" 
             v-bind="{ toggleModal, isActive }"
           >
             <!-- Default Modal Template -->
