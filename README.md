@@ -6,9 +6,10 @@ The components are customizable and themeable, specially in colors. All the comp
 
 ## [<img width="20" src="https://www.netlify.com/v3/img/components/logomark-dark.png" alt="Netlify logo"> Component List ](https://component-kits-vue3.netlify.app/)
 ## [<img width="20" src="https://www.netlify.com/v3/img/components/logomark-dark.png" alt="Netlify logo"> Demo ](https://component-kits-vue3.netlify.app/login)
+## [<img width="20" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub Logo"> React Version ](https://github.com/castillolianrobin/react-vite-component-kits/)
 
 
-## Dependencies
+## Dependencies 
 
 - [TailwindCSS](https://tailwindcss.com/)
 - [Vite](https://vitejs.dev/)
