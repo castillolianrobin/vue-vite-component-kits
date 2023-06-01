@@ -21,7 +21,7 @@ import { AppButton } from '@/components/app';
         <span class="text-secondary-500">secondary</span>, 
         <span class="text-alert-500">alert</span>, 
         <span class="text-error-500">error</span>, 
-        <span class="text-success-500">successt</span>, 
+        <span class="text-success-500">success</span> 
       ). 
       The components itself are also flexible via props which would lessen the need to customize the component codebase.
     </p>
