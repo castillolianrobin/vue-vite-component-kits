@@ -129,7 +129,7 @@ const radioItems = [
         </div>
     </ComponentCard>
 
-    <!-- Default Radio Button -->
+    <!--  Radio Button Gropp -->
     <ComponentCard title="Radio Group">
         <div class="grid md: grid-cols-2 gap-4 items-center">
           <div class="flex">

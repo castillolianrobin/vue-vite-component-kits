@@ -25,7 +25,7 @@ const hasError = computed(()=>
   >
     <p
       v-if="hasError" 
-      :class="`text-error-500 text-xs`"
+      :class="`mt-1 text-error-500 text-xs`"
       aria-label="error"
       role="alert"
     >

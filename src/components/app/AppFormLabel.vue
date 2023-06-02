@@ -31,6 +31,7 @@ const textSizeClass = computed(()=>{
   <label 
     :for="props.name" 
     :class="[
+      'pb-1',
       textSizeClass,
       `select-none`,
       'transition-colors',
