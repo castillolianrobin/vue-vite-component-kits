@@ -1,11 +1,13 @@
 # Vue 3 Component Kits 
 
-<img alt="Vue" src="https://img.shields.io/badge/-Vue-3EAF7C?style=flat-square&logo=Vue.js&logoColor=white" />
-<img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
-<img alt="Tailwind" src="https://img.shields.io/badge/-Tailwind-0EA5E9?style=flat-square&logo=tailwindcss&logoColor=white" />
-<img alt="Vite" src="https://img.shields.io/badge/-Vite-8869F2?style=flat-square&logo=vite&logoColor=white" /> 
-<img alt="Jest" src="https://img.shields.io/badge/-Vitest-6da13f?style=flat-square&logo=Vitest&logoColor=white" />
-<img alt="Cypress" src="https://img.shields.io/badge/-Cypress-007780?style=flat-square&logo=cypress&logoColor=white" />
+<div>
+    <img alt="Vue" src="https://img.shields.io/badge/-Vue-3EAF7C?style=flat-square&logo=Vue.js&logoColor=white" />
+    <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
+    <img alt="Tailwind" src="https://img.shields.io/badge/-Tailwind-0EA5E9?style=flat-square&logo=tailwindcss&logoColor=white" />
+    <img alt="Vite" src="https://img.shields.io/badge/-Vite-8869F2?style=flat-square&logo=vite&logoColor=white" /> 
+    <img alt="Jest" src="https://img.shields.io/badge/-Vitest-6da13f?style=flat-square&logo=Vitest&logoColor=white" />
+    <img alt="Cypress" src="https://img.shields.io/badge/-Cypress-007780?style=flat-square&logo=cypress&logoColor=white" />
+</div>
 
 <br>
 <br>
