@@ -33,7 +33,7 @@ const error = ref('');
 
 // Login Function
 async function loginUser(errors?: string[]) {
-  if (errors?.length  ) return;
+  if (errors?.length) return;
   
   loading.value = true;
   try {

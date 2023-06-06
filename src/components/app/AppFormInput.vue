@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRef, type PropType, type InputHTMLAttributes } from 'vue';
+import { toRef, type PropType, type InputHTMLAttributes, ref } from 'vue';
 // Composables
 import { 
   themedColorProps, 
@@ -13,7 +13,7 @@ import {
 } from '@/composables';
 // App Components
 import { AppFormInputContainer } from '.';
-
+import { EyeSlashIcon, EyeIcon } from '@heroicons/vue/24/solid';
 const props = defineProps({
   /** Default input property "type" */
   type: { 
@@ -44,6 +44,10 @@ const {
   validateOnChange, 
 } = useFormValidation(toRef(props, 'modelValue'), toRef(props, 'validations'), props.name)
 
+
+/** Internal Logic */
+
+const showPass = ref(false);
 </script>
 
 <template>  
@@ -62,6 +66,7 @@ const {
     
     <!-- Input -->
     <input
+      v-bind="{ ...props, ...$attrs }"
       class="
         -m-1 p-1 
         flex-grow 
@@ -73,10 +78,21 @@ const {
       "
       :aria-label="props.name || props.label"
       :value="props.modelValue"
+      :type="showPass ? 'text' : props.type"
       @input="updateInputValue"
       @focus="validateOnChange = true"
-      v-bind="{ ...props, ...$attrs }"
     />
+
+    <span 
+      v-if="props.type === 'password'"
+      class="cursor-pointer"
+      @click="showPass = !showPass"
+    >
+      <component 
+        :is=" showPass ? EyeSlashIcon : EyeIcon" 
+        class="h-6"
+      ></component>
+    </span>
     
     <!-- Append -->
     <slot name="append"></slot>
