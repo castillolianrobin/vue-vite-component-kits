@@ -11,10 +11,9 @@
 
 <br>
 
-<div>
+<div style="overflow: hidden; border-radius: 12px; margin: auto; display: block;" >
     <img 
-        src="https://raw.githubusercontent.com/castillolianrobin/vue-vite-component-kits/main/public/home_sample.png"
-        style="border-radius: 12px; margin: auto; display: block;" 
+        src="https://raw.githubusercontent.com/castillolianrobin/vue-vite-component-kits/main/public/home_sample.png" 
     />
 </div>
 
