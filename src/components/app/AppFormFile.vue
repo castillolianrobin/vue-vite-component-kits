@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { toRef, type PropType, watch, type InputHTMLAttributes, ref, computed, nextTick } from 'vue';
+import { toRef, type PropType, type InputHTMLAttributes, ref, computed, nextTick } from 'vue';
 // Composables
 import { 
   themedColorProps, 
@@ -86,7 +86,6 @@ const {
   isRequired, 
   checkError 
 } = useFormValidation(toRef(props, 'modelValue'), validationComputed, props.name)
-// watch(toRef(props, 'modelValue'), checkError );
 
 
 /** Form File Logic */
@@ -103,7 +102,7 @@ function createThumbnail(file: File) {
 // toggle the file input ref
 function openFileInput() {
   if (props.disabled) return;
-  fileInputRef.value?.click()
+  fileInputRef.value?.click();
 }
 
 // event handler when uploading file
@@ -202,7 +201,7 @@ function drop(event: DragEvent) {
             class="flex gap-1"
             @click="openFileInput"
           >
-            <AppButton size="sm" :color="props.color">
+            <AppButton size="sm" :color="color">
               Browse
             </AppButton>
             <input
@@ -249,9 +248,9 @@ function drop(event: DragEvent) {
             rounded
             cursor-pointer
             brightness-90
-            text-${props.color} 
-            bg-${props.color} bg-opacity-10
-            border border-dashed border-${props.color}
+            text-${color} 
+            bg-${color} bg-opacity-10
+            border border-dashed border-${color}
             flex flex-col justify-center items-center
             transition-colors
           `"
@@ -310,7 +309,7 @@ function drop(event: DragEvent) {
                 p-1
                 w-full
                 overflow-hidden
-                border border-${props.color} rounded
+                border border-${color} rounded
                 flex items-center flex-col md:flex-row 
               `"
             >
