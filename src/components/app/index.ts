@@ -1,5 +1,6 @@
 export { default as AppButton } from './AppButton.vue';
 export { default as AppCard } from './AppCard.vue';
+export { default as AppChip } from './AppChip.vue';
 export { default as AppDropdown } from './AppDropdown.vue';
 export { default as AppForm } from './AppForm.vue';
 export { default as AppFormCheckbox } from './AppFormCheckbox.vue';
@@ -11,6 +12,7 @@ export { default as AppFormInput } from './AppFormInput.vue';
 export { default as AppFormInputContainer } from './AppFormInputContainer.vue';
 export { default as AppFormLabel } from './AppFormLabel.vue';
 export { default as AppFormRadio } from './AppFormRadio.vue';
+export { default as AppFormRating } from './AppFormRating.vue';
 export { default as AppFormRadioGroup } from './AppFormRadioGroup.vue';
 export { default as AppFormSelect, type SelectItemProp } from './AppFormSelect.vue';
 export { default as AppFormTextArea } from './AppFormTextArea.vue';
