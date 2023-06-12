@@ -84,7 +84,7 @@ async function loginUser(errors?: string[]) {
       <AppCard 
         class="login-card p-4 lg:px-10 w-[430px] shadow-none"
       >
-      <h1 class="text-xl font-bold text-center">
+      <h1 class="text-xl font-bold text-center flex items-center justify-center">
           <span class="uppercase">Sign in</span> 
           <AppTooltip
             class="ml-3"
