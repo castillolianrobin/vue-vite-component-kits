@@ -28,7 +28,10 @@ const inputs:Input[] = [
 const defaultInput = ref('');
 
 const PasswordInput = ref('');
-const NumberInput = ref(0);
+const NumberInput = ref('0');
+const DecimalInput = ref('0');
+const MultipleTextInput = ref([]);
+
 const defaultTextArea = ref('');
 
 </script>
@@ -70,6 +73,32 @@ const defaultTextArea = ref('');
               v-bind="{ ...input }"
             ></AppFormInput>
           </div>
+      </ComponentCard>
+    </div>
+
+
+    <div class="grid md:grid-cols-2 gap-4">
+      <ComponentCard title="Decimal Inputs">
+          <div class="grid md:grid-cols-2 gap-2">
+            <AppFormInput
+              v-model="DecimalInput"
+              v-for="(input, index) in [inputs[0],inputs[4]]"
+              :key="`decimal-${index}`"
+              type="decimal"
+              v-bind="{ ...input }"
+            ></AppFormInput>
+          </div>
+      </ComponentCard>
+  
+      <ComponentCard title="Multiple Text Inputs">
+        <AppFormInput
+          v-model="MultipleTextInput"
+          v-for="(input, index) in [inputs[0]]"
+          :key="`multi-${index}`"
+          type="multiple-text"
+          placeholder="Press enter to add"
+          v-bind="{ ...input }"
+        ></AppFormInput>
       </ComponentCard>
     </div>
 

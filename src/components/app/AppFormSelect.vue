@@ -139,85 +139,93 @@ type SelectItem = SelectItemProp | string | number;
     container-class="relative"
     v-on-click-outside="()=>toggleItems(false)"
   >
-    <slot name="prepend"></slot>
-    
-    <!-- Select Display -->
-    <div class="flex-shrink flex-grow">
-      <slot name="display" v-bind="{ displayValue, disabled: props.disabled }">
-        <input
-          readonly
-          :value="displayValue"
-          :disabled="props.disabled"
-          :class="{
-            'cursor-pointer': !props.disabled && !$attrs.readonly
-          }"
-          tabindex="0"
-          class="
-            w-full 
-            outline-none 
-            focus 
-            disabled:text-secondary-400 
-            bg-transparent
-          "
-          @click="toggleItems()" 
-          @keydown.space="toggleItems()" 
-        />
-      </slot>
-    </div>
-
-    <!-- Select Items -->
-    <Transition
-      enter-active-class="duration-150 ease-out"
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      leave-active-class="duration-150 ease-in"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
+    <div 
+      class="w-full flex items-center"
+      :class="{
+        'cursor-pointer': !props.disabled && !$attrs.readonly
+      }"
+      @click="toggleItems()" 
+      @keydown.space="toggleItems()"
     >
-      <ul
-        v-if="isOpen"
-        class="
-          z-10
-          w-full max-h-[150px]
-          overflow-auto scrollbar
-          absolute top-[115%] right-0 
-          bg-white dark:bg-secondary-800
-          outline outline-1 outline-secondary-200 dark:outline-secondary-600
-          shadow 
-          rounded 
-        "
-        role="listbox"
+      <slot name="prepend"></slot>
+
+      <!-- Select Display -->
+      <div class="flex-shrink flex-grow">
+        <slot name="display" v-bind="{ displayValue, disabled: props.disabled }">
+          <input
+            readonly
+            :value="displayValue"
+            :disabled="props.disabled"
+            tabindex="0"
+            class="
+              w-full 
+              outline-none 
+              focus 
+              disabled:text-secondary-400 
+              bg-transparent
+            "
+            :class="{
+              'cursor-pointer': !props.disabled && !$attrs.readonly
+            }" 
+          />
+        </slot>
+      </div>
+
+      <slot name="append"></slot>
+      <div>
+        <component 
+          :is="isOpen ? ChevronUpIcon : ChevronDownIcon"
+          class="h-6"
+        ></component>
+      </div>
+
+      <!-- Select Items -->
+      <Transition
+        enter-active-class="duration-150 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="duration-150 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
       >
-        <!-- Select Item -->
-        <li
-          v-for="(item, index) in props.items"
-          :key="getItemKey(item, index)"
-          :class="[
-            'p-1',
-            'outline-none',
-            'transition',
-            'hover:text-white focus:text-white',
-            `hover:bg-${color} focus:bg-${color}`,
-            { 
-              [`bg-${color}/75 text-white`]: isActive(item) 
-            }
-          ]"
-          :aria-selected="isActive(item)"
-          tabindex="0"
-          role="option"
-          @click="onItemSelect(item)"
-          @keypress.space="onItemSelect(item)"
+        <ul
+          v-if="isOpen"
+          class="
+            z-10
+            w-full max-h-[150px]
+            overflow-auto scrollbar
+            absolute top-[115%] right-0 
+            bg-white dark:bg-secondary-800
+            outline outline-1 outline-secondary-200 dark:outline-secondary-600
+            shadow 
+            rounded 
+          "
+          role="listbox"
         >
-          {{ getItemLabel(item) }}
-        </li>
-      </ul>
-    </Transition>
-    
-    <slot name="append"></slot>
-    <div>
-      <component :is="isOpen ? ChevronUpIcon : ChevronDownIcon"
-        class="h-6"
-      ></component>
+          <!-- Select Item -->
+          <li
+            v-for="(item, index) in props.items"
+            :key="getItemKey(item, index)"
+            :class="[
+              'p-1',
+              'outline-none',
+              'transition',
+              'hover:text-white focus:text-white',
+              `hover:bg-${color} focus:bg-${color}`,
+              { 
+                [`bg-${color}/75 text-white`]: isActive(item) 
+              }
+            ]"
+            :aria-selected="isActive(item)"
+            tabindex="0"
+            role="option"
+            @click="onItemSelect(item)"
+            @keypress.space="onItemSelect(item)"
+          >
+            {{ getItemLabel(item) }}
+          </li>
+        </ul>
+      </Transition>
     </div>
   </AppFormInputContainer>
 </template>

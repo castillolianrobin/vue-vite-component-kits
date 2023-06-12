@@ -107,6 +107,13 @@ export default [
     meta: { layout: 'Dashboard' },
   },
   {
+    path: '/form/rating',
+    name: 'FormRating',
+    label: 'Form Rating',
+    component: () => import('../views/_component_/FormRatingView.vue'),
+    meta: { layout: 'Dashboard' },
+  },
+  {
     path: '/form/date-picker',
     name: 'FormDatePicker',
     label: 'Form Date Picker',

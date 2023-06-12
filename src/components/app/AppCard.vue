@@ -9,8 +9,8 @@ const slots = useSlots();
     role="dialog"
     aria-label="card" 
     class="
-      card 
-      p-3
+      card
+      p-1 md:p-3
       flex flex-col 
       bg-white dark:bg-secondary-800
       text-secondary-800 dark:text-secondary-200

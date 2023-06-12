@@ -55,7 +55,7 @@ function onChangeHandler() {
   <div class="inline dark:text-secondary-100">
     <div 
       :class="{ 'group cursor-pointer': !props.disabled }"
-      class="flex gap-1 flex-nowrap"
+      class="flex gap-1 flex-nowrap items-center"
       :aria-checked="isActive"
       :aria-disabled="props.disabled"
       role="checkbox"
@@ -136,6 +136,7 @@ function onChangeHandler() {
         :disabled="props.disabled"
         :class="[
           `group-hover:text-${color}`,
+          props.labelClass,
           {
             'cursor-pointer': !props.disabled,
             [`text-${color}`]: isActive,

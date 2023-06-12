@@ -4,79 +4,101 @@ import { defineAsyncComponent, ref, type FunctionalComponent, type HTMLAttribute
 // Components
 import { AppButton } from '@/components/app';
 // icons
+import {  Bars3Icon as HamburgerIcon } from '@heroicons/vue/24/solid'
 // Extra
-import dashboardRoutes from '@/router/dashboardRoutes';
-import userRoutes from '@/modules/User/routes';
+import dashboardRoutes from '@/modules/Dashboard/dashboard.routes';
+import userRoutes from '@/modules/User/user.routes';
 import {
   default as LayoutDashboardSideBarItem,
   type NavigationItem
 } from './LayoutDashboardSideBarItem.vue';
+import productRoutes from '@/modules/Product/product.routes';
 
 const active = ref(false);
 
 const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ name, label, icon, children, hidden })=>({
   name: name, 
   label,
-  icon: icon ? defineAsyncComponent(icon) : undefined,
+  icon: icon ? defineAsyncComponent(icon) : icon,
   children: children ? children.map(mapRouteToSidebar) : undefined,
   hidden, 
 });
 
 const navigations: NavigationItem[] = [
   ...dashboardRoutes,
-  ...userRoutes,
+  ...productRoutes,
+  // ...userRoutes,
 ].map(mapRouteToSidebar);
 
 
-console.log(navigations);
 
 </script>
 
 <template>
   <div
     class="
-      flex
+      pt-3
+      flex flex-col
       relative
       h-full
-      bg-primary-900 text-secondary-200
+      bg-secondary-900 dark:bg-secondary-800 
+      text-secondary-200
       shadow-xl
       z-20
     "
   >
-    <div class="p-1 flex-shrink-0 md:sr-only z-20 shadow-md">
+    
+    <!-- User Name -->
+    <div 
+      class="mx-1 px-2 py-1 max-w-[240px] hidden md:block border border-secondary-500 select-none"
+    >
+      <p class="w-[93%] truncate text-center uppercase text-sm text-secondary-500">
+        Lian Robin Casillo 
+      </p>
+    </div>
+
+    <!-- Hamburger Icon -->
+    <div 
+      class="ml-auto flex-shrink-0 z-20 shadow-md md:invisible"
+    >
       <AppButton 
-        variant="outline"
+        variant="text"
         size="sm"
-        class="px-0.5"
+        class="px-0"
         color="white"
         @click="active = !active"
       >
-        {{ active ? '&lsaquo;' : '&rsaquo;'  }}
+        <HamburgerIcon class="h-6">
+        </HamburgerIcon>
       </AppButton>
     </div>
+
     <aside 
         class="
+          pl-1
           transition-all
           md:w-screen max-w-[250px] h-full 
           overflow-auto
-          absolute md:relative left-full md:left-0  
+          absolute md:relative top-[41px] md:top-0  
           bg-inherit
         "
         :class="{
-          'w-0': !active,
+          'w-[30px]': !active,
           'w-screen': active,
         }"
       >
         <ul 
-          class="mt-5"
+          class=""
         >
           <LayoutDashboardSideBarItem
             v-for="{ 
               label, name, icon, children, 
             } in navigations"
             :key="label"
+            :hide-label="!active"
             class="my-4 border-l-4 border-primary-500/0"
             v-bind="{ label, name, icon, children }"
+            @click="active = false"
           ></LayoutDashboardSideBarItem>
         </ul>
     </aside>
