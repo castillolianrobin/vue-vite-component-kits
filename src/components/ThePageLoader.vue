@@ -1,8 +1,9 @@
 
 <script setup lang="ts">
 import { usePageLoadStore } from '@/stores/pageLoadStore';
+import { storeToRefs } from 'pinia';
 
-const { pageLoading } = usePageLoadStore()
+const { pageLoading } = storeToRefs(usePageLoadStore())
 </script>
 
 <template>
