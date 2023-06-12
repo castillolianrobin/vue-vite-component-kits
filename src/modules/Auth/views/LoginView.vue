@@ -64,7 +64,7 @@ async function loginUser(errors?: string[]) {
 
 <template>
   <div 
-    class="
+    class=" 
       h-full w-full
       flex flex-col md:flex-row
       bg-[url('/src/assets/login-background.png')] bg-cover
@@ -73,7 +73,7 @@ async function loginUser(errors?: string[]) {
     <!--Login Card Column  -->
     <div 
       class="
-        order-1 md:order-2 
+        order-2 md:order-2 
         flex-grow
         p-5 
         md:w-1/2 
@@ -82,7 +82,7 @@ async function loginUser(errors?: string[]) {
     >
 
       <AppCard 
-        class="login-card p-4 lg:px-10 w-[430px] shadow-none"
+        class="login-card p-4 lg:px-10 w-full max-w-[430px] shadow-none"
       >
       <h1 class="text-xl font-bold text-center flex items-center justify-center">
           <span class="uppercase">Sign in</span> 
@@ -174,19 +174,20 @@ async function loginUser(errors?: string[]) {
     <div 
       class="
         md:w-1/2
-        order-2 md:order-1
-        p-5
+        order-1 md:order-1
+        md:p-5
         flex flex-col items-center justify-center
       "
     >
     
-    <img 
-            :src="logo" 
-            class="mb-10 mx-auto h-20 drop-shadow-lg" 
-            alt="Logo" 
-          />
+      <img 
+        :src="logo" 
+        class="md:mb-10 mx-auto h-24 drop-shadow-lg" 
+        alt="Logo" 
+      />
       <h1 
         class="
+          hidden md:block
           p-1 px-5 
           bg-primary-700 
           drop-shadow-lg 
@@ -195,7 +196,8 @@ async function loginUser(errors?: string[]) {
       >
         Pack-it Portal
       </h1>
-      <p class="shadow-lg p-1 bg-white hidden md:block mt-3 text-lg text-primary-700">
+      <p class="
+        shadow-lg p-1 bg-white hidden md:block mt-3 text-lg text-primary-700">
         Bring your hardware online
       </p>
     </div>
