@@ -2,9 +2,11 @@
 import { RouterView } from 'vue-router'
 import LayoutHandler from './layout/LayoutHandler.vue';
 import { TransitionFade } from '@/components/transitions'
+import ThePageLoader from './components/ThePageLoader.vue';
 </script>
 
 <template>
+  <ThePageLoader></ThePageLoader>
   <LayoutHandler>
     <RouterView  v-slot="{ Component }" >
       <TransitionFade>

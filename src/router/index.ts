@@ -12,6 +12,7 @@ import userRoutes from '@/modules/User/user.routes';
 import authRoutes from '@/modules/Auth/auth.routes';
 import dashboardRoutes from '@/modules/Dashboard/dashboard.routes';
 import productRoutes from '@/modules/Product/product.routes';
+import { usePageLoadStore } from '@/stores/pageLoadStore';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -76,12 +77,23 @@ const router = createRouter({
 
 
 router.beforeEach((to, from, next)=> {
+  //Set page loader to true
+  const { setPageLoading } = usePageLoadStore()
+  setPageLoading(true);
+  
+  
   if (!to.meta.middleware) return next();
 
   // Run middlewares
   const context = {from, next, router, to };
   return executeMiddlewares(context);
 })
+
+router.afterEach(()=>{
+  //Set page loader to true
+  const { setPageLoading } = usePageLoadStore()
+  setPageLoading(false);
+});
 
 export default router
 
