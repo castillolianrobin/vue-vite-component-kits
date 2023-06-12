@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+// Custom Font
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 @layer utilities {
   html {
     @apply overflow-hidden;

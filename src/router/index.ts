@@ -1,12 +1,17 @@
+import { RouterView, createRouter, createWebHistory } from 'vue-router'
 import LayoutDefault from '@/layout/layouts/LayoutDefault.vue'
-import { createRouter, createWebHistory } from 'vue-router'
-import dashboardRoutes from './dashboardRoutes';
-import componentRoutes from './componentRoutes';
-import userRoutes from '@/modules/User/routes';
-
 import HomeViewVue from '@/views/public/HomeView.vue';
-import { executeMiddlewares } from '@/middlewares';
+// Middleware
 import authentication from '@/middlewares/authentication';
+import { executeMiddlewares } from '@/middlewares';
+// Extra Routes
+// import dashboardRoutes from './dashboardRoutes';
+import componentRoutes from './componentRoutes';
+// Modules
+import userRoutes from '@/modules/User/user.routes';
+import authRoutes from '@/modules/Auth/auth.routes';
+import dashboardRoutes from '@/modules/Dashboard/dashboard.routes';
+import productRoutes from '@/modules/Product/product.routes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -16,36 +21,39 @@ const router = createRouter({
       component: HomeViewVue  ,
       meta: { layout: 'Default' },
     },
-    {
-      path: '/login',
-      name: 'Login',
-      component: ()=>import('@/views/public/LoginView.vue'),
-      meta: { layout: 'Default' },
-    },
-    {
-      path: '/signup',
-      name: 'SignUp',
-      component: ()=>import('@/views/public/SignUpView.vue'),
-      meta: { layout: 'Default' },
-    },
-    {
-      path: '/verify',
-      name: 'VerifyUser',
-      component: ()=>import('@/views/public/VerifyAccountView.vue'),
-      meta: { layout: 'Default' },
-    },
+    // {
+    //   path: '/login',
+    //   name: 'Login',
+    //   component: ()=>import('@/views/public/LoginView.vue'),
+    //   meta: { layout: 'Default' },
+    // },
+    // {
+    //   path: '/signup',
+    //   name: 'SignUp',
+    //   component: ()=>import('@/views/public/SignUpView.vue'),
+    //   meta: { layout: 'Default' },
+    // },
+    // {
+    //   path: '/verify',
+    //   name: 'VerifyUser',
+    //   component: ()=>import('@/views/public/VerifyAccountView.vue'),
+    //   meta: { layout: 'Default' },
+    // },
+    ...authRoutes,
 
     // Dashboard Routes
     {
       path: '/dashboard',
-      component: LayoutDefault,
+      component: RouterView,
       meta: { 
-        layout: 'Default', 
-        middleware: [ authentication ] 
+        layout: 'Dashboard', 
+        // middleware: [ authentication ] 
       },
       children: [
         ...dashboardRoutes,
-        ...userRoutes,
+        ...productRoutes,
+        // ...dashboardRoutes,
+        // ...userRoutes,
       ],
     },
 
