@@ -37,7 +37,6 @@ watch(pageLoading, (isLoading)=>{
     class="w-full h-1 z-50 fixed top-0 bg-transparent"
   >
     <div 
-      @click="loadingPercent = loadingPercent + 5"
       :class="`
         h-full 
         bg-primary-400 dark:bg-primary-600
