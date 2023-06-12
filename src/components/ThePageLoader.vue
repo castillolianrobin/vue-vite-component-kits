@@ -40,7 +40,7 @@ watch(pageLoading, (isLoading)=>{
       @click="loadingPercent = loadingPercent + 5"
       :class="`
         h-full 
-        bg-primary-400 dark:bg-primary-700
+        bg-primary-400 dark:bg-primary-600
       `"
       :style="{ 
         width: `${loadingPercent}%`,
