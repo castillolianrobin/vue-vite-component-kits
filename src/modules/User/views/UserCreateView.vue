@@ -51,7 +51,7 @@ async function createUser(formError: string[]) {
 </script>
 
 <template>
-  <DashboardBody>
+  <div>
     <!-- Create User Form -->
     <AppForm @validate="createUser">
       <div class="mb-5 flex items-end">
@@ -154,5 +154,5 @@ async function createUser(formError: string[]) {
         </div>
       </div>
     </AppForm>
-  </DashboardBody>
+  </div>
 </template>

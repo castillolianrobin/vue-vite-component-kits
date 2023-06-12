@@ -43,7 +43,7 @@ const datacollection = {
   datasets: [
     {
       label: "Revenue per month",
-      borderColor: colors.orange[400], 
+      borderColor: colors.emerald[400], 
       
       backgroundColor: "#ffc9c9",
       data: [
@@ -92,11 +92,11 @@ const doughtnutLegends = computed(() => ({
     {
       data: doughtnutDataValue.value,
       backgroundColor: [
-        colors.orange[700], 
-        colors.orange[600], 
-        colors.orange[400], 
-        colors.orange[300], 
-        colors.orange[200], 
+        colors.emerald[700], 
+        colors.emerald[600], 
+        colors.emerald[400], 
+        colors.emerald[300], 
+        colors.emerald[200], 
       ],
     },
   ],

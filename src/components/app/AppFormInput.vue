@@ -26,7 +26,7 @@ const props = defineProps({
   ...inputContainerProps,
   ...validationProps,
   modelValue: {
-    type: [String, Array] as PropType<string | MultiTextItem[]>
+    type: [Number, String, Array] as PropType<number | string | MultiTextItem[]>
   },
   /** Default input property "type" */
   type: { 
@@ -85,10 +85,11 @@ function onMultiKeyDownHandler(e: KeyboardEvent) {
 
 // Add new multi text item
 function addItem(text: string) {
-  const id = `${props.modelValue?.length}` +  Math.random() 
+  const valueIsArray = Array.isArray(props.modelValue)
+  const id = `${valueIsArray ? props.modelValue?.length : '1'}` +  Math.random() 
   const item = { text, id };
   
-  if (!Array.isArray(props.modelValue)) {
+  if (!valueIsArray) {
     updateInputValue([item]) 
   } else {
     updateInputValue([...props.modelValue, item]);
@@ -177,9 +178,8 @@ const showPass = ref(false);
     >
       <AppChip  
         v-for="item in Items" 
-        class="mr-1 truncate"
         :key="item?.id" 
-        :color="color"
+        class="mr-1 truncate"
         @close="removeItem(item)"
       >
         {{ item.text }}

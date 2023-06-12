@@ -41,7 +41,7 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
 </script>
 
 <template>
-  <DashboardBody >
+  <div >
     
     <!-- Header -->
     <div class="mb-6 flex justify-between items-center">
@@ -89,5 +89,5 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
         </AppButton>
       </template>
     </AppTable>
-  </DashboardBody>
+  </div>
 </template>

@@ -27,7 +27,7 @@ const products = ref(_sampleProducts);
 <template>
   <div>
     <!-- Actions -->
-    <div class="p-1 flex">
+    <div class="p-1 flex flex-col md:flex-row gap-2 justify-center md:justify-between">
       <!-- Add Product -->
       <AppButton 
         :to="{ name: 'ProductAdd' }"
@@ -39,7 +39,7 @@ const products = ref(_sampleProducts);
       <AppFormSelect
         v-model="sortBy"
         :items="sortOptions"
-        class="ml-auto md:w-1/5"
+        class="md:2/5 lg:w-1/5"
       >
         <template #prepend>
           <p class="mr-2 flex gap-1 items-center flex-shrink-0">

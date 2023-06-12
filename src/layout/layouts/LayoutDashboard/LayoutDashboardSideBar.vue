@@ -27,7 +27,7 @@ const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ n
 const navigations: NavigationItem[] = [
   ...dashboardRoutes,
   ...productRoutes,
-  // ...userRoutes,
+  ...userRoutes,
 ].map(mapRouteToSidebar);
 
 

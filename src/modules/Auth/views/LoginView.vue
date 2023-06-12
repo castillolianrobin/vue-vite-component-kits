@@ -188,14 +188,14 @@ async function loginUser(errors?: string[]) {
       <h1 
         class="
           p-1 px-5 
-          bg-primary-500 
+          bg-primary-700 
           drop-shadow-lg 
           text-center text-2xl md:text-4xl text-white  uppercase 
         "
       >
-        Pack-it-Yard
+        Pack-it Portal
       </h1>
-      <p class="shadow-lg p-1 bg-white hidden md:block mt-3 text-lg text-primary-500">
+      <p class="shadow-lg p-1 bg-white hidden md:block mt-3 text-lg text-primary-700">
         Bring your hardware online
       </p>
     </div>

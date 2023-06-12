@@ -12,10 +12,10 @@ export default [
       {
         path: 'list',
         name: 'UserList',
-        component: () => import('./views/UsersView.vue'),
+        component: () => import('./views/UserListView.vue'),
         meta: { layout: 'Dashboard'},
         label: 'View All Users',
-        icon: () => import('@heroicons/vue/24/solid/UserGroupIcon'),
+        // icon: () => import('@heroicons/vue/24/solid/UserGroupIcon'),
       },
       {
         path: 'create',
@@ -23,7 +23,7 @@ export default [
         component: () => import('./views/UserCreateView.vue'),
         meta: { layout: 'Dashboard' },
         label: 'Create',
-        icon: () => import('@heroicons/vue/24/solid/UserPlusIcon'),
+        // icon: () => import('@heroicons/vue/24/solid/UserPlusIcon'),
       },
       {
         path: ':id/show',
@@ -32,7 +32,7 @@ export default [
         meta: { layout: 'Dashboard'},
         hidden: true,
         label: 'View All Users',
-        icon: () => import('@heroicons/vue/24/solid/UserGroupIcon'),
+        // icon: () => import('@heroicons/vue/24/solid/UserGroupIcon'),
       },
 
     ]

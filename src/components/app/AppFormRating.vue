@@ -44,7 +44,7 @@ const attrs = useAttrs()
 /** Internal Logic */
 
 function onChangeHandler(rate: number) {
-  if (props.disabled || attrs.readonly) return;
+  if (props.disabled || 'readonly' in  attrs) return;
   updateInputValue(rate)
 }
 
@@ -53,8 +53,8 @@ function onChangeHandler(rate: number) {
 const hoverValue = ref(0);
 
 function onHover(hoverRate = 0) {
-  if (props.disabled || attrs.readonly) return;
-
+  if (props.disabled || 'readonly' in  attrs) return;
+  console.log(attrs)
   hoverValue.value = hoverRate;
 }
 
@@ -89,7 +89,7 @@ const colorInactive = computed(():ThemeColors => {
         :class="[
           `flex-shrink flex aspect-square`,
           iconClass,
-          { 'cursor-pointer': !props.disabled && !attrs.readonly}
+          { 'cursor-pointer': !props.disabled && !$attrs.readonly}
         ]"
         @mouseover="onHover(rate)"
         @click="onChangeHandler(rate)"

@@ -17,7 +17,7 @@ const props = defineProps({
     class="
       p-2 
       w-full
-      grid md:grid-cols-5 items-center gap-3
+      grid md:grid-cols-3 lg:grid-cols-5 items-center gap-3
       shadow shadow-secondary-500/50 dark:shadow-secondary-200/50
       hover:bg-primary-500/50
       transition-colors
@@ -62,7 +62,7 @@ const props = defineProps({
     <div class="w-32">
       <AppFormRating 
         :model-value="3"
-        disabled
+        readonly
       ></AppFormRating>
     </div>
   </li>

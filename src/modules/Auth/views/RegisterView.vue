@@ -47,12 +47,12 @@ async function signupUser(errors: string[]) {
   <div 
     class="
       w-full h-full 
-      flex flex-col md:flex-row justify-center items-center 
+      flex flex-col md:flex-row md:justify-center items-center 
       bg-gradient-to-b 
       from-secondary-300
       to-primary-100
       dark
-      md:overflow-hidden
+      overflow-auto md:overflow-hidden
     "
   >
     <!-- Brand Column -->
@@ -60,10 +60,9 @@ async function signupUser(errors: string[]) {
       <!-- Logo -->
       <div 
         class="
-          p-5
-          mb-10 
+          md:p-5
+          md:mb-10 
           h-12 md:h-40
-          bg-primary-300 
           rounded-full
           aspect-square 
         "
@@ -83,7 +82,7 @@ async function signupUser(errors: string[]) {
           DEVICE.
          </span>
       </h3>
-      <p class="mt-5">
+      <p class="mt-5 hidden md:block">
         Sign up and discover unlimited supplies of construction material varying prices. You don't have spend your time canvassing on multiple locations and phone numbers anymore.
         <!-- You've got schedules, and budgets to keep. When your team is on pocketyard, you've got everything you need to keep construction moving. All in your pocket. -->
       </p>
@@ -92,10 +91,9 @@ async function signupUser(errors: string[]) {
     <AppCard 
       class="
         my-5 mx-2 p-4 md:ml-auto md:mr-0 lg:px-10
-        flex-shrink-0 
+        flex-srhink md:flex-shrink-0 
         w-[650px] max-w-[98%]
-        md:h-full md:overflow-auto 
-        scrollbar
+        md:h-full md:overflow-auto
       "
     >
       <div v-if="success">
@@ -200,7 +198,7 @@ async function signupUser(errors: string[]) {
     
           </div>
           
-  
+
           <AppButton 
             :loading="loading"
             class="mt-10 w-full" 

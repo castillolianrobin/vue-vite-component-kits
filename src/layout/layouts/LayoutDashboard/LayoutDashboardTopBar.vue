@@ -55,7 +55,7 @@ async function logOut() {
   >
     <!-- Title -->
     <h1 class="mx-3 my-2 flex-grow font-bold truncate hidden md:block ">
-      {{ title || 'pack-it-yard' }}
+      {{ title || 'Pack-it Portal' }}
     </h1>
 
     <ToggleDarkMode 

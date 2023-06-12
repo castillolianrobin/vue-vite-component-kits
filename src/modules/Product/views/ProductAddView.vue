@@ -22,7 +22,6 @@ const categoryItems = [
 ]
 
 /** Form */
-const test = ref()
 const form = ref<ProductForm>({
   variants: [],
   min_price: '0',
@@ -165,8 +164,10 @@ interface ProductForm {
               </AppFormInput>
   
               <AppFormInput
+                v-model="form.max_price"
                 :readonly="!!form.variants?.length"
                 label="Maximum Price"
+                type="decimal"
               >
                 <template #prepend>
                   <span class="mr-2">$</span>
@@ -180,6 +181,7 @@ interface ProductForm {
             <label class="font-bold">Inventory</label>
             <div class="mt-2 grid grid-cols-1 md:grid-cols-2 gap-3">
               <AppFormInput
+                type="number"
                 :readonly="!!form.variants?.length"
                 label="Total Stocks"
               ></AppFormInput>
@@ -193,7 +195,12 @@ interface ProductForm {
 
         </div>
       </AppCard>
-
+      <AppButton 
+        type="submit"
+        class="mt-2 ml-auto px-5"
+      >
+        Submit
+    </AppButton>
     </AppForm>
   </div>
 </template>

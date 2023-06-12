@@ -51,9 +51,9 @@ const router = createRouter({
       },
       children: [
         ...dashboardRoutes,
+        ...userRoutes,
         ...productRoutes,
         // ...dashboardRoutes,
-        // ...userRoutes,
       ],
     },
 
