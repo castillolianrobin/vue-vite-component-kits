@@ -59,11 +59,23 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
+      
+      <!-- First Name Column -->
+      <template #item-userInfo-firstName="{ item }">
+        {{ item.userInfo?.firstName || '-' }}
+      </template>
+      <!-- Last Name Column -->
+      <template #item-userInfo-lastName="{ item }">
+        {{ item.userInfo?.firstName || '-' }}
+      </template>
       <!-- Email Column -->
       <template #item-email="{ item }">
-        <span class="italic text-secondary-500">
+        <a 
+          class="italic text-info-500 dark:text-info-600"
+          :href="`mailto:${ item.email }`"
+        >
           {{ item.email }}
-        </span>
+        </a>
       </template>
 
       <!-- Type Column -->
@@ -85,7 +97,7 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
         >
           {{ item.status || 'New'}}
         </span>
-        <span v-else class="text-secondary-500">
+        <span v-else class="px-2 uppercase text-secondary-500">
           {{ item.status }}
         </span>
       </template>
