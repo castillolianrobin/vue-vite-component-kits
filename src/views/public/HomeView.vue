@@ -98,7 +98,7 @@ interface Navigation {
       class="
         px-5 pb-5 
         flex-grow flex-shrink 
-        flex flex-col 
+        flex flex-col md:justify-center 
         overflow-auto scrollbar
       "
     >
