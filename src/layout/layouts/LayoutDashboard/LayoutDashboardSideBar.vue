@@ -18,22 +18,34 @@ import productRoutes from '@/modules/Product/product.routes';
 
 const active = ref(false);
 
-const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ name, label, icon, children, hidden })=>({
+
+const mapRouteToSidebar:<T extends Navigation>(nav:T)=>Navigation = ({ name, label, icon, children, hidden, ...rest })=>({
   name: name, 
   label,
   icon: icon ? defineAsyncComponent(icon) : icon,
   children: children ? children.map(mapRouteToSidebar) : undefined,
   hidden, 
+  ...rest
 });
 
-const navigations: NavigationItem[] = [
+const navigations: Navigation[] = [
   ...dashboardRoutes,
   ...productRoutes,
   ...ordersRoutes,
   ...userRoutes,
+  // Map to Component
+  {
+    name: 'ComponentHome',
+    label: 'Go to Component List',
+    icon: () => import('@heroicons/vue/24/solid/GlobeAltIcon'),
+    class: 'text-secondary-500'
+  }
 ].map(mapRouteToSidebar);
 
 
+interface Navigation extends NavigationItem {
+  class?: string;
+}
 
 </script>
 
@@ -95,11 +107,12 @@ const navigations: NavigationItem[] = [
         >
           <LayoutDashboardSideBarItem
             v-for="{ 
-              label, name, icon, children, 
+              label, name, icon, children, ...rest 
             } in navigations"
             :key="label"
             :hide-label="!active"
             class="my-4 border-l-4 border-primary-500/0"
+            :class="rest.class"
             v-bind="{ label, name, icon, children }"
             @click="active = false"
           ></LayoutDashboardSideBarItem>
