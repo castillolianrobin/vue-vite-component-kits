@@ -12,7 +12,7 @@ export default [
     meta: { title: 'Orders' },
     children: [
       {
-        name: 'OrdersList',
+        name: 'OrderList',
         path: 'list',
         label: 'Orders List',
         component: ()=> import('./views/OrderListView.vue'),

@@ -4,7 +4,7 @@ import { DoughnutChart, LineChart, useDoughnutChart, useLineChart } from 'vue-ch
 import { Chart, registerables } from 'chart.js';
 import colors from 'tailwindcss/colors';
 // Components
-import { AppButton, AppCard } from '@/components/app';
+import { AppButton, AppCard, AppFormRating } from '@/components/app';
 import { DashboardCard } from '../components';
 import { 
   ReceiptRefundIcon as NewOrderIcon,
@@ -189,24 +189,19 @@ const { doughnutChartProps } = useDoughnutChart({
             class="w-6 mr-2"
           ></EngagementIcon>
           <span>Store Engagement</span>
+          
         </template>
-        
-        <div class="flex flex-col gap-3 text-sm">
-          <h5 class="">
-              <span class="">
-                Viewed Items:
-              </span>
-              <span class="text-primary-500 font-bold">50</span>
-          </h5>
-  
-          <h5 class="">
-              <span class="">
-                Popular Item:
-              </span>
-              <span class="text-primary-500 font-bold">
-                Fiber Optics
-              </span>
-          </h5>
+        <div class="flex flex-col gap-3">
+          <h3 class="">+25 Views today</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-xs">Store Rating: </span>
+            <AppFormRating
+            class="max-w-[120px]"
+            :max-value="5"
+            :model-value="3"
+            readonly
+            ></AppFormRating>
+          </div>
         </div>
       </DashboardCard>
 
@@ -234,16 +229,68 @@ const { doughnutChartProps } = useDoughnutChart({
 
     <!-- Extras -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <AppCard>
-        Card
+      <AppCard title="Orders">
+        <template #title>
+          <div class="flex items-center">
+            <span>Orders</span>
+            <AppButton
+              size="sm"
+              variant="text"
+              class="ml-auto"
+              :to="{ name: 'OrderList'}"
+            >
+              View All Orders
+            </AppButton>
+          </div>
+        </template>
+        <div class="mt-4 flex flex-col gap-3">
+          <p>Pending Orders: 
+            <span class="text-primary-500 font-bold">30</span>
+          </p>
+
+          <p>To Be Delivered: 
+            <span class="text-primary-500 font-bold">15</span>
+          </p>
+        </div>
       </AppCard>
 
       <AppCard>
-        Card
+        <template #title>
+          <div class="flex items-center">
+            <span>Products</span>
+            <AppButton
+              size="sm"
+              variant="text"
+              class="ml-auto"
+              :to="{ name: 'ProductList'}"
+            >
+              View All Products
+            </AppButton>
+          </div>
+        </template>
+        <div class="mt-5 flex flex-col gap-3 text-sm">
+          <h5 class="">
+              <span class="">
+                Viewed Items:
+              </span>
+              <span class="text-primary-500 font-bold">50</span>
+          </h5>
+
+          <h5 class="">
+              <span class="">
+                Popular Item:
+              </span>
+              <span class="text-primary-500 font-bold">
+                Fiber Optics
+              </span>
+          </h5>
+        </div>
       </AppCard>
 
-      <AppCard>
-      Card
+      <AppCard title="Lorem Ipsum">
+        <p class="mt-4">
+          Lorem Ipsum Dolor
+        </p>
       </AppCard>
     </div>
   </div>
