@@ -39,8 +39,8 @@ export const inputTest = (component:any, config?:Config) => {
         const wrapper = mount(component, {
             ...config?.options, 
             props: { 
-            disabled: true,
-            ...config.options?.props, 
+              ...config.options?.props, 
+              disabled: true,
           },
         });
 

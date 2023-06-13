@@ -91,6 +91,7 @@ const colorInactive = computed(():ThemeColors => {
           iconClass,
           { 'cursor-pointer': !props.disabled && !$attrs.readonly}
         ]"
+        aria-label="rating-input"
         @mouseover="onHover(rate)"
         @click="onChangeHandler(rate)"
       >
