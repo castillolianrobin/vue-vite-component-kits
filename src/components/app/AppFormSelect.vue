@@ -219,7 +219,7 @@ type SelectItem = SelectItemProp | string | number;
             :aria-selected="isActive(item)"
             tabindex="0"
             role="option"
-            @click="onItemSelect(item)"
+            @click.stop="onItemSelect(item)"
             @keypress.space="onItemSelect(item)"
           >
             {{ getItemLabel(item) }}
