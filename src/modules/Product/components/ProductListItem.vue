@@ -37,8 +37,18 @@ const props = defineProps({
         {{  props.name  }}
       </span>
 
-      <!-- Product Stock -->
-      <div class="text-xs">
+      <!-- Product Category -->
+      <p class="mt-2 text-sm text-secondary-400 dark:text-secondary-500">
+        {{  props.category || 'N/A'  }}
+      </p>
+    </div>
+    <!-- Product Price -->
+    <div class="text-sm font-light">
+      <span>{{  `$ ` + (Math.random() * 10000).toLocaleString('en')  }}</span>
+    </div>
+
+    <!-- Product Stock -->
+    <div class="text-xs">
         <span 
           v-if="!props.quantity" 
           class="text-error-500"
@@ -49,14 +59,6 @@ const props = defineProps({
           {{ props.quantity }} in stock
         </span>
       </div>
-    </div>
-    <!-- Product Price -->
-    <div class="text-secondary-500">
-      <span>{{  `$ 12,000`  }}</span>
-    </div>
-
-    <!-- Product Category -->
-    <span>{{  props.category || 'N/A'  }}</span>
 
     <!-- Product Rating -->
     <div class="w-32">

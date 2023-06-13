@@ -51,7 +51,7 @@ const products = ref(_sampleProducts);
     </div>
 
     <!-- Products -->
-    <AppCard class="mt-2">
+    <AppCard class="mt-5">
       <!-- Products -->
       <ProductList :products="products" ></ProductList>
     </AppCard>

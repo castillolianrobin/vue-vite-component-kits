@@ -43,7 +43,7 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
 <template>
   <div >
     <!-- Header -->
-    <div class="mb-2 flex justify-between items-center">
+    <div class="flex justify-between items-center">
       <AppButton 
         :to="{ name: 'UserCreate' }"
       >
@@ -55,6 +55,7 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
       :persist-column-on-mobile="['actions']"
       :loading="loading" 
       static
+      class="mt-5"
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
