@@ -20,16 +20,21 @@ const emits = defineEmits(['close'])
     text-sm 
     flex 
     items-center
+    ${ props.color.includes('white') 
+      ? 'text-black' 
+      : 'text-white' 
+    }
     bg-${props.color} 
   `">
     <slot></slot>
     <AppButton 
-      class="p-0 inline" 
+      v-if="closable" 
+      class="ml-auto p-0 inline" 
       size="sm" 
       color="white"
       variant="text"
     >
-      <XMarkIcon 
+      <XMarkIcon
         @click="emits('close', true)"
         class="h-3 aspect-square"
       ></XMarkIcon>

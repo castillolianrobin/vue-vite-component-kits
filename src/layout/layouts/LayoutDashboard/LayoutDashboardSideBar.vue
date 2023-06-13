@@ -8,6 +8,8 @@ import {  Bars3Icon as HamburgerIcon } from '@heroicons/vue/24/solid'
 // Extra
 import dashboardRoutes from '@/modules/Dashboard/dashboard.routes';
 import userRoutes from '@/modules/User/user.routes';
+import ordersRoutes from '@/modules/Orders/orders.routes';
+
 import {
   default as LayoutDashboardSideBarItem,
   type NavigationItem
@@ -27,6 +29,7 @@ const mapRouteToSidebar:<T extends NavigationItem>(nav:T)=>NavigationItem = ({ n
 const navigations: NavigationItem[] = [
   ...dashboardRoutes,
   ...productRoutes,
+  ...ordersRoutes,
   ...userRoutes,
 ].map(mapRouteToSidebar);
 

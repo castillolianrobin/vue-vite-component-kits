@@ -12,7 +12,7 @@ import { ref, watch } from 'vue';
 const headers: HeadersProp[]  = [
   { text: 'Fist Name', key: 'userInfo', subKey: 'firstName' },
   { text: 'Last Name', key: 'userInfo', subKey: 'lastName' },
-  { text: 'Email', key: 'email' },
+  { text: 'Email', key: 'email', },
   { text: 'Type', key: 'userType', subKey: 'name' },
   { text: 'Status', key: 'status' },
   { text: '', key: 'actions' },
@@ -59,9 +59,16 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
       v-bind="{ headers, items, currentPage, pageLength }"
       v-model:current-page="currentPage"
     >
+      <!-- Email Column -->
+      <template #item-email="{ item }">
+        <span class="italic text-secondary-500">
+          {{ item.email }}
+        </span>
+      </template>
+
       <!-- Type Column -->
       <template #item-userType-name="{ item }">
-        <span class="capitalize">{{ item.userType.name }}</span>
+        <span class="capitalize">{{ item.userType.name || 'Member' }}</span>
       </template>
       <!-- Status Column -->
       <template #item-status="{ item }">

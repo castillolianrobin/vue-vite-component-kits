@@ -13,6 +13,7 @@ import authRoutes from '@/modules/Auth/auth.routes';
 import dashboardRoutes from '@/modules/Dashboard/dashboard.routes';
 import productRoutes from '@/modules/Product/product.routes';
 import { usePageLoadStore } from '@/stores/pageLoadStore';
+import ordersRoutes from '@/modules/Orders/orders.routes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -54,6 +55,7 @@ const router = createRouter({
         ...dashboardRoutes,
         ...userRoutes,
         ...productRoutes,
+        ...ordersRoutes,
         // ...dashboardRoutes,
       ],
     },

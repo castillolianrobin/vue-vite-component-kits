@@ -10,7 +10,7 @@ export interface HeadersProp {
   subKey?: string; // use this if the key is nested from the main key
   sortable?: boolean; //Flag to make the header sortable
   desc?: boolean; //Flag to sort the data by descending order
-  className?: string; // class of the header
+  class?: string; // class of the header
 }
 
 export interface SortEmitReturn {
@@ -139,7 +139,7 @@ const headersComputed = computed<HeadersProp[]>(() =>
     if (typeof header === 'string') 
       return { text: header, key: `${i}` };
     else 
-      return header
+      return header;
   })
 );
 
@@ -442,10 +442,13 @@ function getNestedString(o: { [key: string]: any; }, s: string) {
             v-for="header, i in headersComputed"
             :key="header.key"
             :aria-label="`column ${i+1}`"
-            :class="`
-              py-1 md:pl-2 md:pr-2
-              header-${header.key} 
-            `"
+            :class="[
+              `
+                py-1 md:pl-2 md:pr-2
+                header-${header.key} 
+              `,
+              header.class,
+            ]"
           >
             <div class="flex items-center">
               <p class="mr-2">{{ header.text }}</p>

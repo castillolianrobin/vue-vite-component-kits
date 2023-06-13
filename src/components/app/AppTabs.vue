@@ -5,12 +5,15 @@ import { ref, type PropType, computed } from 'vue';
 export interface ItemProp {
   text: string;
   key?: string;
+  class?: string | object | Array<string | object>;
 }
 const props = defineProps({
   items: { 
     type: Array as PropType<ItemProp[]>,
     required: true,
   },
+  itemClass: [String, Object, Array] as PropType<ItemProp['class']>,
+  tabClass: [String, Object, Array] as PropType<ItemProp['class']>,
   currentTab: [String, Number] as PropType<ItemProp['key']>,
   eager: Boolean as PropType<boolean>,
   ...themedColorProps,
@@ -71,6 +74,8 @@ function setActiveTab(item: ItemProp) {
           v-for="item in itemComputed"
           :key="item.key"
           :class="[
+            item.class,
+            props.itemClass,
             'transition-colors cursor-pointer',
             `hover:text-${color}`,
             {
@@ -104,6 +109,7 @@ function setActiveTab(item: ItemProp) {
             v-show="isActiveTab(item)"
             role="tabpanel"
             :aria-label="`${item.key} tabpanel`"
+            :class="props.tabClass"
           >
             <slot :name="`${item.key}`">
               <p class="text-secondary-400">No Content</p>
