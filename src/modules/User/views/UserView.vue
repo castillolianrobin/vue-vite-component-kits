@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppButton, AppCard } from '@/components/app';
+import { AppButton, AppCard, AppModal } from '@/components/app';
 import { DashboardBody } from '@/components/dashboard';
 import { DashboardCardItem } from '@/components/dashboard';
 import { Users, type User } from '@/services';
@@ -25,6 +25,7 @@ async function getUser() {
 }
 
 async function deleteUser() {
+  loading.value = true;
   try {
     const response = await Users.delete(+id);
     if (response.data.success)
@@ -36,6 +37,7 @@ async function deleteUser() {
       alert('Something went wrong');
     }
   }
+  loading.value = false;
 }
 
 getUser();
@@ -52,13 +54,45 @@ getUser();
         <AppButton variant="outline" class="px-4">
           Back
         </AppButton>
-        <!-- Delete Btn -->
-        <AppButton 
-          color="error-500"
-          @click="deleteUser"
-        >
-          Delete User
-        </AppButton>
+        
+        <!-- Delete Modal -->
+        <AppModal :persist="loading">
+          <template #trigger="{ toggleModal }">
+            <AppButton 
+              color="error-500"
+              @click="toggleModal"
+            >
+              Delete User
+            </AppButton>
+          </template>
+          <template #default="{ toggleModal }">
+            <div class="px-5 py-2">
+              <div>
+                <h3 class="mb-3 font-bold text-xl ">Confirm Delete</h3>
+                <p>Are you sure you want to delete this user? </p>
+                <p>Click to confirm to proceed.</p>
+              </div>
+              <!-- Delete Actions -->
+              <div class="mt-10 flex justify-end gap-3">
+                <AppButton 
+                  :disabled="loading"
+                  color="secondary-500" 
+                  variant="outline"
+                  @click="toggleModal(false)"
+                >
+                  Cancel
+                </AppButton>
+                <AppButton
+                  :loading="loading"
+                  color="error-500"
+                  @click="deleteUser"              
+                >
+                  Confirm
+                </AppButton>
+              </div>
+            </div>
+          </template>
+        </AppModal>
         
         <!-- Edit Btn -->
         <AppButton>

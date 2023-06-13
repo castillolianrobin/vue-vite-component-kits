@@ -42,10 +42,8 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
 
 <template>
   <div >
-    
     <!-- Header -->
-    <div class="mb-6 flex justify-between items-center">
-      <h3>Users</h3>
+    <div class="mb-2 flex justify-between items-center">
       <AppButton 
         :to="{ name: 'UserCreate' }"
       >
@@ -67,26 +65,34 @@ watch(currentPage, (val)=> getData(val), { immediate: true });
       <!-- Status Column -->
       <template #item-status="{ item }">
         <span 
-          v-if="item.status === 'verified'"
-          class="px-2 uppercase text-sm font-light rounded-full bg-primary-800"
+          v-if="['verified', ''].includes(item.status)"
+          :class="[
+            `px-2 uppercase text-sm rounded-full`,
+            {
+              'bg-primary-600 font-light text-primary-100': item.status === 'verified',
+              'text-primary-500 font-bold': item.status === '',
+
+            }
+          ]"
         >
-          {{ item.status }}
+          {{ item.status || 'New'}}
         </span>
-        <span v-else class="text-secondary">
+        <span v-else class="text-secondary-500">
           {{ item.status }}
         </span>
       </template>
       
       <!-- Actions Column -->
       <template #item-actions="{ item }">
-        <AppButton 
-        :to="{ name: 'UserShow', params: {id: item.id} }"  
-        class="block ml-auto"
-          variant="text"
-          size="sm"
-        >
-          View User
-        </AppButton>
+        <div class="p-1 flex justify-end">
+          <AppButton 
+            :to="{ name: 'UserShow', params: {id: item.id} }"  
+            class="block ml-auto"
+            size="sm"
+          >
+            View User
+          </AppButton>
+        </div>
       </template>
     </AppTable>
   </div>

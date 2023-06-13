@@ -5,7 +5,7 @@ export default [
     path: 'user',
     name: 'User',
     component: LayoutDefault,
-    meta: { layout: 'Dashboard',  },
+    meta: { layout: 'Dashboard', title: 'Users'  },
     label: 'Users',
     icon: () => import('@heroicons/vue/24/solid/UserGroupIcon'),
     children: [
