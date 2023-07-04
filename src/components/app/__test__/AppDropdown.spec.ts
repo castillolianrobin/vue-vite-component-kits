@@ -11,6 +11,7 @@ describe(name, ()=>{
     
     const wrapper = mount(AppDropdown, {
       slots: {
+        default(_) {},
         trigger: `
           <template #trigger="{ props }">
             <button id="trigger" v-bind="{ ...props }">
