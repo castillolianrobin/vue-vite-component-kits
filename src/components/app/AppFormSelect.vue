@@ -2,7 +2,6 @@
 import { ref, toRef, computed, type PropType, useAttrs } from 'vue';
 // Composables
 import { inputContainerProps, inputEmits, inputProps, themedColorProps, useFormValidation, useInputValue, useThemedColor, validationProps } from '@/composables';
-import { vOnClickOutside } from '@vueuse/components';
 // Components
 import { AppFormInputContainer } from '.';
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/20/solid';
